@@ -1,80 +1,42 @@
-We don't need another AI app store 🧵
+# Show HN: Agent Manifest Protocol – Decentralized AI Skill Distribution
 
-Over the past two years, every AI platform built their own "store":
-— OpenAI made GPT Store
-— Coze made Bot Store
-— ByteDance, Google, everyone followed
+We built an open protocol for discovering and installing AI Skills — no store required.
 
-None of them really took off.
+Put an `agent.json` in your GitHub repo, and `agent install user/repo` just works.
 
-Not because of execution. Because the store model has 3 fatal flaws:
+**Why not another store?**
 
-1️⃣ Moderation is a bottleneck — millions of skills can't be manually reviewed
-2️⃣ Platform lock-in — devs won't package separately for every store
-3️⃣ Discovery sucks — browsing thousands of skills is 2010 App Store all over again
+Every AI platform (OpenAI, Coze, ByteDance) built their own store. None took off. Three fatal flaws:
+- Moderation bottleneck — millions of skills can't be manually reviewed
+- Platform lock-in — devs won't package separately for every store
+- Discovery sucks — browsing thousands of skills is 2010 App Store all over again
 
-What if we flipped the model?
-
-HTTP doesn't need a central registry. SMTP doesn't. Git doesn't.
-Why should AI skill distribution?
-
-I built an open protocol: **Agent Manifest Protocol (AMP).**
-
-Put an `agent.json` in your GitHub repo root, and any AI Runtime can discover and invoke your skill.
-
-```json
-{
-  "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
-  "id": "com.openclaw.weather",
-  "name": "Weather Assistant",
-  "capabilities": [
-    {
-      "id": "get_weather",
-      "name": "Current Weather",
-      "intents": [
-        "what's the weather in {city} now",
-        "is it cold in {city} today"
-      ]
-    }
-  ]
-}
-```
-
-Install is just git:
+**What we did instead → an open protocol**
 
 ```
-agent install openclaw/weather-skill
-# = git clone + register. That's it.
+# Semantic search (TF-IDF vector matching, CJK support)
+agent search "analyze financial statements"
+
+# One-command install
+agent install Polaris899/fsa-analyzer
+# = git clone + schema validate + register. Done.
 ```
 
-No central server. No submission process. No revenue cut.
-Versioning, forking, PRs — the entire GitHub ecosystem, aligned.
+**Key design decisions:**
+- Intent-first routing → not "what endpoints", but "what intents can you resolve"
+- Git-as-distribution → versioning, forking, PRs — the entire GitHub ecosystem
+- Protocol-neutral → works with any runtime (OpenClaw, LangChain, GPTs, custom)
 
-**Core design principles:**
+**What ships today:**
+- Protocol spec v1.0 (stable) with JSON Schema
+- CLI: search (semantic), install, list, update, info, validate
+- Web registry with semantic search
+- 50+ skills indexed (OpenClaw skills + GPTs)
+- GPT-to-AMP converter
 
-• **Intent-first** — not "what endpoints do you have", but "what intents can you resolve". AI routing via semantic matching.
+Everything open source → github.com/Polaris899/agent-protocol
 
-• **Git-as-distribution** — `agent search "analyze financial report"` → top 5 matching manifests → `agent install user/repo`. Decentralized by default.
-
-• **Protocol-neutral** — not tied to any platform. OpenClaw, LangChain, CrewAI, or your own runtime. AMP is a capability routing layer, not another walled garden.
-
-**What's shipping today:**
-
-✅ Protocol spec v1.0 — intent declarations, runtime config, trust & permissions
-✅ CLI — `search`, `install`, `list`, `update`, `info`, `validate`
-✅ Search engine — GitHub crawler + semantic search API
-✅ GPT Store converter — auto-transforms existing GPTs into AMP format
-✅ Web search UI
-✅ 50+ skills already indexed
-
-All open source → **github.com/Polaris899/agent-protocol**
-
-This isn't a product launch. It's a protocol proposal.
-
-If you build AI runtimes, agent frameworks, or you're a skill dev tired of repackaging for every store — let's talk.
-
-PRs, Issues, Discussions. Whatever.
-Protocols grow when people build on them.
+This isn't a product launch. It's a protocol proposal. PRs, issues, discussions welcome.
 
 ---
 

@@ -1,11 +1,10 @@
 import { readFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { buildCorpus, search as semanticSearch } from '../../../crawler/vectorizer.js';
+import { buildCorpus, search as semanticSearch } from '../../vectorizer.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = join(__dirname, '..', '..', '..');
-const INDEX_PATH = join(ROOT, 'crawler', 'data', 'index.json');
+const INDEX_PATH = join(__dirname, '..', '..', 'data', 'index.json');
 
 export async function searchCommand(query, options) {
   const limit = parseInt(options.limit || '10');
@@ -18,14 +17,24 @@ export async function searchCommand(query, options) {
   }
 
   const index = loadIndex();
-  const corpus = buildCorpus(index);
-  const results = semanticSearch(query, corpus, index, limit);
-  printResults(results, query, asJson);
+  try {
+    const corpus = buildCorpus(index);
+    const results = semanticSearch(query, corpus, index, limit);
+    printResults(results, query, asJson);
+  } catch (err) {
+    // Fallback: keyword match
+    const kw = query.toLowerCase();
+    const results = index.filter(m => {
+      const text = [m.name, m.description, m.id, ...(m.tags || [])].join(' ').toLowerCase();
+      return text.includes(kw);
+    }).slice(0, limit);
+    printResults(results, query, asJson);
+  }
 }
 
 function loadIndex() {
   if (!existsSync(INDEX_PATH)) {
-    console.error('❌ 索引文件未找到。请运行: npm run crawl');
+    console.error('❌ 索引文件未找到。请重新安装 @agent-protocol/cli');
     process.exit(1);
   }
   return JSON.parse(readFileSync(INDEX_PATH, 'utf-8'));

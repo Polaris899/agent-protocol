@@ -1,0 +1,30 @@
+name: Publish @agent-protocol/cli to npm
+
+on:
+  push:
+    tags:
+      - 'cli-v*'  # e.g. cli-v1.0.0
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cli
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: npm ci
+
+      - run: node bin/agent.js validate data/manifest.schema.json
+        name: Sanity check
+
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -40,14 +40,15 @@
   function cosineSim(a, b) {
     let dot = 0, normA = 0, normB = 0;
     for (const key of Object.keys(a)) {
-      const va = a[key], vb = b[key];
-      dot += va * (vb || 0);
+      const va = a[key], vb = b[key] || 0;
+      dot += va * vb;
       normA += va * va;
+      normB += vb * vb;
     }
     for (const key of Object.keys(b)) {
       if (!(key in a)) normB += b[key] * b[key];
     }
-    if (normA === 0 || normB === 0 && dot === 0) return 0;
+    if (normA === 0 || normB === 0) return 0;
     return dot / (Math.sqrt(normA) * Math.sqrt(normB));
   }
 

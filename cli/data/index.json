@@ -1,0 +1,3096 @@
+[
+  {
+    "_repo": "openclaw/health-coach",
+    "_path": "agent.json",
+    "_url": "https://github.com/openclaw/health-coach/blob/main/agent.json",
+    "_indexed_at": "2026-06-16T00:00:00.000Z",
+    "id": "com.openclaw.health-coach",
+    "name": "科学健身教练",
+    "description": "个性化健身计划制定、动作指导、渐进式训练方案调整和营养建议",
+    "version": "1.1.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "fitness",
+      "健身",
+      "运动",
+      "健康",
+      "训练",
+      "workout"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "create_plan",
+        "name": "制定健身计划",
+        "description": "根据个人目标和身体状况制定个性化训练计划",
+        "intents": [
+          "帮我制定健身计划",
+          "我想增肌/减脂，该怎么做",
+          "设计一周训练方案",
+          "create a workout plan for me"
+        ],
+        "latency": "medium",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "exercise_guide",
+        "name": "动作指导",
+        "description": "提供训练动作的详细步骤、要点和常见错误纠正",
+        "intents": [
+          "{动作}怎么做",
+          "{动作}的正确姿势",
+          "教我做{动作}",
+          "how to do {exercise} correctly"
+        ],
+        "latency": "real-time",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "nutrition_advice",
+        "name": "营养建议",
+        "description": "基于健身目标提供膳食搭配和营养补充建议",
+        "intents": [
+          "健身应该怎么吃",
+          "增肌期饮食",
+          "减脂餐推荐",
+          "workout nutrition advice"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "type": "skill"
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "community_audit_202606"
+      ]
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-pdf-analyst-pro",
+    "name": "PDF Analyst Pro API",
+    "description": "PDF analysis and extraction API",
+    "version": "1.0.0",
+    "author": {
+      "name": "PDF Labs Inc."
+    },
+    "tags": [
+      "gpt-store",
+      "productivity",
+      "pdf",
+      "analyst",
+      "pro",
+      "api",
+      "upload",
+      "analyze",
+      "extract-tables"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "upload",
+        "name": "Upload and analyze PDF",
+        "description": "Upload and analyze PDF",
+        "intents": [
+          "分析{内容}",
+          "从{source}提取{信息}",
+          "分析{文件}的内容"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "file",
+              "description": "PDF file to analyze"
+            },
+            "ocr": {
+              "type": "boolean",
+              "description": "Enable OCR for scanned documents"
+            }
+          },
+          "required": [
+            "file"
+          ]
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "analyze",
+        "name": "Analyze extracted text",
+        "description": "Analyze extracted text",
+        "intents": [
+          "分析{内容}",
+          "从{source}提取{信息}",
+          "分析{文件}的内容"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "description": "Extracted text content"
+            },
+            "questions": {
+              "type": "array",
+              "description": "List of questions to answer"
+            }
+          },
+          "required": [
+            "text"
+          ]
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "fetch_extract_tables",
+        "name": "Extract tables from PDF",
+        "description": "Extract tables from PDF",
+        "intents": [
+          "从{source}提取{信息}",
+          "分析{文件}的内容"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {
+            "file_id": {
+              "type": "string",
+              "description": "File ID from upload"
+            }
+          },
+          "required": [
+            "file_id"
+          ]
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [
+        "network",
+        "read_file"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    },
+    "_repo": "openai/gpt-pdf-analyst-pro"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-travel-planner",
+    "name": "旅行规划师",
+    "description": "帮你规划完整行程，包括航班搜索、酒店推荐、景点攻略和当地美食指南",
+    "version": "1.0.0",
+    "author": {
+      "name": "TravelAI Inc."
+    },
+    "tags": [
+      "gpt-store",
+      "travel",
+      "旅行规划师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "search_flights",
+        "name": "Search Flights",
+        "description": "搜索航班信息",
+        "intents": [
+          "搜索航班信息"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "recommend_hotels",
+        "name": "Recommend Hotels",
+        "description": "推荐酒店",
+        "intents": [
+          "推荐酒店"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "plan_itinerary",
+        "name": "Plan Itinerary",
+        "description": "规划每日行程",
+        "intents": [
+          "规划每日行程"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    },
+    "_repo": "openai/gpt-travel-planner"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-code-assistant",
+    "name": "代码助手 Pro",
+    "description": "精通多种编程语言，帮你写代码、调试、重构和代码审查",
+    "version": "1.0.0",
+    "author": {
+      "name": "DevTools"
+    },
+    "tags": [
+      "gpt-store",
+      "developer-tools",
+      "代码助手",
+      "pro"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "generate_code",
+        "name": "Generate Code",
+        "description": "根据需求生成代码",
+        "intents": [
+          "根据需求生成代码"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "debug_code",
+        "name": "Debug Code",
+        "description": "分析并修复代码bug",
+        "intents": [
+          "分析并修复代码bug"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "code_review",
+        "name": "Code Review",
+        "description": "审查代码质量和安全性",
+        "intents": [
+          "审查代码质量和安全性"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    },
+    "_repo": "openai/gpt-code-assistant"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-translator-pro",
+    "name": "翻译专家",
+    "description": "支持 100+ 种语言的互译，保留原文格式和语境，专业术语准确",
+    "version": "1.0.0",
+    "author": {
+      "name": "Lingua AI"
+    },
+    "tags": [
+      "gpt-store",
+      "productivity",
+      "翻译专家"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "翻译专家",
+        "description": "支持 100+ 种语言的互译，保留原文格式和语境，专业术语准确",
+        "intents": [
+          "翻译{文本}到{语言}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    },
+    "_repo": "openai/gpt-translator-pro"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-resume-builder",
+    "name": "简历优化师",
+    "description": "帮你优化简历内容，匹配职位描述，提升面试通过率",
+    "version": "1.0.0",
+    "author": {
+      "name": "CareerAI"
+    },
+    "tags": [
+      "gpt-store",
+      "career",
+      "简历优化师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "简历优化师",
+        "description": "帮你优化简历内容，匹配职位描述，提升面试通过率",
+        "intents": [
+          "简历优化师"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    },
+    "_repo": "openai/gpt-resume-builder"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-data-visualizer",
+    "name": "数据可视化专家",
+    "description": "将原始数据转化为精美的图表和可视化报告，支持柱状图、折线图、饼图、热力图等",
+    "version": "1.0.0",
+    "author": {
+      "name": "DataViz Labs"
+    },
+    "tags": [
+      "gpt-store",
+      "data-analysis",
+      "数据可视化专家"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "create_chart",
+        "name": "Create Chart",
+        "description": "基于数据生成图表",
+        "intents": [
+          "基于数据生成图表"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "analyze_data",
+        "name": "Analyze Data",
+        "description": "数据分析与洞察",
+        "intents": [
+          "数据分析与洞察"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    },
+    "_repo": "openai/gpt-data-visualizer"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-email-marketer",
+    "name": "邮件营销助手",
+    "description": "帮你撰写、优化和自动化邮件营销文案，提升打开率和转化率",
+    "version": "1.0.0",
+    "author": {
+      "name": "MarketAI"
+    },
+    "tags": [
+      "gpt-store",
+      "marketing",
+      "邮件营销助手"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "邮件营销助手",
+        "description": "帮你撰写、优化和自动化邮件营销文案，提升打开率和转化率",
+        "intents": [
+          "生成{内容}",
+          "将{source}转换为{target}",
+          "写邮件给{收件人}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    },
+    "_repo": "openai/gpt-email-marketer"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-legal-consultant",
+    "name": "法律顾问",
+    "description": "提供合同审查、法律条款解读和基础法律咨询服务",
+    "version": "1.0.0",
+    "author": {
+      "name": "LexAI"
+    },
+    "tags": [
+      "gpt-store",
+      "legal",
+      "法律顾问"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "法律顾问",
+        "description": "提供合同审查、法律条款解读和基础法律咨询服务",
+        "intents": [
+          "法律顾问"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    },
+    "_repo": "openai/gpt-legal-consultant"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-social-media-manager",
+    "name": "社交媒体管家",
+    "description": "帮你生成社交媒体文案、策划内容日历、分析互动数据",
+    "version": "1.0.0",
+    "author": {
+      "name": "SocialAI"
+    },
+    "tags": [
+      "gpt-store",
+      "marketing",
+      "社交媒体管家"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "generate_post",
+        "name": "Generate Post",
+        "description": "生成社交媒体帖子",
+        "intents": [
+          "生成社交媒体帖子"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "analyze_engagement",
+        "name": "Analyze Engagement",
+        "description": "分析互动数据",
+        "intents": [
+          "分析互动数据"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    },
+    "_repo": "openai/gpt-social-media-manager"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-math-tutor",
+    "name": "数学导师",
+    "description": "从代数到微积分，一步步帮你解决数学问题并解释原理",
+    "version": "1.0.0",
+    "author": {
+      "name": "EduAI"
+    },
+    "tags": [
+      "gpt-store",
+      "education",
+      "数学导师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "数学导师",
+        "description": "从代数到微积分，一步步帮你解决数学问题并解释原理",
+        "intents": [
+          "解释{概念}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    },
+    "_repo": "openai/gpt-math-tutor"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-recipe-chef",
+    "name": "AI 大厨",
+    "description": "根据你冰箱里的食材推荐菜谱，提供详细的烹饪步骤和营养信息",
+    "version": "1.0.0",
+    "author": {
+      "name": "FoodAI"
+    },
+    "tags": [
+      "gpt-store",
+      "lifestyle"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "AI 大厨",
+        "description": "根据你冰箱里的食材推荐菜谱，提供详细的烹饪步骤和营养信息",
+        "intents": [
+          "推荐{类别}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    },
+    "_repo": "openai/gpt-recipe-chef"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-interview-coach",
+    "name": "面试教练",
+    "description": "模拟面试练习，提供实时反馈和改进建议，帮你准备常见面试题",
+    "version": "1.0.0",
+    "author": {
+      "name": "CareerAI"
+    },
+    "tags": [
+      "gpt-store",
+      "career",
+      "面试教练"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "面试教练",
+        "description": "模拟面试练习，提供实时反馈和改进建议，帮你准备常见面试题",
+        "intents": [
+          "面试教练"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    },
+    "_repo": "openai/gpt-interview-coach"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-fitness-tracker",
+    "name": "健身规划师",
+    "description": "根据你的身体状况和目标制定个性化训练计划和饮食建议",
+    "version": "1.0.0",
+    "author": {
+      "name": "FitAI"
+    },
+    "tags": [
+      "gpt-store",
+      "health",
+      "健身规划师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "create_workout_plan",
+        "name": "Create Workout Plan",
+        "description": "制定训练计划",
+        "intents": [
+          "制定训练计划"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "diet_advice",
+        "name": "Diet Advice",
+        "description": "饮食建议",
+        "intents": [
+          "饮食建议"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    },
+    "_repo": "openai/gpt-fitness-tracker"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-music-composer",
+    "name": "音乐创作人",
+    "description": "帮你作曲、编曲、写歌词，支持多种音乐风格",
+    "version": "1.0.0",
+    "author": {
+      "name": "MusicAI"
+    },
+    "tags": [
+      "gpt-store",
+      "creative",
+      "音乐创作人"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "音乐创作人",
+        "description": "帮你作曲、编曲、写歌词，支持多种音乐风格",
+        "intents": [
+          "生成{内容}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    },
+    "_repo": "openai/gpt-music-composer"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-sql-helper",
+    "name": "SQL 专家",
+    "description": "写 SQL 查询、优化慢查询、设计数据库表结构",
+    "version": "1.0.0",
+    "author": {
+      "name": "DataTools"
+    },
+    "tags": [
+      "gpt-store",
+      "developer-tools",
+      "sql"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "write_query",
+        "name": "Write Query",
+        "description": "写 SQL 查询",
+        "intents": [
+          "写 SQL 查询"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "optimize_query",
+        "name": "Optimize Query",
+        "description": "优化查询性能",
+        "intents": [
+          "优化查询性能"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    },
+    "_repo": "openai/gpt-sql-helper"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-interior-designer",
+    "name": "室内设计师",
+    "description": "根据你的空间和喜好推荐装修风格、家具搭配和色彩方案",
+    "version": "1.0.0",
+    "author": {
+      "name": "DesignAI"
+    },
+    "tags": [
+      "gpt-store",
+      "creative",
+      "室内设计师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "室内设计师",
+        "description": "根据你的空间和喜好推荐装修风格、家具搭配和色彩方案",
+        "intents": [
+          "推荐{类别}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    },
+    "_repo": "openai/gpt-interior-designer"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-stock-analyst",
+    "name": "股票分析师",
+    "description": "分析股票走势、财报数据、行业趋势，提供投资洞察",
+    "version": "1.0.0",
+    "author": {
+      "name": "FinAI"
+    },
+    "tags": [
+      "gpt-store",
+      "finance",
+      "股票分析师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "analyze_stock",
+        "name": "Analyze Stock",
+        "description": "分析个股",
+        "intents": [
+          "分析个股"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "market_news",
+        "name": "Market News",
+        "description": "市场资讯摘要",
+        "intents": [
+          "市场资讯摘要"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    },
+    "_repo": "openai/gpt-stock-analyst"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-english-tutor",
+    "name": "英语老师",
+    "description": "练习英语口语、纠正发音、改进语法、扩充词汇量",
+    "version": "1.0.0",
+    "author": {
+      "name": "EduAI"
+    },
+    "tags": [
+      "gpt-store",
+      "education",
+      "英语老师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "英语老师",
+        "description": "练习英语口语、纠正发音、改进语法、扩充词汇量",
+        "intents": [
+          "英语老师"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    },
+    "_repo": "openai/gpt-english-tutor"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-meme-creator",
+    "name": "表情包大师",
+    "description": "根据你的创意生成搞笑表情包和梗图",
+    "version": "1.0.0",
+    "author": {
+      "name": "FunAI"
+    },
+    "tags": [
+      "gpt-store",
+      "entertainment",
+      "表情包大师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "表情包大师",
+        "description": "根据你的创意生成搞笑表情包和梗图",
+        "intents": [
+          "生成{内容}",
+          "生成{描述}的图片"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    },
+    "_repo": "openai/gpt-meme-creator"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-contract-reviewer",
+    "name": "合同审查员",
+    "description": "审查合同条款，识别风险点，提供修改建议",
+    "version": "1.0.0",
+    "author": {
+      "name": "LexAI"
+    },
+    "tags": [
+      "gpt-store",
+      "legal",
+      "合同审查员"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "合同审查员",
+        "description": "审查合同条款，识别风险点，提供修改建议",
+        "intents": [
+          "合同审查员"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    },
+    "_repo": "openai/gpt-contract-reviewer"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-study-planner",
+    "name": "学习规划师",
+    "description": "制定学习计划、推荐学习资源、跟踪学习进度",
+    "version": "1.0.0",
+    "author": {
+      "name": "EduAI"
+    },
+    "tags": [
+      "gpt-store",
+      "education",
+      "学习规划师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "学习规划师",
+        "description": "制定学习计划、推荐学习资源、跟踪学习进度",
+        "intents": [
+          "推荐{类别}",
+          "规划{目的地}的{天数}天行程"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    },
+    "_repo": "openai/gpt-study-planner"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-content-writer",
+    "name": "内容写作专家",
+    "description": "写文章、博客、新闻稿、产品描述等各种文案",
+    "version": "1.0.0",
+    "author": {
+      "name": "WriteAI"
+    },
+    "tags": [
+      "gpt-store",
+      "creative",
+      "内容写作专家"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "内容写作专家",
+        "description": "写文章、博客、新闻稿、产品描述等各种文案",
+        "intents": [
+          "生成{内容}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    },
+    "_repo": "openai/gpt-content-writer"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-personal-shopper",
+    "name": "私人购物顾问",
+    "description": "根据你的风格、预算和需求推荐商品",
+    "version": "1.0.0",
+    "author": {
+      "name": "ShopAI"
+    },
+    "tags": [
+      "gpt-store",
+      "lifestyle",
+      "私人购物顾问"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "私人购物顾问",
+        "description": "根据你的风格、预算和需求推荐商品",
+        "intents": [
+          "推荐{类别}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    },
+    "_repo": "openai/gpt-personal-shopper"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-meditation-guide",
+    "name": "冥想引导师",
+    "description": "引导冥想练习、提供放松技巧和正念训练",
+    "version": "1.0.0",
+    "author": {
+      "name": "MindAI"
+    },
+    "tags": [
+      "gpt-store",
+      "health",
+      "冥想引导师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "冥想引导师",
+        "description": "引导冥想练习、提供放松技巧和正念训练",
+        "intents": [
+          "冥想引导师"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    },
+    "_repo": "openai/gpt-meditation-guide"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-investment-advisor",
+    "name": "投资顾问",
+    "description": "提供资产配置建议、风险评估和投资组合分析",
+    "version": "1.0.0",
+    "author": {
+      "name": "FinAI"
+    },
+    "tags": [
+      "gpt-store",
+      "finance",
+      "投资顾问"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "portfolio_analysis",
+        "name": "Portfolio Analysis",
+        "description": "投资组合分析",
+        "intents": [
+          "投资组合分析"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "risk_assessment",
+        "name": "Risk Assessment",
+        "description": "风险评估",
+        "intents": [
+          "风险评估"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    },
+    "_repo": "openai/gpt-investment-advisor"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-movie-recommender",
+    "name": "电影推荐官",
+    "description": "根据你的口味推荐电影、电视剧和纪录片",
+    "version": "1.0.0",
+    "author": {
+      "name": "MediaAI"
+    },
+    "tags": [
+      "gpt-store",
+      "entertainment",
+      "电影推荐官"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "电影推荐官",
+        "description": "根据你的口味推荐电影、电视剧和纪录片",
+        "intents": [
+          "推荐{类别}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    },
+    "_repo": "openai/gpt-movie-recommender"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-crypto-analyst",
+    "name": "加密货币分析师",
+    "description": "分析加密货币市场、技术指标和链上数据",
+    "version": "1.0.0",
+    "author": {
+      "name": "CryptoAI"
+    },
+    "tags": [
+      "gpt-store",
+      "finance",
+      "加密货币分析师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "加密货币分析师",
+        "description": "分析加密货币市场、技术指标和链上数据",
+        "intents": [
+          "分析{内容}",
+          "分析这份{类型}数据"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    },
+    "_repo": "openai/gpt-crypto-analyst"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-career-counselor",
+    "name": "职业规划师",
+    "description": "帮你分析职业方向、规划晋升路径、准备跳槽策略",
+    "version": "1.0.0",
+    "author": {
+      "name": "CareerAI"
+    },
+    "tags": [
+      "gpt-store",
+      "career",
+      "职业规划师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "职业规划师",
+        "description": "帮你分析职业方向、规划晋升路径、准备跳槽策略",
+        "intents": [
+          "分析{内容}",
+          "规划{目的地}的{天数}天行程"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    },
+    "_repo": "openai/gpt-career-counselor"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-photo-editor",
+    "name": "修图助手",
+    "description": "指导你修图技巧、推荐滤镜参数、讲解构图原理",
+    "version": "1.0.0",
+    "author": {
+      "name": "PhotoAI"
+    },
+    "tags": [
+      "gpt-store",
+      "creative",
+      "修图助手"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "修图助手",
+        "description": "指导你修图技巧、推荐滤镜参数、讲解构图原理",
+        "intents": [
+          "推荐{类别}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    },
+    "_repo": "openai/gpt-photo-editor"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-podcast-script-writer",
+    "name": "播客脚本写手",
+    "description": "帮你写播客脚本、设计节目结构、优化口语表达",
+    "version": "1.0.0",
+    "author": {
+      "name": "MediaAI"
+    },
+    "tags": [
+      "gpt-store",
+      "creative",
+      "播客脚本写手"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "播客脚本写手",
+        "description": "帮你写播客脚本、设计节目结构、优化口语表达",
+        "intents": [
+          "生成{内容}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    },
+    "_repo": "openai/gpt-podcast-script-writer"
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
+    "id": "com.openai.gpt-tax-advisor",
+    "name": "税务顾问",
+    "description": "提供个税计算、税务筹划和报税指导",
+    "version": "1.0.0",
+    "author": {
+      "name": "FinAI"
+    },
+    "tags": [
+      "gpt-store",
+      "finance",
+      "税务顾问"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "税务顾问",
+        "description": "提供个税计算、税务筹划和报税指导",
+        "intents": [
+          "计算{表达式}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    },
+    "_repo": "openai/gpt-tax-advisor"
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/fitness-coach.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/fitness-coach.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.601Z",
+    "id": "com.openclaw.fitness-coach",
+    "name": "科学健身教练",
+    "description": "制定个性化健身计划、动作指导、渐进式负荷调整和营养建议",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "fitness",
+      "健身",
+      "运动",
+      "训练",
+      "workout"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "create_plan",
+        "name": "制定计划",
+        "description": "根据目标和个人状况制定训练方案",
+        "intents": [
+          "制定健身计划",
+          "增肌计划",
+          "减脂方案",
+          "create workout plan"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "exercise_guide",
+        "name": "动作指导",
+        "description": "提供标准动作步骤和常见错误纠正",
+        "intents": [
+          "这个动作怎么做",
+          "正确姿势",
+          "exercise form guide"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "nutrition_advice",
+        "name": "营养建议",
+        "description": "提供健身相关的膳食搭配建议",
+        "intents": [
+          "健身怎么吃",
+          "增肌饮食",
+          "减脂餐",
+          "workout nutrition"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openclaw_team"
+      ]
+    }
+  },
+  {
+    "_repo": "Polaris899/fsa-analyzer",
+    "_path": "agent.json",
+    "_url": "https://github.com/Polaris899/fsa-analyzer/blob/main/agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.603Z",
+    "id": "com.openclaw.fsa-analyzer",
+    "name": "财报分析专家",
+    "description": "企业财务报表深度分析，支持资产负债表、利润表、现金流量表，含杜邦分解和舞弊检测",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "finance",
+      "财务报表",
+      "FSA",
+      "分析",
+      "会计",
+      "审计"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "analyze_bs",
+        "name": "资产负债表分析",
+        "description": "分析企业资产结构、负债水平、偿债能力",
+        "intents": [
+          "分析资产负债表",
+          "评估偿债能力",
+          "看看负债率",
+          "analyze balance sheet"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "analyze_is",
+        "name": "利润表分析",
+        "description": "分析收入结构、成本费用、盈利能力",
+        "intents": [
+          "分析利润表",
+          "看看利润率",
+          "盈利质量分析",
+          "analyze income statement"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "analyze_cf",
+        "name": "现金流量表分析",
+        "description": "评估现金流质量和现金循环效率",
+        "intents": [
+          "分析现金流",
+          "现金流质量",
+          "自由现金流",
+          "analyze cash flow"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "dupont",
+        "name": "杜邦分解",
+        "description": "杜邦分析法拆解净资产收益率（ROE）驱动因素",
+        "intents": [
+          "杜邦分析",
+          "拆解ROE",
+          "净资产收益率",
+          "dupont analysis"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "fraud_detection",
+        "name": "财务舞弊检测",
+        "description": "识别收入虚增、费用延迟、关联交易等异常信号",
+        "intents": [
+          "检测财务造假",
+          "异常信号",
+          "舞弊风险",
+          "fraud detection"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openclaw_team"
+      ]
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/huawei-drive.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/huawei-drive.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.604Z",
+    "id": "com.openclaw.huawei-drive",
+    "name": "华为云空间",
+    "description": "华为云空间云盘文件管理，支持文件上传、列表查询、用量查看",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "cloud",
+      "drive",
+      "云盘",
+      "云空间",
+      "华为",
+      "file"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "upload_file",
+        "name": "上传文件",
+        "description": "将本地文件上传到华为云空间",
+        "intents": [
+          "上传文件到云盘",
+          "备份这个文件",
+          "upload to cloud"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "list_files",
+        "name": "文件列表",
+        "description": "查询云盘文件列表和存储用量",
+        "intents": [
+          "查看云盘文件",
+          "云盘用量",
+          "list cloud files"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "huawei-api",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": []
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/minimax-music-gen.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/minimax-music-gen.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.604Z",
+    "id": "com.openclaw.music-gen",
+    "name": "音乐创作",
+    "description": "基于MiniMax Music2.6的音乐生成，支持作曲、编曲、写歌词多风格创作",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team"
+    },
+    "tags": [
+      "music",
+      "音乐",
+      "创作",
+      "歌曲",
+      "audio",
+      "MiniMax"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "generate_music",
+        "name": "生成音乐",
+        "description": "根据描述生成音乐或歌曲",
+        "intents": [
+          "生成一首{风格}的歌",
+          "帮我作曲",
+          "来一段{风格}的音乐",
+          "create music"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "medium",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "generate_lyrics",
+        "name": "写歌词",
+        "description": "根据主题创作歌词",
+        "intents": [
+          "写歌词",
+          "帮我填词",
+          "write lyrics about {topic}"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "medium",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openclaw_team"
+      ]
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/seedream-image_gen.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/seedream-image_gen.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.604Z",
+    "id": "com.openclaw.image-gen",
+    "name": "AI 图像创作",
+    "description": "基于Seedream5的AI图像生成，支持文生图、图生图、风格迁移、系列组图",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "image",
+      "生成图片",
+      "AI绘画",
+      "设计",
+      "创作"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "text_to_image",
+        "name": "文生图",
+        "description": "根据文字描述生成图片",
+        "intents": [
+          "画一张{描述}的图",
+          "生成一张{描述}的图片",
+          "generate an image of {subject}"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "image_to_image",
+        "name": "图生图",
+        "description": "基于参考图片生成新图片",
+        "intents": [
+          "把这个改成{风格}风格",
+          "基于这张图生成",
+          "风格迁移"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "edit_image",
+        "name": "编辑图片",
+        "description": "局部修改、扩展、擦除等",
+        "intents": [
+          "去掉这个物体",
+          "扩展背景",
+          "edit image"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": []
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/weather.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/weather.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.604Z",
+    "id": "com.openclaw.weather",
+    "name": "天气查询",
+    "description": "获取实时天气和天气预报，支持任意城市查询",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "weather",
+      "天气",
+      "forecast",
+      "天气预报",
+      "temperature"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "get_current_weather",
+        "name": "当前天气",
+        "description": "查询指定城市的实时温度、湿度、风力等天气信息",
+        "intents": [
+          "现在{城市}的天气怎么样",
+          "{城市}今天多少度",
+          "{城市}天气"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "real-time",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "get_forecast",
+        "name": "天气预报",
+        "description": "查询未来多天的天气预报",
+        "intents": [
+          "未来{天数}天{城市}天气",
+          "{城市}这周天气",
+          "weekend weather in {city}"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "real-time",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": []
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-doc-convert.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-doc-convert.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.doc-convert",
+    "name": "文档格式转换",
+    "description": "支持 Word、PDF、Excel、PPT、Markdown、HTML 等多格式互转",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "convert",
+      "格式转换",
+      "document",
+      "pdf",
+      "word"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "convert_format",
+        "name": "格式转换",
+        "description": "在各种文档格式之间自由转换",
+        "intents": [
+          "把这个PDF转成Word",
+          "docx转pdf",
+          "md转html",
+          "convert {source} to {target}"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network",
+        "read_file",
+        "write_file"
+      ],
+      "sandbox_level": "isolated",
+      "verified_by": [
+        "openclaw_team"
+      ]
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-docx.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-docx.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.docx-generator",
+    "name": "Word 文档生成",
+    "description": "创建和编辑Word文档，支持表格、目录、中文排版、格式化报告",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "word",
+      "docx",
+      "文档",
+      "报告",
+      "办公"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "create_docx",
+        "name": "生成文档",
+        "description": "从内容生成格式化的Word文档",
+        "intents": [
+          "生成Word文档",
+          "帮我写个报告",
+          "创建docx",
+          "create word document"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "edit_docx",
+        "name": "编辑文档",
+        "description": "对现有Word文档进行修改",
+        "intents": [
+          "修改这个文档",
+          "编辑Word",
+          "edit document"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network",
+        "read_file",
+        "write_file"
+      ],
+      "sandbox_level": "isolated",
+      "verified_by": [
+        "openclaw_team"
+      ]
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-file-upload.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-file-upload.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.file-upload",
+    "name": "文件上传",
+    "description": "上传本地文件到对象存储，获取可共享的下载链接",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "file",
+      "upload",
+      "上传",
+      "文件",
+      "share"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "upload_file",
+        "name": "文件上传",
+        "description": "上传文件到云端获取下载链接",
+        "intents": [
+          "上传这个文件",
+          "获取下载链接",
+          "分享文件",
+          "upload file"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "huawei-api",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network",
+        "read_file"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": []
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-health.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-health.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.health",
+    "name": "运动健康助手",
+    "description": "查询运动健康数据并提供分析解读，覆盖心率、睡眠、运动、压力、营养等",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "health",
+      "健康",
+      "运动",
+      "心率",
+      "睡眠",
+      "fitness"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "query_health_data",
+        "name": "查询健康数据",
+        "description": "查询心率、睡眠、运动、压力等健康数据",
+        "intents": [
+          "我的睡眠怎么样",
+          "今天心率多少",
+          "查看运动数据",
+          "健康概览"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "analyze_health",
+        "name": "健康分析",
+        "description": "解读健康数据趋势并提供建议",
+        "intents": [
+          "分析我的健康趋势",
+          "这周运动量够吗",
+          "健康建议",
+          "health analysis"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "read_health_data"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": []
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-image-search.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-image-search.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.image-search",
+    "name": "图片搜索",
+    "description": "搜索图片并下载到本地，支持为文档、PPT、报告查找配图素材",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "image",
+      "图片",
+      "搜索",
+      "素材",
+      "配图"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "search_images",
+        "name": "搜索图片",
+        "description": "根据关键词搜索图片并下载",
+        "intents": [
+          "找{query}的图片",
+          "搜索{subject}图片",
+          "找素材",
+          "search images of {query}"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": []
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-image-understanding.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-image-understanding.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.image-understanding",
+    "name": "图像理解",
+    "description": "使用AI进行图像内容识别和描述，支持多图对比、OCR文字识别、图表分析",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "image",
+      "图片识别",
+      "OCR",
+      "图像分析",
+      "vision"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "describe_image",
+        "name": "图片描述",
+        "description": "识别图片内容并生成详细文字描述",
+        "intents": [
+          "这张图是什么",
+          "描述这张图片",
+          "图片内容",
+          "describe this image"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "ocr",
+        "name": "文字识别",
+        "description": "从图片中提取文字信息",
+        "intents": [
+          "识别这张图的文字",
+          "提取文字",
+          "图片转文字",
+          "OCR"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "compare_images",
+        "name": "图片对比",
+        "description": "比较多张图片的异同",
+        "intents": [
+          "对比这些图片",
+          "图片对比",
+          "比较这两张图"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": []
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-pdf.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-pdf.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.pdf-toolkit",
+    "name": "PDF 工具箱",
+    "description": "完整PDF处理能力——生成、设计、填表、合并、拆分、加密、加水印、提取内容",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "pdf",
+      "document",
+      "文档处理",
+      "PDF编辑"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "generate_pdf",
+        "name": "生成PDF",
+        "description": "从内容生成格式精美的PDF文档",
+        "intents": [
+          "生成PDF",
+          "创建PDF",
+          "make a pdf",
+          "导出PDF"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "merge_pdf",
+        "name": "合并PDF",
+        "description": "将多个PDF文件合并为一个",
+        "intents": [
+          "合并PDF",
+          "合并文件",
+          "merge pdfs"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "split_pdf",
+        "name": "拆分PDF",
+        "description": "将PDF按页拆分",
+        "intents": [
+          "拆分PDF",
+          "提取页",
+          "split pdf"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "watermark_pdf",
+        "name": "加/去水印",
+        "description": "给PDF添加或去除水印",
+        "intents": [
+          "加水印",
+          "去除水印",
+          "watermark pdf"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "extract_pdf",
+        "name": "提取内容",
+        "description": "从PDF提取文字和表格",
+        "intents": [
+          "提取PDF文字",
+          "PDF转文字",
+          "extract text from pdf"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network",
+        "read_file",
+        "write_file"
+      ],
+      "sandbox_level": "isolated",
+      "verified_by": [
+        "openclaw_team"
+      ]
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-ppt.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-ppt.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.ppt-generator",
+    "name": "PPT 生成器",
+    "description": "自动生成和编辑专业演示文稿，支持多种模板风格，三步流程：采集信息→生成大纲→生成PPT",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "ppt",
+      "presentation",
+      "演示文稿",
+      "幻灯片",
+      "办公"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "generate_ppt",
+        "name": "生成PPT",
+        "description": "根据内容提纲或文档生成完整演示文稿",
+        "intents": [
+          "帮我做个PPT",
+          "生成演示文稿",
+          "创建幻灯片",
+          "create presentation"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "edit_ppt",
+        "name": "编辑PPT",
+        "description": "修改现有PPT的内容和样式",
+        "intents": [
+          "修改这个PPT",
+          "换模板",
+          "编辑幻灯片"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network",
+        "read_file",
+        "write_file"
+      ],
+      "sandbox_level": "isolated",
+      "verified_by": [
+        "openclaw_team"
+      ]
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-report.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-report.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.report-gen",
+    "name": "深度研究报告",
+    "description": "从多源信息生成带引用的专业分析报告，支持学术研究、市场调研、竞品分析",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "report",
+      "报告",
+      "研究",
+      "调研",
+      "分析"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "generate_report",
+        "name": "生成报告",
+        "description": "基于搜索信息生成带引用的研究报告",
+        "intents": [
+          "调研{topic}",
+          "分析{industry}行业",
+          "写一份关于{topic}的研究报告",
+          "research {topic}"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openclaw_team"
+      ]
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-vlog-gen.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-vlog-gen.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.vlog-gen",
+    "name": "一键成片",
+    "description": "多图自动生成vlog短片，智能编排画面、匹配BGM、添加转场特效",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "video",
+      "vlog",
+      "视频",
+      "剪辑",
+      "成片"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "generate_vlog",
+        "name": "生成视频",
+        "description": "从图片批量生成短片",
+        "intents": [
+          "把这几张图做成视频",
+          "一键成片",
+          "生成vlog",
+          "create video from photos"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network",
+        "read_file"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": []
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-web-search.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-web-search.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.web-search",
+    "name": "联网搜索",
+    "description": "使用华为云AI联网搜索API进行网页内容检索，获取实时网络信息",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "search",
+      "搜索",
+      "网络搜索",
+      "web",
+      "资讯",
+      "联网"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "web_search",
+        "name": "网页搜索",
+        "description": "搜索互联网获取最新信息",
+        "intents": [
+          "搜索{query}",
+          "查一下{query}",
+          "最新{topic}资讯",
+          "search for {query}"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "huawei-api",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": []
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-xlsx.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-xlsx.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.spreadsheet",
+    "name": "电子表格工具",
+    "description": "创建、编辑和分析电子表格，支持公式、图表、透视表、条件格式",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "excel",
+      "spreadsheet",
+      "表格",
+      "数据分析",
+      "xlsx"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "create_spreadsheet",
+        "name": "创建表格",
+        "description": "从数据创建电子表格",
+        "intents": [
+          "帮我做个表",
+          "创建表格",
+          "创建Excel",
+          "create spreadsheet"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "analyze_data",
+        "name": "数据分析",
+        "description": "排序、筛选、汇总、透视表分析",
+        "intents": [
+          "分析这份数据",
+          "做数据透视",
+          "汇总数据",
+          "analyze data"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "create_chart",
+        "name": "生成图表",
+        "description": "根据数据生成各类图表",
+        "intents": [
+          "生成图表",
+          "画个图",
+          "可视化数据",
+          "create chart"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network",
+        "read_file",
+        "write_file"
+      ],
+      "sandbox_level": "isolated",
+      "verified_by": [
+        "openclaw_team"
+      ]
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/amper.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/amper.agent.json",
+    "_indexed_at": "2026-06-16T04:39:10.026Z",
+    "id": "com.openclaw.amper",
+    "name": "AMP 桥梁",
+    "description": "Bridges Agent Manifest Protocol with OpenClaw Runtime. Resolves agent.json manifests, searches the protocol registry, and routes intents to installed skills.",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "amp",
+      "bridge",
+      "runtime",
+      "protocol",
+      "discovery",
+      "routing"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "resolve_manifest",
+        "name": "本地 Manifest 解析",
+        "description": "扫描 skills 目录中的 agent.json 文件，构建本地能力索引",
+        "intents": [
+          "列出所有已安装 Skill 的能力",
+          "看看本地有哪些可用 Skill",
+          "analyze my installed skills",
+          "scan for available capabilities"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "search_registry",
+        "name": "搜索路由中心",
+        "description": "查询 AMP 搜索 API，按自然语言意图匹配 Skill",
+        "intents": [
+          "帮我搜一个能{query}的skill",
+          "search for {query}",
+          "找能做{task}的工具",
+          "推荐可用的{category} skill",
+          "find a skill that can {task}"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "自然语言搜索关键词"
+            }
+          },
+          "required": [
+            "query"
+          ]
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "intent_match",
+        "name": "意图路由",
+        "description": "将用户意图匹配到最合适的已安装 Skill",
+        "intents": [
+          "这个请求该用哪个 Skill",
+          "帮我路由到合适的处理工具",
+          "match this intent to a capability",
+          "which skill should handle this"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "skill_info",
+        "name": "Skill 详情",
+        "description": "查看本地或远程 SKill 的能力详情、权限要求和运行时信息",
+        "intents": [
+          "查看{skill}的能力详情",
+          "tell me about {skill}",
+          "这个 Skill 有哪些功能",
+          "show details for {skill}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openclaw_team"
+      ]
+    }
+  }
+]

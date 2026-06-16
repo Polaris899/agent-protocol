@@ -9,7 +9,7 @@ import { createInterface } from 'readline';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const AGENTS_DIR = join(homedir(), '.agents');
 const CONFIG_PATH = join(AGENTS_DIR, '.agent-config.json');
-const SCHEMA_PATH = join(__dirname, '..', '..', '..', 'spec', 'manifest.schema.json');
+const SCHEMA_PATH = join(__dirname, '..', 'data', 'manifest.schema.json');
 
 export async function installCommand(repo, options) {
   const installDir = options.dir || AGENTS_DIR;
@@ -282,7 +282,7 @@ function getSkillsDir() {
   // Look for OpenClaw skills directory in standard locations
   const candidates = [
     join(homedir(), '.openclaw', 'workspace', 'skills'),
-    join(dirname(__dirname), '..', '..', 'skills'),
+    join(homedir(), '.agents'),
     join(homedir(), 'skills'),
   ];
   for (const dir of candidates) {

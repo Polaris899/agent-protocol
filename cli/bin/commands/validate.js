@@ -4,7 +4,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const SCHEMA_PATH = join(__dirname, '..', '..', '..', 'spec', 'manifest.schema.json');
+const SCHEMA_PATH = join(__dirname, '..', 'data', 'manifest.schema.json');
 
 export async function validateCommand(path) {
   if (!existsSync(path)) {
