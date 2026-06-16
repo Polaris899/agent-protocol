@@ -1,0 +1,48 @@
+{
+  "source": "gpt-store",
+  "gpt_id": "pdf-analyst-pro",
+  "name": "PDF Analyst Pro",
+  "description": "Upload any PDF and I'll analyze, summarize, extract tables, and answer questions about the content. Supports multi-page documents with OCR.",
+  "instructions": "You are a PDF analysis expert. When users upload files, extract text, identify structure, summarize key points, and answer questions. Support batch processing for multiple files.",
+  "author": "PDF Labs Inc.",
+  "category": "productivity",
+  "is_verified": true,
+  "openapi": {
+    "info": {
+      "title": "PDF Analyst Pro API",
+      "description": "PDF analysis and extraction API",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/upload": {
+        "post": {
+          "summary": "Upload and analyze PDF",
+          "operationId": "uploadPdf",
+          "parameters": [
+            { "name": "file", "in": "formData", "type": "file", "required": true, "description": "PDF file to analyze" },
+            { "name": "ocr", "in": "query", "type": "boolean", "description": "Enable OCR for scanned documents" }
+          ]
+        }
+      },
+      "/analyze": {
+        "post": {
+          "summary": "Analyze extracted text",
+          "operationId": "analyzeText",
+          "parameters": [
+            { "name": "text", "in": "body", "type": "string", "required": true, "description": "Extracted text content" },
+            { "name": "questions", "in": "body", "type": "array", "description": "List of questions to answer" }
+          ]
+        }
+      },
+      "/extract-tables": {
+        "get": {
+          "summary": "Extract tables from PDF",
+          "operationId": "extractTables",
+          "parameters": [
+            { "name": "file_id", "in": "query", "type": "string", "required": true, "description": "File ID from upload" }
+          ]
+        }
+      }
+    }
+  }
+}

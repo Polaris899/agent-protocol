@@ -1,0 +1,15 @@
+{
+  "name": "@agent-protocol/converter",
+  "version": "0.1.0",
+  "description": "GPTs → AMP (Agent Manifest Protocol) converter",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "convert": "node index.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "license": "MIT"
+}
