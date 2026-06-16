@@ -17,7 +17,6 @@
   "scripts": {
     "start": "node bin/agent.js",
     "search": "node bin/agent.js search",
-    "install": "node bin/agent.js install",
     "test": "node --test test/"
   },
   "engines": {
