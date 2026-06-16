@@ -147,7 +147,7 @@
 <body>
   <header class="container">
     <h1>⚡ AMP Registry v1.0</h1>
-    <p>AI 能力路由注册中心 — 纯客户端搜索，无需后端</p>
+    <p>AI 能力路由注册中心 — 语义搜索，浏览器本地 TF-IDF 向量匹配</p>
   </header>
 
   <main class="container">
@@ -182,226 +182,131 @@
     </p>
   </footer>
 
-  <script src="index-data.js"></script>
+  <script src="search-data.json"></script>
+  <script src="search-engine.js"></script>
   <script>
     (function() {
-      const index = AGENT_INDEX || [];
-      let showingDetail = null;
+      const bundle = window.SEARCH_DATA;
+      const engine = window.AMPSearch;
 
-      function computeStats() {
-        const totalSkills = index.length;
-        const totalCaps = index.reduce((s, m) => s + (m.capabilities?.length || 0), 0);
-        const tags = new Set();
-        index.forEach(m => (m.tags || []).forEach(t => tags.add(t)));
-        return { totalSkills, totalCaps, totalTags: tags.size };
-      }
+      function getManifests() { return bundle ? bundle.m : []; }
 
       function renderStats() {
-        const stats = computeStats();
-        document.getElementById('totalSkills').textContent = stats.totalSkills;
-        document.getElementById('totalCaps').textContent = stats.totalCaps;
-        document.getElementById('totalTags').textContent = stats.totalTags;
-      }
-
-      function localSearch(query) {
-        const keywords = query.toLowerCase().split(/\s+/).filter(Boolean);
-        if (!keywords.length) return index;
-
-        const scored = index.map(m => {
-          let score = 0;
-          const text = [
-            m.name, m.description, m.id,
-            ...(m.tags || []),
-            ...(m.capabilities || []).map(c => c.name + ' ' + (c.description || '') + ' ' + (c.intents || []).join(' '))
-          ].join(' ').toLowerCase();
-
-          for (const kw of keywords) {
-            const escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            const re = new RegExp(escaped, 'g');
-            const matches = text.match(re);
-            if (matches) score += matches.length;
-          }
-
-          if (m.name && m.name.toLowerCase().includes(keywords[0])) score += 5;
-          if (m.tags && m.tags.some(t => t.toLowerCase().includes(keywords[0]))) score += 3;
-          // Exact ID match = high boost
-          if (m.id && m.id.toLowerCase().includes(keywords[0])) score += 8;
-
-          return { manifest: m, score };
-        });
-
-        return scored
-          .filter(s => s.score > 0)
-          .sort((a, b) => b.score - a.score)
-          .slice(0, 20)
-          .map(s => s.manifest);
+        if (!bundle) return;
+        document.getElementById('totalSkills').textContent = bundle.m.length;
+        const totalCaps = bundle.m.reduce((s, m) => s + (m.capCount || 0), 0);
+        document.getElementById('totalCaps').textContent = totalCaps;
+        const tags = new Set();
+        bundle.m.forEach(m => (m.tags || []).forEach(t => tags.add(t)));
+        document.getElementById('totalTags').textContent = tags.size;
       }
 
       function renderResults(results, query) {
         const el = document.getElementById('results');
-        showingDetail = null;
 
         if (!results || results.length === 0) {
-          el.innerHTML = `
-            <div class="empty-state">
-              <div class="icon">🔍</div>
-              <h3>未找到匹配的 Skill</h3>
-              <p>试试其他关键词，或 <a href="#" id="browseEmpty">浏览全部</a></p>
-            </div>
-          `;
-          document.getElementById('browseEmpty')?.addEventListener('click', e => { e.preventDefault(); loadAll(); });
+          el.innerHTML = '<div class="empty-state"><div class="icon">🔍</div><h3>未找到匹配的 Skill</h3><p>试试其他关键词，或 <a href="#" id="browseEmpty">浏览全部</a></p></div>';
+          const be = document.getElementById('browseEmpty');
+          if (be) be.addEventListener('click', function(e) { e.preventDefault(); loadAll(); });
           return;
         }
 
-        el.innerHTML = results.map(m => {
-          const capCount = m.capabilities?.length || 0;
-          const isAudited = m.trust?.verified_by?.length > 0;
-          const repo = m._repo || m.id?.replace(/\./g, '/') || 'unknown';
-          const desc = m.description || '暂无描述';
+        el.innerHTML = results.map(function(m) {
           const badges = [];
-          if (isAudited) badges.push('<span class="badge audited">✓ 已审计</span>');
+          if (m.verified) badges.push('<span class="badge audited">✓ 已审计</span>');
           else badges.push('<span class="badge unaudited">未审计</span>');
-          if ((m.capabilities || []).every(c => !c.cost_per_call)) badges.push('<span class="badge free">免费</span>');
-
-          return `
-            <div class="result-card" data-id="${m.id}">
-              <div class="top">
-                <div>
-                  <div class="name">${m.name} <small>v${m.version || '0.1'}</small></div>
-                </div>
-                <div>${badges.join('')}</div>
-              </div>
-              <div class="desc">${desc}</div>
-              <div class="meta">
-                <span class="cap-count">🎯 ${capCount} 个能力</span>
-                <span>👤 ${m.author?.name || '匿名'}</span>
-                ${m.runtime?.engine ? `<span>⚙ ${m.runtime.engine}</span>` : ''}
-                ${m.tags?.length ? `<span>🏷 ${m.tags.slice(0, 3).join(', ')}</span>` : ''}
-              </div>
-              <span class="install-cmd">agent install ${repo}</span>
-            </div>
-          `;
+          badges.push('<span class="badge free">免费</span>');
+          const repo = m.repo || (m.id ? m.id.replace(/\./g, '/') : 'unknown');
+          const scorePct = m.score ? (m.score * 100).toFixed(1) + '%' : '';
+          return '<div class="result-card" data-id="' + m.id + '">' +
+            '<div class="top"><div><div class="name">' + (m.name||'') + ' <small>v' + (m.version||'0.1') + '</small></div></div>' +
+            '<div>' + badges.join('') + '</div></div>' +
+            '<div class="desc" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">' + (m.desc||'暂无描述') + '</div>' +
+            '<div class="meta">' +
+            '<span class="cap-count">🎯 ' + (m.capCount||0) + ' 个能力</span>' +
+            '<span>👤 ' + (m.author||'匿名') + '</span>' +
+            (m.engine ? '<span>⚙ ' + m.engine + '</span>' : '') +
+            (m.tags && m.tags.length ? '<span>🏷 ' + m.tags.slice(0,3).join(', ') + '</span>' : '') +
+            (scorePct ? '<span style="color:var(--accent)">' + scorePct + '</span>' : '') +
+            '</div><span class="install-cmd">agent install ' + repo + '</span></div>';
         }).join('');
 
-        // Add click handlers
-        document.querySelectorAll('.result-card[data-id]').forEach(el => {
-          el.addEventListener('click', () => showDetail(el.dataset.id));
+        Array.from(document.querySelectorAll('.result-card[data-id]')).forEach(function(el) {
+          el.addEventListener('click', function() { showDetail(el.dataset.id); });
         });
       }
 
       function showDetail(id) {
-        const m = index.find(x => x.id === id);
+        if (!bundle) return;
+        var m = null;
+        for (var i = 0; i < bundle.m.length; i++) {
+          if (bundle.m[i].id === id) { m = bundle.m[i]; break; }
+        }
         if (!m) return;
-        showingDetail = id;
 
-        const el = document.getElementById('results');
-        const repo = m._repo || m.id?.replace(/\./g, '/') || 'unknown';
-        const caps = m.capabilities || [];
+        var el = document.getElementById('results');
+        var repo = m.repo || (m.id ? m.id.replace(/\./g, '/') : 'unknown');
 
-        el.innerHTML = `
-          <div class="detail-header">
-            <a href="#" id="backBtn">← 返回搜索结果</a>
-          </div>
-          <div class="result-card detail-card">
-            <div class="top">
-              <div>
-                <h2>${m.name}</h2>
-                <div class="subtitle">${m.id} · v${m.version || '0.1'}</div>
-              </div>
-            </div>
-            <div class="desc-text">${m.description || '暂无描述'}</div>
-            <div class="detail-grid">
-              <div>👤 作者: ${m.author?.name || '未知'}</div>
-              <div>📄 许可: ${m.license || '未声明'}</div>
-              <div>⚙ 引擎: ${m.runtime?.engine || '未指定'}</div>
-              <div>🔒 沙箱: ${m.trust?.sandbox_level || 'basic'}</div>
-            </div>
-            <div class="install-cmd" style="margin-top:12px">agent install ${repo}</div>
-            <hr>
-            <div class="section-title">🎯 能力 (${caps.length})</div>
-            ${caps.map(c => `
-              <div class="detail-cap">
-                <div class="detail-cap-title">${c.name}</div>
-                <div class="detail-cap-desc">${c.description || ''}</div>
-                ${c.intents?.length ? `<div class="detail-cap-intents">📝 ${c.intents.slice(0, 4).join(' · ')}</div>` : ''}
-              </div>
-            `).join('')}
-            ${m.tags?.length ? `
-              <hr>
-              <div class="section-title">🏷 标签</div>
-              <div class="tag-cloud">
-                ${m.tags.map(t => `<span class="tag-item" data-tag="${t}">${t}</span>`).join('')}
-              </div>
-            ` : ''}
-            ${m.trust?.permissions?.length ? `
-              <hr>
-              <div class="section-title">🔒 权限</div>
-              <div style="display:flex;flex-wrap:wrap;gap:6px">
-                ${m.trust.permissions.map(p => `<span class="perm-badge">${p}</span>`).join('')}
-              </div>
-            ` : ''}
-          </div>
-        `;
+        el.innerHTML = '<div class="detail-header"><a href="#" id="backBtn">← 返回搜索结果</a></div>' +
+          '<div class="result-card detail-card">' +
+          '<div class="top"><div><h2>' + (m.name||'') + '</h2><div class="subtitle">' + (m.id||'') + ' · v' + (m.version||'0.1') + '</div></div></div>' +
+          '<div class="desc-text">' + (m.desc||'暂无描述') + '</div>' +
+          '<div class="detail-grid">' +
+          '<div>👤 作者: ' + (m.author||'未知') + '</div>' +
+          '<div>📄 许可: ' + (m.license||'未声明') + '</div>' +
+          '<div>⚙ 引擎: ' + (m.engine||'未指定') + '</div>' +
+          '<div>🔒 沙箱: ' + (m.sandbox||'basic') + '</div>' +
+          '</div>' +
+          '<div class="install-cmd" style="margin-top:12px">agent install ' + repo + '</div>' +
+          '</div>';
 
-        // Back button
-        document.getElementById('backBtn').addEventListener('click', e => {
+        document.getElementById('backBtn').addEventListener('click', function(e) {
           e.preventDefault();
-          const q = document.getElementById('searchInput').value.trim();
-          if (q) doSearch(q);
-          else loadAll();
-        });
-
-        // Tag click handlers
-        document.querySelectorAll('.tag-item[data-tag]').forEach(el => {
-          el.addEventListener('click', () => {
-            document.getElementById('searchInput').value = el.dataset.tag;
-            doSearch(el.dataset.tag);
-          });
+          var q = document.getElementById('searchInput').value.trim();
+          if (q) doSearch(q); else loadAll();
         });
       }
 
       function doSearch(query) {
         document.getElementById('searchInput').value = query;
-        if (!query || !query.trim()) {
+        if (!query || !query.trim() || !bundle) {
           loadAll();
           return;
         }
-        const results = localSearch(query.trim());
+        var results = engine.search(query.trim(), bundle, 20);
         renderResults(results, query);
       }
 
       function loadAll() {
-        renderResults(index, '');
+        if (!bundle) {
+          document.getElementById('results').innerHTML = '<div class="empty-state"><div class="icon">⚡</div><h3>正在加载索引...</h3></div>';
+          return;
+        }
+        renderResults(bundle.m.slice(0, 20), '');
       }
 
-      // Search input with debounce
-      let timer;
-      document.getElementById('searchInput').addEventListener('input', e => {
+      var timer;
+      document.getElementById('searchInput').addEventListener('input', function(e) {
         clearTimeout(timer);
-        timer = setTimeout(() => {
-          const q = e.target.value.trim();
-          if (q) doSearch(q);
-          else loadAll();
+        timer = setTimeout(function() {
+          var q = e.target.value.trim();
+          if (q) doSearch(q); else loadAll();
         }, 200);
       });
 
-      // Enter key to search
-      document.getElementById('searchInput').addEventListener('keydown', e => {
+      document.getElementById('searchInput').addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
           clearTimeout(timer);
-          const q = e.target.value.trim();
-          if (q) doSearch(q);
-          else loadAll();
+          var q = e.target.value.trim();
+          if (q) doSearch(q); else loadAll();
         }
       });
 
-      // Browse all link
-      document.getElementById('browseAllLink').addEventListener('click', e => {
+      document.getElementById('browseAllLink').addEventListener('click', function(e) {
         e.preventDefault();
         loadAll();
       });
 
-      // Init
       renderStats();
       loadAll();
     })();
