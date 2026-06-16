@@ -196,7 +196,8 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-pdf-analyst-pro"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -259,7 +260,8 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-travel-planner"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -323,7 +325,8 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-code-assistant"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -364,7 +367,8 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-translator-pro"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -403,7 +407,8 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-resume-builder"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -455,7 +460,8 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-data-visualizer"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -496,7 +502,8 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-email-marketer"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -537,7 +544,8 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-legal-consultant"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -587,7 +595,8 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-social-media-manager"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -628,7 +637,8 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-math-tutor"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -666,7 +676,8 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-recipe-chef"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -707,7 +718,8 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-interview-coach"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -757,7 +769,8 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-fitness-tracker"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -796,7 +809,8 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-music-composer"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -848,7 +862,8 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-sql-helper"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -887,7 +902,8 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-interior-designer"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -939,7 +955,8 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-stock-analyst"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -980,7 +997,8 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-english-tutor"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -1020,7 +1038,8 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-meme-creator"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -1061,7 +1080,8 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-contract-reviewer"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -1101,7 +1121,8 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-study-planner"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -1142,7 +1163,8 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-content-writer"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -1181,7 +1203,8 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-personal-shopper"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -1220,7 +1243,8 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-meditation-guide"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -1272,7 +1296,8 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-investment-advisor"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -1311,7 +1336,8 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-movie-recommender"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -1351,7 +1377,8 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-crypto-analyst"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -1393,7 +1420,8 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-career-counselor"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -1432,7 +1460,8 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-photo-editor"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -1471,7 +1500,8 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-podcast-script-writer"
   },
   {
     "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
@@ -1512,7 +1542,8 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-tax-advisor"
   },
   {
     "_repo": "Polaris899/agent-protocol",
@@ -1607,9 +1638,9 @@
     }
   },
   {
-    "_repo": "Polaris899/agent-protocol",
-    "_path": "registry/fsa-analyzer.agent.json",
-    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/fsa-analyzer.agent.json",
+    "_repo": "Polaris899/fsa-analyzer",
+    "_path": "agent.json",
+    "_url": "https://github.com/Polaris899/fsa-analyzer/blob/main/agent.json",
     "_indexed_at": "2026-06-16T02:07:37.603Z",
     "id": "com.openclaw.fsa-analyzer",
     "name": "财报分析专家",
