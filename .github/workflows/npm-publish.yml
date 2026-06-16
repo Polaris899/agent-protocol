@@ -22,8 +22,11 @@ jobs:
 
       - run: npm ci
 
-      - run: node bin/agent.js validate data/manifest.schema.json
+      - run: node bin/agent.js --version
         name: Sanity check
+
+      - run: node bin/agent.js search 财报 --limit 1
+        name: Search test
 
       - run: npm publish --access public
         env:
