@@ -1,0 +1,8 @@
+cli/
+converter/
+crawler/
+web/
+spec/docs/
+.git/
+.github/
+*.md
