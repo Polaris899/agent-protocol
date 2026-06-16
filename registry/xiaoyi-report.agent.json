@@ -1,5 +1,5 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
   "id": "com.openclaw.report-gen",
   "name": "深度研究报告",
   "description": "从多源信息生成带引用的专业分析报告，支持学术研究、市场调研、竞品分析",

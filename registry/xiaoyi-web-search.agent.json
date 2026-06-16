@@ -1,5 +1,5 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
   "id": "com.openclaw.web-search",
   "name": "联网搜索",
   "description": "使用华为云AI联网搜索API进行网页内容检索，获取实时网络信息",

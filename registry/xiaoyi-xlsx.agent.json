@@ -1,5 +1,5 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
   "id": "com.openclaw.spreadsheet",
   "name": "电子表格工具",
   "description": "创建、编辑和分析电子表格，支持公式、图表、透视表、条件格式",

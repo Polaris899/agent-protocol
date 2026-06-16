@@ -1,5 +1,5 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
   "id": "com.openclaw.fitness-coach",
   "name": "科学健身教练",
   "description": "制定个性化健身计划、动作指导、渐进式负荷调整和营养建议",

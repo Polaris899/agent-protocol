@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://agent-protocol.dev/v0.1/manifest.schema.json",
-  "title": "Agent Manifest",
-  "description": "Schema for Agent Manifest Protocol v0.1 — describing AI Skill capabilities, runtime, and trust",
+  "$id": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+  "title": "Agent Manifest v0.2",
+  "description": "Schema for Agent Manifest Protocol v0.2 — describing AI Skill capabilities, runtime, trust, dependencies, and lifecycle",
   "type": "object",
   "required": ["$schema", "id", "name", "version", "capabilities"],
   "properties": {
@@ -28,6 +28,14 @@
       "description": "Short description (≤200 chars recommended)",
       "maxLength": 500
     },
+    "description_i18n": {
+      "type": "object",
+      "description": "Multilingual descriptions keyed by locale code",
+      "patternProperties": {
+        "^[a-z]{2}(-[A-Z]{2})?$": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
     "version": {
       "type": "string",
       "description": "Semantic version",
@@ -46,6 +54,15 @@
       "items": { "type": "string", "minLength": 1 },
       "uniqueItems": true
     },
+    "keywords": {
+      "type": "array",
+      "description": "SEO keywords for search engine discovery",
+      "items": { "type": "string" }
+    },
+    "category": {
+      "type": "string",
+      "description": "Category identifier"
+    },
     "license": {
       "type": "string",
       "description": "SPDX license identifier"
@@ -56,6 +73,11 @@
     },
     "homepage": {
       "type": "string",
+      "format": "uri"
+    },
+    "repository": {
+      "type": "string",
+      "description": "Source repository URL",
       "format": "uri"
     },
     "capabilities": {
@@ -75,13 +97,32 @@
             "type": "string",
             "description": "Capability display name"
           },
+          "name_i18n": {
+            "type": "object",
+            "description": "Multilingual capability names",
+            "patternProperties": {
+              "^[a-z]{2}(-[A-Z]{2})?$": { "type": "string" }
+            }
+          },
           "description": {
             "type": "string",
-            "description": "What this capability does"
+            "description": "What this capability does (≤500 chars)"
+          },
+          "type": {
+            "type": "string",
+            "description": "Capability type",
+            "enum": ["query", "action", "composite", "stream", "batch"],
+            "default": "query"
+          },
+          "mode": {
+            "type": "string",
+            "description": "Execution mode",
+            "enum": ["sync", "async", "stream", "webhook"],
+            "default": "sync"
           },
           "intents": {
             "type": "array",
-            "description": "Intent templates for semantic matching",
+            "description": "Intent templates for semantic matching. Supports {param} variables.",
             "items": { "type": "string", "minLength": 1 }
           },
           "input": {
@@ -95,11 +136,12 @@
           },
           "output": {
             "type": "object",
-            "description": "Output schema description"
+            "description": "Output schema description with optional example"
           },
           "latency": {
             "type": "string",
-            "enum": ["real-time", "low", "medium", "high"]
+            "enum": ["real-time", "low", "medium", "high"],
+            "default": "medium"
           },
           "security_level": {
             "type": "string",
@@ -112,10 +154,106 @@
             "minimum": 0,
             "default": 0
           },
+          "timeout_ms": {
+            "type": "number",
+            "description": "Timeout in milliseconds, 0 = no limit",
+            "minimum": 0
+          },
+          "rate_limit": {
+            "type": "object",
+            "description": "Rate limiting configuration",
+            "properties": {
+              "max_per_minute": { "type": "integer", "minimum": 0 },
+              "max_per_hour": { "type": "integer", "minimum": 0 },
+              "max_per_day": { "type": "integer", "minimum": 0 },
+              "enforcement": { "type": "string", "enum": ["soft", "hard"] },
+              "error_message": { "type": "string" }
+            }
+          },
           "dependencies": {
             "type": "array",
-            "description": "IDs of capabilities this depends on",
+            "description": "IDs of capabilities this capability depends on",
             "items": { "type": "string" }
+          },
+          "alternatives_to": {
+            "type": "array",
+            "description": "IDs of capabilities this can serve as fallback for",
+            "items": { "type": "string" }
+          },
+          "chain": {
+            "type": "object",
+            "description": "Chain strategy for composite capabilities",
+            "properties": {
+              "strategy": {
+                "type": "string",
+                "enum": ["sequential", "parallel", "conditional", "pipeline", "dag"]
+              },
+              "timeout_ms": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "description": "External dependencies (skills, APIs, models)",
+      "properties": {
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "version": { "type": "string" },
+              "optional": { "type": "boolean", "default": false },
+              "description": { "type": "string" }
+            },
+            "required": ["id"]
+          }
+        },
+        "apis": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "url": { "type": "string", "format": "uri" },
+              "description": { "type": "string" },
+              "required": { "type": "boolean", "default": true },
+              "auth_type": {
+                "type": "string",
+                "enum": ["none", "api_key", "oauth2", "bearer", "basic", "custom"]
+              }
+            },
+            "required": ["url"]
+          }
+        },
+        "models": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "provider": { "type": "string" },
+              "min_version": { "type": "string" },
+              "required": { "type": "boolean", "default": true }
+            },
+            "required": ["id", "provider"]
+          }
+        }
+      }
+    },
+    "lifecycle": {
+      "type": "object",
+      "description": "Lifecycle hooks (install, update, uninstall, health check)",
+      "properties": {
+        "on_install": { "$ref": "#/definitions/lifecycle_hook" },
+        "on_update": { "$ref": "#/definitions/lifecycle_hook" },
+        "on_uninstall": { "$ref": "#/definitions/lifecycle_hook" },
+        "on_error": { "$ref": "#/definitions/lifecycle_hook" },
+        "health_check": {
+          "type": "object",
+          "properties": {
+            "interval_seconds": { "type": "integer", "minimum": 1 }
           }
         }
       }
@@ -129,16 +267,64 @@
           "examples": ["openclaw", "langchain", "crewai"]
         },
         "min_version": { "type": "string" },
+        "max_version": { "type": "string" },
         "config_url": { "type": "string", "format": "uri" },
+        "config_schema": {
+          "type": "object",
+          "description": "JSON Schema for runtime configuration"
+        },
         "entrypoint": { "type": "string" },
         "type": {
           "type": "string",
-          "enum": ["skill", "agent", "plugin", "tool"]
+          "enum": ["skill", "agent", "plugin", "tool", "workflow"]
         },
         "engines": {
           "type": "array",
           "description": "Compatible engines",
           "items": { "type": "string" }
+        },
+        "env": {
+          "type": "object",
+          "description": "Environment variable declarations",
+          "patternProperties": {
+            "^[A-Z_][A-Z0-9_]*$": {
+              "type": "object",
+              "properties": {
+                "description": { "type": "string" },
+                "required": { "type": "boolean" },
+                "default": {},
+                "source": { "type": "string", "enum": ["user", "runtime"] },
+                "sensitive": { "type": "boolean" }
+              }
+            }
+          }
+        },
+        "requirements": {
+          "type": "object",
+          "description": "System requirements",
+          "properties": {
+            "system": {
+              "type": "object",
+              "properties": {
+                "memory_mb": { "type": "number" },
+                "disk_mb": { "type": "number" },
+                "network": { "type": "boolean" },
+                "gpu": { "type": "boolean" },
+                "bins": { "type": "array", "items": { "type": "string" } },
+                "os": { "type": "array", "items": { "type": "string" } },
+                "arch": { "type": "array", "items": { "type": "string" } }
+              }
+            },
+            "packages": {
+              "type": "object",
+              "properties": {
+                "pip": { "type": "array", "items": { "type": "string" } },
+                "npm": { "type": "array", "items": { "type": "string" } },
+                "apt": { "type": "array", "items": { "type": "string" } },
+                "brew": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
         }
       },
       "required": ["engine"]
@@ -153,8 +339,17 @@
         },
         "sandbox_level": {
           "type": "string",
-          "enum": ["none", "basic", "isolated", "air_gapped"],
+          "enum": ["none", "basic", "isolated", "air_gapped", "custom"],
           "default": "basic"
+        },
+        "approval_required": {
+          "type": "boolean",
+          "description": "Whether user approval is needed before each invocation",
+          "default": false
+        },
+        "approval_message": {
+          "type": "string",
+          "description": "User-facing approval prompt"
         },
         "verified_by": {
           "type": "array",
@@ -165,7 +360,16 @@
           "properties": {
             "algorithm": { "type": "string" },
             "key_id": { "type": "string" },
-            "value": { "type": "string" }
+            "key_url": { "type": "string", "format": "uri" },
+            "value": { "type": "string" },
+            "timestamp": { "type": "string", "format": "date-time" }
+          }
+        },
+        "attestation": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string" },
+            "url": { "type": "string", "format": "uri" }
           }
         },
         "audit_url": {
@@ -173,6 +377,39 @@
           "format": "uri"
         }
       }
+    }
+  },
+  "definitions": {
+    "lifecycle_hook": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["hook", "webhook", "command", "http"]
+        },
+        "url": { "type": "string", "format": "uri" },
+        "command": { "type": "string" },
+        "timeout_ms": { "type": "number" },
+        "requires_approval": { "type": "boolean" },
+        "description": { "type": "string" }
+      }
+    },
+    "error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "enum": [
+            "ERR_RATE_LIMIT", "ERR_TIMEOUT", "ERR_AUTH",
+            "ERR_PERMISSION", "ERR_INPUT", "ERR_DEPENDENCY",
+            "ERR_INTERNAL", "ERR_NOT_FOUND"
+          ]
+        },
+        "message": { "type": "string" },
+        "retry_after_ms": { "type": "number" },
+        "details": { "type": "object" }
+      },
+      "required": ["code", "message"]
     }
   }
 }

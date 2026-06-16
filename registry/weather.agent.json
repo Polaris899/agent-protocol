@@ -1,5 +1,5 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
   "id": "com.openclaw.weather",
   "name": "天气查询",
   "description": "获取实时天气和天气预报，支持任意城市查询",

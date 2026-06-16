@@ -1,5 +1,5 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
   "id": "com.openclaw.docx-generator",
   "name": "Word 文档生成",
   "description": "创建和编辑Word文档，支持表格、目录、中文排版、格式化报告",

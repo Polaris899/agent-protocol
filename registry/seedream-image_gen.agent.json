@@ -1,5 +1,5 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
   "id": "com.openclaw.image-gen",
   "name": "AI 图像创作",
   "description": "基于Seedream5的AI图像生成，支持文生图、图生图、风格迁移、系列组图",

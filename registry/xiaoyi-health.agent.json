@@ -1,5 +1,5 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
   "id": "com.openclaw.health",
   "name": "运动健康助手",
   "description": "查询运动健康数据并提供分析解读，覆盖心率、睡眠、运动、压力、营养等",

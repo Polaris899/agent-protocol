@@ -1,5 +1,5 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
   "id": "com.openclaw.pdf-toolkit",
   "name": "PDF 工具箱",
   "description": "完整PDF处理能力——生成、设计、填表、合并、拆分、加密、加水印、提取内容",
