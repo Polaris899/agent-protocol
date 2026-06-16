@@ -1,0 +1,93 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.amper",
+  "name": "AMP 桥梁",
+  "description": "Bridges Agent Manifest Protocol with OpenClaw Runtime. Resolves agent.json manifests, searches the protocol registry, and routes intents to installed skills.",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": ["amp", "bridge", "runtime", "protocol", "discovery", "routing"],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "resolve_manifest",
+      "name": "本地 Manifest 解析",
+      "description": "扫描 skills 目录中的 agent.json 文件，构建本地能力索引",
+      "intents": [
+        "列出所有已安装 Skill 的能力",
+        "看看本地有哪些可用 Skill",
+        "analyze my installed skills",
+        "scan for available capabilities"
+      ],
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "search_registry",
+      "name": "搜索路由中心",
+      "description": "查询 AMP 搜索 API，按自然语言意图匹配 Skill",
+      "intents": [
+        "帮我搜一个能{query}的skill",
+        "search for {query}",
+        "找能做{task}的工具",
+        "推荐可用的{category} skill",
+        "find a skill that can {task}"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "自然语言搜索关键词"
+          }
+        },
+        "required": ["query"]
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "intent_match",
+      "name": "意图路由",
+      "description": "将用户意图匹配到最合适的已安装 Skill",
+      "intents": [
+        "这个请求该用哪个 Skill",
+        "帮我路由到合适的处理工具",
+        "match this intent to a capability",
+        "which skill should handle this"
+      ],
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "skill_info",
+      "name": "Skill 详情",
+      "description": "查看本地或远程 SKill 的能力详情、权限要求和运行时信息",
+      "intents": [
+        "查看{skill}的能力详情",
+        "tell me about {skill}",
+        "这个 Skill 有哪些功能",
+        "show details for {skill}"
+      ],
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "openclaw",
+    "min_version": "1.0.0",
+    "type": "skill",
+    "engines": ["openclaw"]
+  },
+  "trust": {
+    "permissions": ["network"],
+    "sandbox_level": "basic",
+    "verified_by": ["openclaw_team"]
+  }
+}
