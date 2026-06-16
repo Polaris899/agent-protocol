@@ -1,0 +1,11 @@
+{
+  "name": "@agent-protocol/crawler",
+  "version": "0.1.0",
+  "description": "GitHub crawler for Agent Manifest Protocol",
+  "type": "module",
+  "scripts": {
+    "crawl": "node crawl.js",
+    "search-server": "node search-server.js"
+  },
+  "license": "MIT"
+}

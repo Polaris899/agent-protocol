@@ -1,0 +1,138 @@
+[
+  {
+    "_repo": "openclaw/weather-skill",
+    "_path": "agent.json",
+    "_url": "https://github.com/openclaw/weather-skill/blob/main/agent.json",
+    "_indexed_at": "2026-06-16T00:00:00.000Z",
+    "id": "com.openclaw.weather",
+    "name": "天气助手",
+    "description": "查询实时天气和未来天气预报，支持国内主要城市及全球300+城市",
+    "version": "1.2.0",
+    "author": { "name": "OpenClaw Team", "url": "https://github.com/openclaw" },
+    "tags": ["weather", "天气", "forecast", "天气预报", "温度", "湿度"],
+    "license": "MIT",
+    "capabilities": [
+      { "id": "get_weather", "name": "查询当天天气", "description": "根据城市名查询当前实时温度、湿度、风速和天气状况", "intents": ["现在{城市}的天气怎么样", "{城市}现在多少度", "{城市}今天冷吗", "what's the weather in {city} now"], "latency": "real-time", "security_level": "low", "cost_per_call": 0 },
+      { "id": "get_forecast", "name": "天气预报", "description": "查询指定城市未来几天的天气预报，包括最高最低温度、降水概率等", "intents": ["未来{天数}天{城市}的天气", "{城市}这周天气", "{城市}周末天气", "forecast for {city} for {days} days"], "latency": "real-time", "security_level": "low", "cost_per_call": 0 }
+    ],
+    "runtime": { "engine": "openclaw", "type": "skill" },
+    "trust": { "permissions": ["network"], "sandbox_level": "basic", "verified_by": ["community_audit_202606"] }
+  },
+  {
+    "_repo": "openclaw/fsa-analyzer",
+    "_path": "agent.json",
+    "_url": "https://github.com/openclaw/fsa-analyzer/blob/main/agent.json",
+    "_indexed_at": "2026-06-16T00:00:00.000Z",
+    "id": "com.openclaw.fsa-analyzer",
+    "name": "财报分析专家",
+    "description": "企业财务报表分析（FSA），支持资产负债表、利润表、现金流量表深度分析，含杜邦分解、比率分析、信用风险评估",
+    "version": "2.1.0",
+    "author": { "name": "OpenClaw Team", "url": "https://github.com/openclaw" },
+    "tags": ["finance", "财务报表", "FSA", "杜邦分析", "信用评估", "会计"],
+    "license": "MIT",
+    "capabilities": [
+      { "id": "analyze_bs", "name": "资产负债表分析", "description": "分析资产负债表结构、流动性、偿债能力和资本结构", "intents": ["分析这份资产负债表", "评估这家公司的偿债能力", "看看负债率", "analyze this balance sheet"], "latency": "low", "security_level": "low", "cost_per_call": 0 },
+      { "id": "analyze_is", "name": "利润表分析", "description": "分析收入结构、成本费用、毛利率、净利率、盈利质量", "intents": ["分析利润表", "看看利润率", "收入构成怎么样", "analyze income statement"], "latency": "low", "security_level": "low", "cost_per_call": 0 },
+      { "id": "analyze_cf", "name": "现金流量表分析", "description": "评估现金流质量、自由现金流、现金流与利润的匹配度", "intents": ["分析现金流", "现金流状况怎么样", "自由现金流多少", "analyze cash flow"], "latency": "low", "security_level": "low", "cost_per_call": 0 },
+      { "id": "dupont_analysis", "name": "杜邦分解", "description": "杜邦分析法拆解ROE，识别盈利能力驱动因素", "intents": ["做杜邦分析", "拆解ROE", "看看净资产收益率怎么来的", "dupont analysis"], "latency": "medium", "security_level": "low", "cost_per_call": 0 },
+      { "id": "fraud_detection", "name": "财务舞弊检测", "description": "识别异常财务信号，包括收入虚增、费用延迟、关联交易等预警指标", "intents": ["检查财务造假", "财务异常信号", "舞弊风险", "fraud detection"], "latency": "medium", "security_level": "low", "cost_per_call": 0 }
+    ],
+    "runtime": { "engine": "openclaw", "type": "skill" },
+    "trust": { "permissions": ["network"], "sandbox_level": "isolated", "verified_by": ["community_audit_202606"] }
+  },
+  {
+    "_repo": "openclaw/ppt-generator",
+    "_path": "agent.json",
+    "_url": "https://github.com/openclaw/ppt-generator/blob/main/agent.json",
+    "_indexed_at": "2026-06-16T00:00:00.000Z",
+    "id": "com.openclaw.ppt-generator",
+    "name": "PPT 生成器",
+    "description": "从内容大纲自动生成专业演示文稿，支持多种模板风格、图表嵌入和格式转换",
+    "version": "1.5.0",
+    "author": { "name": "OpenClaw Team", "url": "https://github.com/openclaw" },
+    "tags": ["ppt", "presentation", "演示文稿", "幻灯片", "办公"],
+    "license": "MIT",
+    "capabilities": [
+      { "id": "generate_ppt", "name": "生成 PPT", "description": "根据提纲或文档生成完整演示文稿", "intents": ["帮我做个PPT", "生成演示文稿", "根据这份文档做个PPT", "create a presentation from this content"], "latency": "medium", "security_level": "low", "cost_per_call": 0 },
+      { "id": "edit_ppt", "name": "编辑 PPT", "description": "修改现有PPT的内容、样式和布局", "intents": ["修改这个PPT", "改一下第3页的内容", "换个模板", "edit this presentation"], "latency": "medium", "security_level": "low", "cost_per_call": 0 }
+    ],
+    "runtime": { "engine": "openclaw", "type": "skill" },
+    "trust": { "permissions": ["network", "read_file:~/*", "write_file:~/*"], "sandbox_level": "isolated", "verified_by": ["community_audit_202606"] }
+  },
+  {
+    "_repo": "openclaw/image-gen",
+    "_path": "agent.json",
+    "_url": "https://github.com/openclaw/image-gen/blob/main/agent.json",
+    "_indexed_at": "2026-06-16T00:00:00.000Z",
+    "id": "com.openclaw.image-gen",
+    "name": "小艺图像创作",
+    "description": "基于 AI 的图像生成与编辑，支持文生图、图生图、风格迁移和系列组图",
+    "version": "2.0.0",
+    "author": { "name": "OpenClaw Team", "url": "https://github.com/openclaw" },
+    "tags": ["image", "生成图片", "画图", "AI绘画", "设计"],
+    "license": "MIT",
+    "capabilities": [
+      { "id": "text_to_image", "name": "文生图", "description": "根据文字描述生成图片", "intents": ["画一张{描述}的图", "帮我生成一张{描述}的图片", "设计一张{用途}的海报", "generate an image of {subject}"], "latency": "high", "security_level": "low", "cost_per_call": 0 },
+      { "id": "image_to_image", "name": "图生图", "description": "基于参考图片生成新图，支持风格迁移", "intents": ["把这张图改成{风格}风格", "基于这张图生成新的", "这张图换个风格", "apply {style} style to this image"], "latency": "high", "security_level": "low", "cost_per_call": 0 },
+      { "id": "edit_image", "name": "图片编辑", "description": "对图片进行局部修改、扩展、擦除等操作", "intents": ["去掉这张图里的{物体}", "把{物体}移到右边", "扩展这张图的背景", "edit this image"], "latency": "medium", "security_level": "low", "cost_per_call": 0 }
+    ],
+    "runtime": { "engine": "openclaw", "type": "skill" },
+    "trust": { "permissions": ["network"], "sandbox_level": "basic", "verified_by": ["community_audit_202606"] }
+  },
+  {
+    "_repo": "openclaw/doc-convert",
+    "_path": "agent.json",
+    "_url": "https://github.com/openclaw/doc-convert/blob/main/agent.json",
+    "_indexed_at": "2026-06-16T00:00:00.000Z",
+    "id": "com.openclaw.doc-convert",
+    "name": "文档格式转换",
+    "description": "支持 Word、PDF、Excel、PPT、Markdown、HTML 等多格式互转",
+    "version": "1.3.0",
+    "author": { "name": "OpenClaw Team", "url": "https://github.com/openclaw" },
+    "tags": ["document", "转换", "convert", "pdf", "word", "格式转换"],
+    "license": "MIT",
+    "capabilities": [
+      { "id": "convert_doc", "name": "格式转换", "description": "在多种文档格式之间自由转换", "intents": ["把这个PDF转成Word", "把这个docx转成pdf", "把markdown转成html", "convert this {source} to {target}"], "latency": "medium", "security_level": "low", "cost_per_call": 0 }
+    ],
+    "runtime": { "engine": "openclaw", "type": "skill" },
+    "trust": { "permissions": ["network", "read_file:~/*", "write_file:~/*"], "sandbox_level": "isolated" }
+  },
+  {
+    "_repo": "openclaw/health-coach",
+    "_path": "agent.json",
+    "_url": "https://github.com/openclaw/health-coach/blob/main/agent.json",
+    "_indexed_at": "2026-06-16T00:00:00.000Z",
+    "id": "com.openclaw.health-coach",
+    "name": "科学健身教练",
+    "description": "个性化健身计划制定、动作指导、渐进式训练方案调整和营养建议",
+    "version": "1.1.0",
+    "author": { "name": "OpenClaw Team", "url": "https://github.com/openclaw" },
+    "tags": ["fitness", "健身", "运动", "健康", "训练", "workout"],
+    "license": "MIT",
+    "capabilities": [
+      { "id": "create_plan", "name": "制定健身计划", "description": "根据个人目标和身体状况制定个性化训练计划", "intents": ["帮我制定健身计划", "我想增肌/减脂，该怎么做", "设计一周训练方案", "create a workout plan for me"], "latency": "medium", "security_level": "low", "cost_per_call": 0 },
+      { "id": "exercise_guide", "name": "动作指导", "description": "提供训练动作的详细步骤、要点和常见错误纠正", "intents": ["{动作}怎么做", "{动作}的正确姿势", "教我做{动作}", "how to do {exercise} correctly"], "latency": "real-time", "security_level": "low", "cost_per_call": 0 },
+      { "id": "nutrition_advice", "name": "营养建议", "description": "基于健身目标提供膳食搭配和营养补充建议", "intents": ["健身应该怎么吃", "增肌期饮食", "减脂餐推荐", "workout nutrition advice"], "latency": "low", "security_level": "low", "cost_per_call": 0 }
+    ],
+    "runtime": { "engine": "openclaw", "type": "skill" },
+    "trust": { "permissions": [], "sandbox_level": "basic", "verified_by": ["community_audit_202606"] }
+  },
+  {
+    "_repo": "openclaw/web-searcher",
+    "_path": "agent.json",
+    "_url": "https://github.com/openclaw/web-searcher/blob/main/agent.json",
+    "_indexed_at": "2026-06-16T00:00:00.000Z",
+    "id": "com.openclaw.web-search",
+    "name": "联网搜索",
+    "description": "实时网络搜索，获取最新网页内容、新闻和资讯，中文优化",
+    "version": "1.0.0",
+    "author": { "name": "OpenClaw Team", "url": "https://github.com/openclaw" },
+    "tags": ["search", "搜索", "网络搜索", "web", "资讯"],
+    "license": "MIT",
+    "capabilities": [
+      { "id": "web_search", "name": "网页搜索", "description": "搜索互联网获取最新信息", "intents": ["帮我搜索{query}", "查一下{query}", "最新{topic}资讯", "当前{query}的情况", "search for {query}"], "latency": "low", "security_level": "low", "cost_per_call": 0 }
+    ],
+    "runtime": { "engine": "openclaw", "type": "skill" },
+    "trust": { "permissions": ["network"], "sandbox_level": "basic" }
+  }
+]

@@ -1,0 +1,178 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "title": "Agent Manifest",
+  "description": "Schema for Agent Manifest Protocol v0.1 — describing AI Skill capabilities, runtime, and trust",
+  "type": "object",
+  "required": ["$schema", "id", "name", "version", "capabilities"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Protocol version URL",
+      "pattern": "^https://agent-protocol\\.dev/v[0-9]+\\.[0-9]+/manifest\\.schema\\.json$"
+    },
+    "id": {
+      "type": "string",
+      "description": "Globally unique identifier in reverse domain notation",
+      "pattern": "^[a-zA-Z][a-zA-Z0-9]*\\.[a-zA-Z][a-zA-Z0-9]*\\.[a-zA-Z][a-zA-Z0-9_-]+$",
+      "examples": ["com.example.weather-agent"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description (≤200 chars recommended)",
+      "maxLength": 500
+    },
+    "version": {
+      "type": "string",
+      "description": "Semantic version",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[a-zA-Z0-9]+(\\.[a-zA-Z0-9]+)*)?(\\+[a-zA-Z0-9]+(\\.[a-zA-Z0-9]+)*)?$"
+    },
+    "author": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "email": { "type": "string", "format": "email" }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "license": {
+      "type": "string",
+      "description": "SPDX license identifier"
+    },
+    "icon": {
+      "type": "string",
+      "format": "uri"
+    },
+    "homepage": {
+      "type": "string",
+      "format": "uri"
+    },
+    "capabilities": {
+      "type": "array",
+      "description": "List of capabilities this Skill provides",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "description"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Internal capability identifier",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$"
+          },
+          "name": {
+            "type": "string",
+            "description": "Capability display name"
+          },
+          "description": {
+            "type": "string",
+            "description": "What this capability does"
+          },
+          "intents": {
+            "type": "array",
+            "description": "Intent templates for semantic matching",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "input": {
+            "type": "object",
+            "description": "Input schema (JSON Schema format)",
+            "properties": {
+              "type": { "type": "string", "default": "object" },
+              "properties": { "type": "object" },
+              "required": { "type": "array", "items": { "type": "string" } }
+            }
+          },
+          "output": {
+            "type": "object",
+            "description": "Output schema description"
+          },
+          "latency": {
+            "type": "string",
+            "enum": ["real-time", "low", "medium", "high"]
+          },
+          "security_level": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical"],
+            "default": "low"
+          },
+          "cost_per_call": {
+            "type": "number",
+            "description": "Cost per call in USD cents",
+            "minimum": 0,
+            "default": 0
+          },
+          "dependencies": {
+            "type": "array",
+            "description": "IDs of capabilities this depends on",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "properties": {
+        "engine": {
+          "type": "string",
+          "description": "Primary runtime engine",
+          "examples": ["openclaw", "langchain", "crewai"]
+        },
+        "min_version": { "type": "string" },
+        "config_url": { "type": "string", "format": "uri" },
+        "entrypoint": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["skill", "agent", "plugin", "tool"]
+        },
+        "engines": {
+          "type": "array",
+          "description": "Compatible engines",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["engine"]
+    },
+    "trust": {
+      "type": "object",
+      "properties": {
+        "permissions": {
+          "type": "array",
+          "description": "Declared permissions required",
+          "items": { "type": "string" }
+        },
+        "sandbox_level": {
+          "type": "string",
+          "enum": ["none", "basic", "isolated", "air_gapped"],
+          "default": "basic"
+        },
+        "verified_by": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "signature": {
+          "type": "object",
+          "properties": {
+            "algorithm": { "type": "string" },
+            "key_id": { "type": "string" },
+            "value": { "type": "string" }
+          }
+        },
+        "audit_url": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    }
+  }
+}

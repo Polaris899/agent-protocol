@@ -1,0 +1,71 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.weather",
+  "name": "天气助手",
+  "description": "查询实时天气和未来天气预报，支持国内主要城市",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": ["weather", "天气", "forecast", "天气预报", "temperature"],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "get_weather",
+      "name": "查询当天天气",
+      "description": "根据城市名查询当前实时温度、湿度、风速和天气状况",
+      "intents": [
+        "现在{城市}的天气怎么样",
+        "{城市}现在多少度",
+        "{城市}今天冷吗",
+        "what's the weather in {city} now"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {
+          "city": { "type": "string", "description": "城市名称，如北京、上海、广州" },
+          "unit": { "type": "string", "enum": ["celsius", "fahrenheit"], "default": "celsius" }
+        },
+        "required": ["city"]
+      },
+      "latency": "real-time",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "get_forecast",
+      "name": "天气预报",
+      "description": "查询指定城市未来几天的天气预报，包括最高最低温度、降水概率等",
+      "intents": [
+        "未来{天数}天{城市}的天气",
+        "{城市}这周天气",
+        "{城市}周末天气",
+        "forecast for {city} for {days} days"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {
+          "city": { "type": "string", "description": "城市名称" },
+          "days": { "type": "integer", "description": "预报天数", "default": 3, "minimum": 1, "maximum": 15 }
+        },
+        "required": ["city"]
+      },
+      "latency": "real-time",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "openclaw",
+    "min_version": "1.0.0",
+    "config_url": "https://raw.githubusercontent.com/openclaw/weather-skill/main/config.yaml",
+    "entrypoint": "main.py",
+    "type": "skill",
+    "engines": ["openclaw"]
+  },
+  "trust": {
+    "permissions": ["network"],
+    "sandbox_level": "basic"
+  }
+}
