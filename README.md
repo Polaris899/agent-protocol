@@ -188,6 +188,12 @@ AMP 是一个开放的社区协议。欢迎各种形式的参与：
 
 ---
 
+## 🌐 社区
+
+- **知乎** → [我们不需要另一个 AI 应用商店](https://www.zhihu.com/pin/2050191125743417137)
+- **GitHub Issues** → [提 Bug / 建议](https://github.com/Polaris899/agent-protocol/issues)
+- **GitHub Discussions** → [参与讨论](https://github.com/Polaris899/agent-protocol/discussions)
+
 ## 📄 许可
 
 MIT License
