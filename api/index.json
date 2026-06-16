@@ -78,7 +78,7 @@
     }
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-pdf-analyst-pro",
     "name": "PDF Analyst Pro API",
     "description": "PDF analysis and extraction API",
@@ -196,10 +196,11 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-pdf-analyst-pro"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-travel-planner",
     "name": "旅行规划师",
     "description": "帮你规划完整行程，包括航班搜索、酒店推荐、景点攻略和当地美食指南",
@@ -259,10 +260,11 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-travel-planner"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-code-assistant",
     "name": "代码助手 Pro",
     "description": "精通多种编程语言，帮你写代码、调试、重构和代码审查",
@@ -323,10 +325,11 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-code-assistant"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-translator-pro",
     "name": "翻译专家",
     "description": "支持 100+ 种语言的互译，保留原文格式和语境，专业术语准确",
@@ -364,10 +367,11 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-translator-pro"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-resume-builder",
     "name": "简历优化师",
     "description": "帮你优化简历内容，匹配职位描述，提升面试通过率",
@@ -403,10 +407,11 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-resume-builder"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-data-visualizer",
     "name": "数据可视化专家",
     "description": "将原始数据转化为精美的图表和可视化报告，支持柱状图、折线图、饼图、热力图等",
@@ -455,10 +460,11 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-data-visualizer"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-email-marketer",
     "name": "邮件营销助手",
     "description": "帮你撰写、优化和自动化邮件营销文案，提升打开率和转化率",
@@ -496,10 +502,11 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-email-marketer"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-legal-consultant",
     "name": "法律顾问",
     "description": "提供合同审查、法律条款解读和基础法律咨询服务",
@@ -537,10 +544,11 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-legal-consultant"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-social-media-manager",
     "name": "社交媒体管家",
     "description": "帮你生成社交媒体文案、策划内容日历、分析互动数据",
@@ -587,10 +595,11 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-social-media-manager"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-math-tutor",
     "name": "数学导师",
     "description": "从代数到微积分，一步步帮你解决数学问题并解释原理",
@@ -628,10 +637,11 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-math-tutor"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-recipe-chef",
     "name": "AI 大厨",
     "description": "根据你冰箱里的食材推荐菜谱，提供详细的烹饪步骤和营养信息",
@@ -666,10 +676,11 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-recipe-chef"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-interview-coach",
     "name": "面试教练",
     "description": "模拟面试练习，提供实时反馈和改进建议，帮你准备常见面试题",
@@ -707,10 +718,11 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-interview-coach"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-fitness-tracker",
     "name": "健身规划师",
     "description": "根据你的身体状况和目标制定个性化训练计划和饮食建议",
@@ -757,10 +769,11 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-fitness-tracker"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-music-composer",
     "name": "音乐创作人",
     "description": "帮你作曲、编曲、写歌词，支持多种音乐风格",
@@ -796,10 +809,11 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-music-composer"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-sql-helper",
     "name": "SQL 专家",
     "description": "写 SQL 查询、优化慢查询、设计数据库表结构",
@@ -848,10 +862,11 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-sql-helper"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-interior-designer",
     "name": "室内设计师",
     "description": "根据你的空间和喜好推荐装修风格、家具搭配和色彩方案",
@@ -887,10 +902,11 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-interior-designer"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-stock-analyst",
     "name": "股票分析师",
     "description": "分析股票走势、财报数据、行业趋势，提供投资洞察",
@@ -939,10 +955,11 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-stock-analyst"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-english-tutor",
     "name": "英语老师",
     "description": "练习英语口语、纠正发音、改进语法、扩充词汇量",
@@ -980,10 +997,11 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-english-tutor"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-meme-creator",
     "name": "表情包大师",
     "description": "根据你的创意生成搞笑表情包和梗图",
@@ -1020,10 +1038,11 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-meme-creator"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-contract-reviewer",
     "name": "合同审查员",
     "description": "审查合同条款，识别风险点，提供修改建议",
@@ -1061,10 +1080,11 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-contract-reviewer"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-study-planner",
     "name": "学习规划师",
     "description": "制定学习计划、推荐学习资源、跟踪学习进度",
@@ -1101,10 +1121,11 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-study-planner"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-content-writer",
     "name": "内容写作专家",
     "description": "写文章、博客、新闻稿、产品描述等各种文案",
@@ -1142,10 +1163,11 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-content-writer"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-personal-shopper",
     "name": "私人购物顾问",
     "description": "根据你的风格、预算和需求推荐商品",
@@ -1181,10 +1203,11 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-personal-shopper"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-meditation-guide",
     "name": "冥想引导师",
     "description": "引导冥想练习、提供放松技巧和正念训练",
@@ -1220,10 +1243,11 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-meditation-guide"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-investment-advisor",
     "name": "投资顾问",
     "description": "提供资产配置建议、风险评估和投资组合分析",
@@ -1272,10 +1296,11 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-investment-advisor"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-movie-recommender",
     "name": "电影推荐官",
     "description": "根据你的口味推荐电影、电视剧和纪录片",
@@ -1311,10 +1336,11 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-movie-recommender"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-crypto-analyst",
     "name": "加密货币分析师",
     "description": "分析加密货币市场、技术指标和链上数据",
@@ -1351,10 +1377,11 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-crypto-analyst"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-career-counselor",
     "name": "职业规划师",
     "description": "帮你分析职业方向、规划晋升路径、准备跳槽策略",
@@ -1393,10 +1420,11 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-career-counselor"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-photo-editor",
     "name": "修图助手",
     "description": "指导你修图技巧、推荐滤镜参数、讲解构图原理",
@@ -1432,10 +1460,11 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-photo-editor"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-podcast-script-writer",
     "name": "播客脚本写手",
     "description": "帮你写播客脚本、设计节目结构、优化口语表达",
@@ -1471,10 +1500,11 @@
       "permissions": [],
       "sandbox_level": "isolated",
       "verified_by": []
-    }
+    },
+    "_repo": "openai/gpt-podcast-script-writer"
   },
   {
-    "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+    "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
     "id": "com.openai.gpt-tax-advisor",
     "name": "税务顾问",
     "description": "提供个税计算、税务筹划和报税指导",
@@ -1512,7 +1542,8 @@
       "verified_by": [
         "openai_gpt_store"
       ]
-    }
+    },
+    "_repo": "openai/gpt-tax-advisor"
   },
   {
     "_repo": "Polaris899/agent-protocol",
@@ -1607,9 +1638,9 @@
     }
   },
   {
-    "_repo": "Polaris899/agent-protocol",
-    "_path": "registry/fsa-analyzer.agent.json",
-    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/fsa-analyzer.agent.json",
+    "_repo": "Polaris899/fsa-analyzer",
+    "_path": "agent.json",
+    "_url": "https://github.com/Polaris899/fsa-analyzer/blob/main/agent.json",
     "_indexed_at": "2026-06-16T02:07:37.603Z",
     "id": "com.openclaw.fsa-analyzer",
     "name": "财报分析专家",
