@@ -1,0 +1,71 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.huawei-drive",
+  "name": "华为云空间",
+  "description": "华为云空间云盘文件管理，支持文件上传、列表查询、用量查看",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": [
+    "cloud",
+    "drive",
+    "云盘",
+    "云空间",
+    "华为",
+    "file"
+  ],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "upload_file",
+      "name": "上传文件",
+      "description": "将本地文件上传到华为云空间",
+      "intents": [
+        "上传文件到云盘",
+        "备份这个文件",
+        "upload to cloud"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "list_files",
+      "name": "文件列表",
+      "description": "查询云盘文件列表和存储用量",
+      "intents": [
+        "查看云盘文件",
+        "云盘用量",
+        "list cloud files"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "huawei-api",
+    "min_version": "1.0.0",
+    "type": "skill",
+    "engines": [
+      "openclaw"
+    ]
+  },
+  "trust": {
+    "permissions": [
+      "network"
+    ],
+    "sandbox_level": "basic",
+    "verified_by": []
+  }
+}

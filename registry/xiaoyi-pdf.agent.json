@@ -1,0 +1,125 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.pdf-toolkit",
+  "name": "PDF 工具箱",
+  "description": "完整PDF处理能力——生成、设计、填表、合并、拆分、加密、加水印、提取内容",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": [
+    "pdf",
+    "document",
+    "文档处理",
+    "PDF编辑"
+  ],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "generate_pdf",
+      "name": "生成PDF",
+      "description": "从内容生成格式精美的PDF文档",
+      "intents": [
+        "生成PDF",
+        "创建PDF",
+        "make a pdf",
+        "导出PDF"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "merge_pdf",
+      "name": "合并PDF",
+      "description": "将多个PDF文件合并为一个",
+      "intents": [
+        "合并PDF",
+        "合并文件",
+        "merge pdfs"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "split_pdf",
+      "name": "拆分PDF",
+      "description": "将PDF按页拆分",
+      "intents": [
+        "拆分PDF",
+        "提取页",
+        "split pdf"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "watermark_pdf",
+      "name": "加/去水印",
+      "description": "给PDF添加或去除水印",
+      "intents": [
+        "加水印",
+        "去除水印",
+        "watermark pdf"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "extract_pdf",
+      "name": "提取内容",
+      "description": "从PDF提取文字和表格",
+      "intents": [
+        "提取PDF文字",
+        "PDF转文字",
+        "extract text from pdf"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "openclaw",
+    "min_version": "1.0.0",
+    "type": "skill",
+    "engines": [
+      "openclaw"
+    ]
+  },
+  "trust": {
+    "permissions": [
+      "network",
+      "read_file",
+      "write_file"
+    ],
+    "sandbox_level": "isolated",
+    "verified_by": [
+      "openclaw_team"
+    ]
+  }
+}

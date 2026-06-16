@@ -1,0 +1,129 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.fsa-analyzer",
+  "name": "财报分析专家",
+  "description": "企业财务报表深度分析，支持资产负债表、利润表、现金流量表，含杜邦分解和舞弊检测",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": [
+    "finance",
+    "财务报表",
+    "FSA",
+    "分析",
+    "会计",
+    "审计"
+  ],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "analyze_bs",
+      "name": "资产负债表分析",
+      "description": "分析企业资产结构、负债水平、偿债能力",
+      "intents": [
+        "分析资产负债表",
+        "评估偿债能力",
+        "看看负债率",
+        "analyze balance sheet"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "analyze_is",
+      "name": "利润表分析",
+      "description": "分析收入结构、成本费用、盈利能力",
+      "intents": [
+        "分析利润表",
+        "看看利润率",
+        "盈利质量分析",
+        "analyze income statement"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "analyze_cf",
+      "name": "现金流量表分析",
+      "description": "评估现金流质量和现金循环效率",
+      "intents": [
+        "分析现金流",
+        "现金流质量",
+        "自由现金流",
+        "analyze cash flow"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "dupont",
+      "name": "杜邦分解",
+      "description": "杜邦分析法拆解净资产收益率（ROE）驱动因素",
+      "intents": [
+        "杜邦分析",
+        "拆解ROE",
+        "净资产收益率",
+        "dupont analysis"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "fraud_detection",
+      "name": "财务舞弊检测",
+      "description": "识别收入虚增、费用延迟、关联交易等异常信号",
+      "intents": [
+        "检测财务造假",
+        "异常信号",
+        "舞弊风险",
+        "fraud detection"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "openclaw",
+    "min_version": "1.0.0",
+    "type": "skill",
+    "engines": [
+      "openclaw"
+    ]
+  },
+  "trust": {
+    "permissions": [
+      "network"
+    ],
+    "sandbox_level": "basic",
+    "verified_by": [
+      "openclaw_team"
+    ]
+  }
+}

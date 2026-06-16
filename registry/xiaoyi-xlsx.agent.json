@@ -1,0 +1,94 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.spreadsheet",
+  "name": "电子表格工具",
+  "description": "创建、编辑和分析电子表格，支持公式、图表、透视表、条件格式",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": [
+    "excel",
+    "spreadsheet",
+    "表格",
+    "数据分析",
+    "xlsx"
+  ],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "create_spreadsheet",
+      "name": "创建表格",
+      "description": "从数据创建电子表格",
+      "intents": [
+        "帮我做个表",
+        "创建表格",
+        "创建Excel",
+        "create spreadsheet"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "analyze_data",
+      "name": "数据分析",
+      "description": "排序、筛选、汇总、透视表分析",
+      "intents": [
+        "分析这份数据",
+        "做数据透视",
+        "汇总数据",
+        "analyze data"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "create_chart",
+      "name": "生成图表",
+      "description": "根据数据生成各类图表",
+      "intents": [
+        "生成图表",
+        "画个图",
+        "可视化数据",
+        "create chart"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "openclaw",
+    "min_version": "1.0.0",
+    "type": "skill",
+    "engines": [
+      "openclaw"
+    ]
+  },
+  "trust": {
+    "permissions": [
+      "network",
+      "read_file",
+      "write_file"
+    ],
+    "sandbox_level": "isolated",
+    "verified_by": [
+      "openclaw_team"
+    ]
+  }
+}

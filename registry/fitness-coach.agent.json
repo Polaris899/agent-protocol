@@ -1,0 +1,89 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.fitness-coach",
+  "name": "科学健身教练",
+  "description": "制定个性化健身计划、动作指导、渐进式负荷调整和营养建议",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": [
+    "fitness",
+    "健身",
+    "运动",
+    "训练",
+    "workout"
+  ],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "create_plan",
+      "name": "制定计划",
+      "description": "根据目标和个人状况制定训练方案",
+      "intents": [
+        "制定健身计划",
+        "增肌计划",
+        "减脂方案",
+        "create workout plan"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "exercise_guide",
+      "name": "动作指导",
+      "description": "提供标准动作步骤和常见错误纠正",
+      "intents": [
+        "这个动作怎么做",
+        "正确姿势",
+        "exercise form guide"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "nutrition_advice",
+      "name": "营养建议",
+      "description": "提供健身相关的膳食搭配建议",
+      "intents": [
+        "健身怎么吃",
+        "增肌饮食",
+        "减脂餐",
+        "workout nutrition"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "openclaw",
+    "min_version": "1.0.0",
+    "type": "skill",
+    "engines": [
+      "openclaw"
+    ]
+  },
+  "trust": {
+    "permissions": [],
+    "sandbox_level": "basic",
+    "verified_by": [
+      "openclaw_team"
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.docx-generator",
+  "name": "Word 文档生成",
+  "description": "创建和编辑Word文档，支持表格、目录、中文排版、格式化报告",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": [
+    "word",
+    "docx",
+    "文档",
+    "报告",
+    "办公"
+  ],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "create_docx",
+      "name": "生成文档",
+      "description": "从内容生成格式化的Word文档",
+      "intents": [
+        "生成Word文档",
+        "帮我写个报告",
+        "创建docx",
+        "create word document"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "edit_docx",
+      "name": "编辑文档",
+      "description": "对现有Word文档进行修改",
+      "intents": [
+        "修改这个文档",
+        "编辑Word",
+        "edit document"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "openclaw",
+    "min_version": "1.0.0",
+    "type": "skill",
+    "engines": [
+      "openclaw"
+    ]
+  },
+  "trust": {
+    "permissions": [
+      "network",
+      "read_file",
+      "write_file"
+    ],
+    "sandbox_level": "isolated",
+    "verified_by": [
+      "openclaw_team"
+    ]
+  }
+}

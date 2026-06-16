@@ -1,0 +1,55 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.vlog-gen",
+  "name": "一键成片",
+  "description": "多图自动生成vlog短片，智能编排画面、匹配BGM、添加转场特效",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": [
+    "video",
+    "vlog",
+    "视频",
+    "剪辑",
+    "成片"
+  ],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "generate_vlog",
+      "name": "生成视频",
+      "description": "从图片批量生成短片",
+      "intents": [
+        "把这几张图做成视频",
+        "一键成片",
+        "生成vlog",
+        "create video from photos"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "openclaw",
+    "min_version": "1.0.0",
+    "type": "skill",
+    "engines": [
+      "openclaw"
+    ]
+  },
+  "trust": {
+    "permissions": [
+      "network",
+      "read_file"
+    ],
+    "sandbox_level": "basic",
+    "verified_by": []
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.health",
+  "name": "运动健康助手",
+  "description": "查询运动健康数据并提供分析解读，覆盖心率、睡眠、运动、压力、营养等",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": [
+    "health",
+    "健康",
+    "运动",
+    "心率",
+    "睡眠",
+    "fitness"
+  ],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "query_health_data",
+      "name": "查询健康数据",
+      "description": "查询心率、睡眠、运动、压力等健康数据",
+      "intents": [
+        "我的睡眠怎么样",
+        "今天心率多少",
+        "查看运动数据",
+        "健康概览"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "analyze_health",
+      "name": "健康分析",
+      "description": "解读健康数据趋势并提供建议",
+      "intents": [
+        "分析我的健康趋势",
+        "这周运动量够吗",
+        "健康建议",
+        "health analysis"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "openclaw",
+    "min_version": "1.0.0",
+    "type": "skill",
+    "engines": [
+      "openclaw"
+    ]
+  },
+  "trust": {
+    "permissions": [
+      "read_health_data"
+    ],
+    "sandbox_level": "basic",
+    "verified_by": []
+  }
+}

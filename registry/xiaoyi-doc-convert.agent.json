@@ -1,0 +1,58 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.doc-convert",
+  "name": "文档格式转换",
+  "description": "支持 Word、PDF、Excel、PPT、Markdown、HTML 等多格式互转",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": [
+    "convert",
+    "格式转换",
+    "document",
+    "pdf",
+    "word"
+  ],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "convert_format",
+      "name": "格式转换",
+      "description": "在各种文档格式之间自由转换",
+      "intents": [
+        "把这个PDF转成Word",
+        "docx转pdf",
+        "md转html",
+        "convert {source} to {target}"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "openclaw",
+    "min_version": "1.0.0",
+    "type": "skill",
+    "engines": [
+      "openclaw"
+    ]
+  },
+  "trust": {
+    "permissions": [
+      "network",
+      "read_file",
+      "write_file"
+    ],
+    "sandbox_level": "isolated",
+    "verified_by": [
+      "openclaw_team"
+    ]
+  }
+}

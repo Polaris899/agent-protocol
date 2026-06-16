@@ -1,0 +1,89 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.image-understanding",
+  "name": "图像理解",
+  "description": "使用AI进行图像内容识别和描述，支持多图对比、OCR文字识别、图表分析",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": [
+    "image",
+    "图片识别",
+    "OCR",
+    "图像分析",
+    "vision"
+  ],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "describe_image",
+      "name": "图片描述",
+      "description": "识别图片内容并生成详细文字描述",
+      "intents": [
+        "这张图是什么",
+        "描述这张图片",
+        "图片内容",
+        "describe this image"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "ocr",
+      "name": "文字识别",
+      "description": "从图片中提取文字信息",
+      "intents": [
+        "识别这张图的文字",
+        "提取文字",
+        "图片转文字",
+        "OCR"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "compare_images",
+      "name": "图片对比",
+      "description": "比较多张图片的异同",
+      "intents": [
+        "对比这些图片",
+        "图片对比",
+        "比较这两张图"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "openclaw",
+    "min_version": "1.0.0",
+    "type": "skill",
+    "engines": [
+      "openclaw"
+    ]
+  },
+  "trust": {
+    "permissions": [
+      "network"
+    ],
+    "sandbox_level": "basic",
+    "verified_by": []
+  }
+}

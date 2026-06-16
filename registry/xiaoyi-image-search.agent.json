@@ -1,0 +1,54 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.image-search",
+  "name": "图片搜索",
+  "description": "搜索图片并下载到本地，支持为文档、PPT、报告查找配图素材",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": [
+    "image",
+    "图片",
+    "搜索",
+    "素材",
+    "配图"
+  ],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "search_images",
+      "name": "搜索图片",
+      "description": "根据关键词搜索图片并下载",
+      "intents": [
+        "找{query}的图片",
+        "搜索{subject}图片",
+        "找素材",
+        "search images of {query}"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "openclaw",
+    "min_version": "1.0.0",
+    "type": "skill",
+    "engines": [
+      "openclaw"
+    ]
+  },
+  "trust": {
+    "permissions": [
+      "network"
+    ],
+    "sandbox_level": "basic",
+    "verified_by": []
+  }
+}

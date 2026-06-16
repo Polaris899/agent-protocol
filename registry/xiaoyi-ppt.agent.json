@@ -1,0 +1,75 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.ppt-generator",
+  "name": "PPT 生成器",
+  "description": "自动生成和编辑专业演示文稿，支持多种模板风格，三步流程：采集信息→生成大纲→生成PPT",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": [
+    "ppt",
+    "presentation",
+    "演示文稿",
+    "幻灯片",
+    "办公"
+  ],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "generate_ppt",
+      "name": "生成PPT",
+      "description": "根据内容提纲或文档生成完整演示文稿",
+      "intents": [
+        "帮我做个PPT",
+        "生成演示文稿",
+        "创建幻灯片",
+        "create presentation"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "edit_ppt",
+      "name": "编辑PPT",
+      "description": "修改现有PPT的内容和样式",
+      "intents": [
+        "修改这个PPT",
+        "换模板",
+        "编辑幻灯片"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "openclaw",
+    "min_version": "1.0.0",
+    "type": "skill",
+    "engines": [
+      "openclaw"
+    ]
+  },
+  "trust": {
+    "permissions": [
+      "network",
+      "read_file",
+      "write_file"
+    ],
+    "sandbox_level": "isolated",
+    "verified_by": [
+      "openclaw_team"
+    ]
+  }
+}

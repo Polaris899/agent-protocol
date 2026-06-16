@@ -1,0 +1,55 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.file-upload",
+  "name": "文件上传",
+  "description": "上传本地文件到对象存储，获取可共享的下载链接",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": [
+    "file",
+    "upload",
+    "上传",
+    "文件",
+    "share"
+  ],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "upload_file",
+      "name": "文件上传",
+      "description": "上传文件到云端获取下载链接",
+      "intents": [
+        "上传这个文件",
+        "获取下载链接",
+        "分享文件",
+        "upload file"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "huawei-api",
+    "min_version": "1.0.0",
+    "type": "skill",
+    "engines": [
+      "openclaw"
+    ]
+  },
+  "trust": {
+    "permissions": [
+      "network",
+      "read_file"
+    ],
+    "sandbox_level": "basic",
+    "verified_by": []
+  }
+}

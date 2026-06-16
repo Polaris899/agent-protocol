@@ -1,0 +1,55 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.web-search",
+  "name": "联网搜索",
+  "description": "使用华为云AI联网搜索API进行网页内容检索，获取实时网络信息",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": [
+    "search",
+    "搜索",
+    "网络搜索",
+    "web",
+    "资讯",
+    "联网"
+  ],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "web_search",
+      "name": "网页搜索",
+      "description": "搜索互联网获取最新信息",
+      "intents": [
+        "搜索{query}",
+        "查一下{query}",
+        "最新{topic}资讯",
+        "search for {query}"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "huawei-api",
+    "min_version": "1.0.0",
+    "type": "skill",
+    "engines": [
+      "openclaw"
+    ]
+  },
+  "trust": {
+    "permissions": [
+      "network"
+    ],
+    "sandbox_level": "basic",
+    "verified_by": []
+  }
+}

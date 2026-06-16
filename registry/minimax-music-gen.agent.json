@@ -1,0 +1,73 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.music-gen",
+  "name": "音乐创作",
+  "description": "基于MiniMax Music2.6的音乐生成，支持作曲、编曲、写歌词多风格创作",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team"
+  },
+  "tags": [
+    "music",
+    "音乐",
+    "创作",
+    "歌曲",
+    "audio",
+    "MiniMax"
+  ],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "generate_music",
+      "name": "生成音乐",
+      "description": "根据描述生成音乐或歌曲",
+      "intents": [
+        "生成一首{风格}的歌",
+        "帮我作曲",
+        "来一段{风格}的音乐",
+        "create music"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "medium",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "generate_lyrics",
+      "name": "写歌词",
+      "description": "根据主题创作歌词",
+      "intents": [
+        "写歌词",
+        "帮我填词",
+        "write lyrics about {topic}"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "medium",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "openclaw",
+    "min_version": "1.0.0",
+    "type": "skill",
+    "engines": [
+      "openclaw"
+    ]
+  },
+  "trust": {
+    "permissions": [
+      "network"
+    ],
+    "sandbox_level": "basic",
+    "verified_by": [
+      "openclaw_team"
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.image-gen",
+  "name": "AI 图像创作",
+  "description": "基于Seedream5的AI图像生成，支持文生图、图生图、风格迁移、系列组图",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": [
+    "image",
+    "生成图片",
+    "AI绘画",
+    "设计",
+    "创作"
+  ],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "text_to_image",
+      "name": "文生图",
+      "description": "根据文字描述生成图片",
+      "intents": [
+        "画一张{描述}的图",
+        "生成一张{描述}的图片",
+        "generate an image of {subject}"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "image_to_image",
+      "name": "图生图",
+      "description": "基于参考图片生成新图片",
+      "intents": [
+        "把这个改成{风格}风格",
+        "基于这张图生成",
+        "风格迁移"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    },
+    {
+      "id": "edit_image",
+      "name": "编辑图片",
+      "description": "局部修改、扩展、擦除等",
+      "intents": [
+        "去掉这个物体",
+        "扩展背景",
+        "edit image"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "openclaw",
+    "min_version": "1.0.0",
+    "type": "skill",
+    "engines": [
+      "openclaw"
+    ]
+  },
+  "trust": {
+    "permissions": [
+      "network"
+    ],
+    "sandbox_level": "basic",
+    "verified_by": []
+  }
+}

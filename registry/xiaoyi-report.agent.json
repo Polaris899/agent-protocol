@@ -1,0 +1,56 @@
+{
+  "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+  "id": "com.openclaw.report-gen",
+  "name": "深度研究报告",
+  "description": "从多源信息生成带引用的专业分析报告，支持学术研究、市场调研、竞品分析",
+  "version": "1.0.0",
+  "author": {
+    "name": "OpenClaw Team",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": [
+    "report",
+    "报告",
+    "研究",
+    "调研",
+    "分析"
+  ],
+  "license": "MIT",
+  "capabilities": [
+    {
+      "id": "generate_report",
+      "name": "生成报告",
+      "description": "基于搜索信息生成带引用的研究报告",
+      "intents": [
+        "调研{topic}",
+        "分析{industry}行业",
+        "写一份关于{topic}的研究报告",
+        "research {topic}"
+      ],
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "latency": "low",
+      "security_level": "low",
+      "cost_per_call": 0
+    }
+  ],
+  "runtime": {
+    "engine": "openclaw",
+    "min_version": "1.0.0",
+    "type": "skill",
+    "engines": [
+      "openclaw"
+    ]
+  },
+  "trust": {
+    "permissions": [
+      "network"
+    ],
+    "sandbox_level": "basic",
+    "verified_by": [
+      "openclaw_team"
+    ]
+  }
+}
