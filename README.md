@@ -155,6 +155,20 @@ agent update    # 更新所有
 
 ```
 agent-protocol/
+├── spec/              ← 协议规范 + JSON Schema
+├── cli/               ← CLI 工具（search/install/list/update/info/validate）
+├── crawler/           ← GitHub 爬虫 + 搜索索引
+├── converter/         ← GPT Store → AMP 转换器（寄生兼容层）
+├── registry/          ← 已注册的 Skill 清单
+├── api/               ← Vercel Serverless 函数（备选后端）
+├── index.html         ← Web 搜索 UI（**纯客户端**，无需后端 API）
+└── index-data.js      ← 内嵌搜索索引（51 Manifest，随 Pages 部署）
+
+**搜索无需后端服务。** Web UI 内置完整的搜索索引（61KB），浏览器本地即可完成语义匹配。
+API 服务器（`api/`、`crawler/search-server.js`）为 CLI 和第三方集成提供备选方案。
+
+```
+agent-protocol/
 ├── spec/               ← 协议规范 + JSON Schema
 ├── cli/                ← CLI 工具（search/install/list/update/info/validate）
 ├── crawler/            ← GitHub 爬虫 + 搜索 API

@@ -1,77 +1,77 @@
-import chalk from 'chalk';
+import { readFileSync, existsSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-// Registry URLs (ordered by preference)
-const REGISTRY_URLS = [
-  process.env.AGENT_REGISTRY || '',
-  'http://localhost:3456',
-  'https://api.agent-protocol.dev',
-].filter(Boolean);
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const INDEX_PATH = join(__dirname, '..', '..', '..', 'crawler', 'data', 'index.json');
 
 export async function searchCommand(query, options) {
-  const limit = parseInt(options.limit) || 10;
-  const asJson = options.json || false;
+  const limit = parseInt(options.limit || '20');
 
-  console.log(chalk.blue(`🔍 搜索: "${query}"`));
-  console.log(chalk.gray(`   路由中心查询中...`));
-  console.log();
-
-  // Try registry URLs
-  for (const url of REGISTRY_URLS) {
+  // Try remote API first if --remote flag
+  if (options.remote) {
+    const apiBase = process.env.AMP_REGISTRY_URL || 'https://api.agent-protocol.dev';
     try {
-      const searchUrl = `${url}/search?q=${encodeURIComponent(query)}&limit=${limit}`;
-      const res = await fetch(searchUrl);
+      const res = await fetch(`${apiBase}/search?q=${encodeURIComponent(query)}&limit=${limit}`);
       if (res.ok) {
         const data = await res.json();
-        renderResults(data.results || [], query, limit, asJson);
+        printResults(data.results || [], query);
         return;
       }
-    } catch {
-      continue;
+    } catch {}
+  }
+
+  // Local search
+  if (!existsSync(INDEX_PATH)) {
+    console.error('❌ 索引文件未找到。请先在项目根目录运行: node crawler/crawl.js');
+    process.exit(1);
+  }
+
+  const index = JSON.parse(readFileSync(INDEX_PATH, 'utf-8'));
+  const keywords = query.toLowerCase().split(/\s+/).filter(Boolean);
+
+  const scored = index.map(m => {
+    let score = 0;
+    const text = [
+      m.name, m.description, m.id,
+      ...(m.tags || []),
+      ...(m.capabilities || []).map(c => c.name + ' ' + (c.description || '') + ' ' + (c.intents || []).join(' '))
+    ].join(' ').toLowerCase();
+
+    for (const kw of keywords) {
+      const escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const matches = text.match(new RegExp(escaped, 'g'));
+      if (matches) score += matches.length;
+      if (m.name?.toLowerCase().includes(kw)) score += 5;
     }
-  }
-
-  // Fallback: check local cache
-  console.log(chalk.yellow('   ⚠ 路由中心未响应，使用本地缓存...'));
-  const results = getCachedResults(query);
-  renderResults(results, query, limit, asJson);
-}
-
-function renderResults(results, query, limit, asJson) {
-  if (asJson) {
-    console.log(JSON.stringify(results.slice(0, limit), null, 2));
-    return;
-  }
-
-  if (!results || results.length === 0) {
-    console.log(chalk.yellow('  未找到匹配的 Skill。'));
-    console.log(chalk.gray('  提示：可以尝试更宽泛的关键词，或者访问 https://agent-protocol.dev 在线搜索'));
-    return;
-  }
-
-  const display = results.slice(0, limit);
-  console.log(chalk.green(`  找到 ${results.length} 个匹配的 Skill（显示前 ${display.length} 个）：`));
-  console.log();
-
-  display.forEach((skill, i) => {
-    const prefix = chalk.cyan(`  ${i + 1}.`);
-    const name = chalk.bold(skill.name || skill.id);
-    const desc = skill.description ? chalk.gray(skill.description.slice(0, 100)) : '';
-    const author = skill.author?.name || skill._repo?.split('/')[0] || 'unknown';
-    const badge = chalk.green(`⬡ ${skill.trust?.verified_by?.length > 0 ? '已审计' : '未审计'}`);
-
-    console.log(`${prefix} ${name} ${badge}`);
-    console.log(`     ${desc}`);
-    console.log(`     ${chalk.gray(`作者: ${author}  |  能力数: ${skill.capabilities?.length || 0}`)}`);
-    if (skill._repo) {
-      console.log(`     ${chalk.gray(`安装: agent install ${skill._repo}`)}`);
-    }
-    console.log();
+    return { manifest: m, score };
   });
+
+  const results = scored
+    .filter(s => s.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map(s => s.manifest);
+
+  printResults(results, query);
 }
 
-function getCachedResults(query) {
-  // Simple local search through cached manifests
-  // In production this would use a local vector index
-  const keywords = query.toLowerCase().split(/\s+/);
-  return [];
+function printResults(results, query) {
+  if (results.length === 0) {
+    console.log(`\n  🔍 未找到匹配 "${query}" 的 Skill\n`);
+    return;
+  }
+
+  console.log(`\n  📦 找到 ${results.length} 个匹配的 Skill（查询: "${query}"）\n`);
+  console.log('  ' + '─'.repeat(60));
+
+  results.forEach((m, i) => {
+    const capCount = m.capabilities?.length || 0;
+    const repo = m._repo || m.id?.replace(/\./g, '/') || 'unknown';
+    console.log(`  ${i + 1}. ${m.name}  v${m.version || '0.1'}`);
+    console.log(`     描述: ${(m.description || '暂无').slice(0, 80)}`);
+    console.log(`     能力: ${capCount} 个 | 引擎: ${m.runtime?.engine || '未指定'}`);
+    console.log(`     安装: agent install ${repo}`);
+    console.log('');
+  });
 }
