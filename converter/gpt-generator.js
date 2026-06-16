@@ -42,6 +42,16 @@ const CATEGORIES = {
       { name: '正则表达式工匠', desc: '复杂正则表达式编写、文本解析和数据提取', verified: false },
       { name: 'Docker 指挥官', desc: '容器化部署、Dockerfile 优化和多阶段构建', verified: false },
       { name: 'Linux 系统管理员', desc: '服务器管理、Shell 脚本编写和系统运维', verified: true },
+      { name: 'Kubernetes 专家', desc: 'K8s 集群管理、Pod 调度、服务网格和容器编排', verified: false },
+      { name: 'NLP 工程师', desc: '自然语言处理、文本分类、情感分析和机器翻译', verified: false },
+      { name: '计算机视觉专家', desc: '图像识别、目标检测、人脸识别和 OCR 技术', verified: false },
+      { name: '区块链开发者', desc: '智能合约、DeFi、NFT 和 Web3 技术栈开发', verified: false },
+      { name: '数据分析师', desc: 'Python/R 数据分析、Pandas、NumPy 和数据可视化', verified: true },
+      { name: '机器学习工程师', desc: '模型训练、特征工程、超参调优和模型部署', verified: true },
+      { name: '数据结构导师', desc: '数组/链表/树/图/哈希表原理、实现和面试题', verified: false },
+      { name: 'Shell 脚本大师', desc: 'Bash/Zsh 脚本编写、自动化任务和命令行工具', verified: false },
+      { name: 'GraphQL 顾问', desc: 'GraphQL Schema 设计、Resolver 和订阅机制', verified: false },
+      { name: 'CI/CD 工程师', desc: 'GitHub Actions/Jenkins/GitLab CI 流水线设计', verified: false },
     ]
   },
   writing: {
@@ -62,6 +72,12 @@ const CATEGORIES = {
       { name: '文案润色大师', desc: '语法纠错、风格优化、语气调整和可读性提升', verified: false },
       { name: '社交媒体写手', desc: '小红书/微博/抖音文案、热点话题和爆款标题', verified: false },
       { name: '演讲稿写作', desc: '演讲稿撰写、公共演讲培训和辩论赛辅导', verified: false },
+      { name: '白皮书撰写', desc: '行业白皮书、研究报告和数据驱动的内容创作', verified: false },
+      { name: '产品描述写手', desc: '电商产品描述、卖点提炼和用户痛点分析', verified: false },
+      { name: '影评人', desc: '影视评论、剧情分析和观影推荐', verified: false },
+      { name: '公关稿件写手', desc: '新闻稿、公关声明和媒体通稿撰写', verified: false },
+      { name: '视频脚本师', desc: '抖音/YouTube/B站视频脚本、分镜和节奏设计', verified: false },
+      { name: '品牌故事创作者', desc: '品牌故事、品牌使命和品牌价值观传达', verified: false },
     ]
   },
   business: {
@@ -85,6 +101,10 @@ const CATEGORIES = {
       { name: '电子邮件营销专家', desc: '邮件序列设计、打开率优化、A/B 测试策略', verified: true },
       { name: '个人品牌顾问', desc: 'LinkedIn 优化、个人品牌建设和行业影响力提升', verified: false },
       { name: '风险管理师', desc: '风险评估框架、合规审查和安全策略制定', verified: false },
+      { name: '外贸顾问', desc: '国际贸易、海关合规、跨国支付和海外市场拓展', verified: false },
+      { name: '特许经营顾问', desc: '加盟模式、品牌授权和连锁经营策略', verified: false },
+      { name: '定价策略师', desc: '产品定价、折扣策略、价格弹性分析和盈利模型', verified: false },
+      { name: '业务拓展专家', desc: '合作伙伴关系、渠道拓展和战略联盟', verified: false },
     ]
   },
   design: {
@@ -121,6 +141,10 @@ const CATEGORIES = {
       { name: 'AI 研究员', desc: '机器学习、深度学习、NLP 和 CV 前沿论文解读', verified: false },
       { name: '围棋教练', desc: '围棋棋谱分析、开局策略和死活题练习', verified: false },
       { name: '象棋大师', desc: '中国象棋布局、残局和中局战术分析', verified: false },
+      { name: '德语老师', desc: '德语语法、口语和歌德考试备考', verified: false },
+      { name: '法语老师', desc: '法语词汇、语法和 DELF 考试辅导', verified: false },
+      { name: '日语老师', desc: '五十音、语法和 JLPT 备考训练', verified: false },
+      { name: '天文导师', desc: '星空观测、宇宙物理和航天知识', verified: false },
     ]
   },
   lifestyle: {
@@ -220,7 +244,7 @@ function generateGpts(count = 500) {
     }
     round++;
     // Safety: prevent infinite loop
-    if (round > 10) break;
+    if (round > 100) break;
   }
 
   return gpts;
