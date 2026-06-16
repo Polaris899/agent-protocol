@@ -9,3 +9,5 @@ crawler/data/cache.json
 
 # Converter seed data (not for distribution)
 converter/seed-*.json
+converter/gpt-bulk.json
+.vercel
