@@ -1,5 +1,5 @@
 {
-  "name": "@agent-protocol/cli",
+  "name": "agent-protocol-cli",
   "version": "1.0.0",
   "description": "Discover and install AI Skills via Agent Manifest Protocol — semantic search, one-command install, schema validation",
   "type": "module",
@@ -35,8 +35,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Polaris899/agent-protocol.git",
-    "directory": "cli"
+    "url": "https://github.com/Polaris899/agent-protocol.git"
   },
   "homepage": "https://polaris899.github.io/agent-protocol/",
   "bugs": {
@@ -54,5 +53,8 @@
     "commander": "^12.0.0",
     "conf": "^13.0.0",
     "semver": "^7.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

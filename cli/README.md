@@ -1,12 +1,12 @@
-# @agent-protocol/cli
+# agent-protocol-cli
 
 **Discover and install AI Skills — no store needed.**
 
 The official CLI for the [Agent Manifest Protocol](https://github.com/Polaris899/agent-protocol) — an open, decentralized registry of AI capabilities that work across any runtime.
 
 ```bash
-npx @agent-protocol/cli search 财报分析
-npx @agent-protocol/cli install Polaris899/fsa-analyzer
+npx agent-protocol-cli search 财报分析
+npx agent-protocol-cli install Polaris899/fsa-analyzer
 ```
 
 ## Features
@@ -21,19 +21,19 @@ npx @agent-protocol/cli install Polaris899/fsa-analyzer
 
 ```bash
 # Search for Skills
-npx @agent-protocol/cli search 天气
+npx agent-protocol-cli search 天气
 
 # Install a Skill
-npx @agent-protocol/cli install Polaris899/fsa-analyzer
+npx agent-protocol-cli install Polaris899/fsa-analyzer
 
 # List installed Skills
-npx @agent-protocol/cli list
+npx agent-protocol-cli list
 
 # Get detailed info
-npx @agent-protocol/cli info fsa-analyzer
+npx agent-protocol-cli info fsa-analyzer
 
 # Validate a manifest
-npx @agent-protocol/cli validate ./agent.json
+npx agent-protocol-cli validate ./agent.json
 ```
 
 ## Registry
