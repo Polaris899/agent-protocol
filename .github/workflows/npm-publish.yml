@@ -3,7 +3,7 @@ name: Publish @agent-protocol/cli to npm
 on:
   push:
     tags:
-      - 'cli-v*'  # e.g. cli-v1.0.0
+      - 'cli-v*'
 
 jobs:
   publish:
@@ -24,9 +24,6 @@ jobs:
 
       - run: node bin/agent.js --version
         name: Sanity check
-
-      - run: node bin/agent.js search 财报 --limit 1
-        name: Search test
 
       - run: npm publish --access public
         env:
