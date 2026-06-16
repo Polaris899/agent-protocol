@@ -617,5 +617,1321 @@
         "openai_gpt_store"
       ]
     }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-travel-planner",
+    "name": "旅行规划师",
+    "description": "帮你规划完整行程，包括航班搜索、酒店推荐、景点攻略和当地美食指南",
+    "version": "1.0.0",
+    "author": {
+      "name": "TravelAI Inc."
+    },
+    "tags": [
+      "gpt-store",
+      "travel",
+      "旅行规划师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "search_flights",
+        "name": "Search Flights",
+        "description": "搜索航班信息",
+        "intents": [
+          "搜索航班信息"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "recommend_hotels",
+        "name": "Recommend Hotels",
+        "description": "推荐酒店",
+        "intents": [
+          "推荐酒店"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "plan_itinerary",
+        "name": "Plan Itinerary",
+        "description": "规划每日行程",
+        "intents": [
+          "规划每日行程"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-code-assistant",
+    "name": "代码助手 Pro",
+    "description": "精通多种编程语言，帮你写代码、调试、重构和代码审查",
+    "version": "1.0.0",
+    "author": {
+      "name": "DevTools"
+    },
+    "tags": [
+      "gpt-store",
+      "developer-tools",
+      "代码助手",
+      "pro"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "generate_code",
+        "name": "Generate Code",
+        "description": "根据需求生成代码",
+        "intents": [
+          "根据需求生成代码"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "debug_code",
+        "name": "Debug Code",
+        "description": "分析并修复代码bug",
+        "intents": [
+          "分析并修复代码bug"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "code_review",
+        "name": "Code Review",
+        "description": "审查代码质量和安全性",
+        "intents": [
+          "审查代码质量和安全性"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-translator-pro",
+    "name": "翻译专家",
+    "description": "支持 100+ 种语言的互译，保留原文格式和语境，专业术语准确",
+    "version": "1.0.0",
+    "author": {
+      "name": "Lingua AI"
+    },
+    "tags": [
+      "gpt-store",
+      "productivity",
+      "翻译专家"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "翻译专家",
+        "description": "支持 100+ 种语言的互译，保留原文格式和语境，专业术语准确",
+        "intents": [
+          "翻译{文本}到{语言}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-resume-builder",
+    "name": "简历优化师",
+    "description": "帮你优化简历内容，匹配职位描述，提升面试通过率",
+    "version": "1.0.0",
+    "author": {
+      "name": "CareerAI"
+    },
+    "tags": [
+      "gpt-store",
+      "career",
+      "简历优化师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "简历优化师",
+        "description": "帮你优化简历内容，匹配职位描述，提升面试通过率",
+        "intents": [
+          "简历优化师"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-data-visualizer",
+    "name": "数据可视化专家",
+    "description": "将原始数据转化为精美的图表和可视化报告，支持柱状图、折线图、饼图、热力图等",
+    "version": "1.0.0",
+    "author": {
+      "name": "DataViz Labs"
+    },
+    "tags": [
+      "gpt-store",
+      "data-analysis",
+      "数据可视化专家"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "create_chart",
+        "name": "Create Chart",
+        "description": "基于数据生成图表",
+        "intents": [
+          "基于数据生成图表"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "analyze_data",
+        "name": "Analyze Data",
+        "description": "数据分析与洞察",
+        "intents": [
+          "数据分析与洞察"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-email-marketer",
+    "name": "邮件营销助手",
+    "description": "帮你撰写、优化和自动化邮件营销文案，提升打开率和转化率",
+    "version": "1.0.0",
+    "author": {
+      "name": "MarketAI"
+    },
+    "tags": [
+      "gpt-store",
+      "marketing",
+      "邮件营销助手"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "邮件营销助手",
+        "description": "帮你撰写、优化和自动化邮件营销文案，提升打开率和转化率",
+        "intents": [
+          "生成{内容}",
+          "将{source}转换为{target}",
+          "写邮件给{收件人}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-legal-consultant",
+    "name": "法律顾问",
+    "description": "提供合同审查、法律条款解读和基础法律咨询服务",
+    "version": "1.0.0",
+    "author": {
+      "name": "LexAI"
+    },
+    "tags": [
+      "gpt-store",
+      "legal",
+      "法律顾问"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "法律顾问",
+        "description": "提供合同审查、法律条款解读和基础法律咨询服务",
+        "intents": [
+          "法律顾问"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-social-media-manager",
+    "name": "社交媒体管家",
+    "description": "帮你生成社交媒体文案、策划内容日历、分析互动数据",
+    "version": "1.0.0",
+    "author": {
+      "name": "SocialAI"
+    },
+    "tags": [
+      "gpt-store",
+      "marketing",
+      "社交媒体管家"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "generate_post",
+        "name": "Generate Post",
+        "description": "生成社交媒体帖子",
+        "intents": [
+          "生成社交媒体帖子"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "analyze_engagement",
+        "name": "Analyze Engagement",
+        "description": "分析互动数据",
+        "intents": [
+          "分析互动数据"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-math-tutor",
+    "name": "数学导师",
+    "description": "从代数到微积分，一步步帮你解决数学问题并解释原理",
+    "version": "1.0.0",
+    "author": {
+      "name": "EduAI"
+    },
+    "tags": [
+      "gpt-store",
+      "education",
+      "数学导师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "数学导师",
+        "description": "从代数到微积分，一步步帮你解决数学问题并解释原理",
+        "intents": [
+          "解释{概念}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-recipe-chef",
+    "name": "AI 大厨",
+    "description": "根据你冰箱里的食材推荐菜谱，提供详细的烹饪步骤和营养信息",
+    "version": "1.0.0",
+    "author": {
+      "name": "FoodAI"
+    },
+    "tags": [
+      "gpt-store",
+      "lifestyle"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "AI 大厨",
+        "description": "根据你冰箱里的食材推荐菜谱，提供详细的烹饪步骤和营养信息",
+        "intents": [
+          "推荐{类别}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-interview-coach",
+    "name": "面试教练",
+    "description": "模拟面试练习，提供实时反馈和改进建议，帮你准备常见面试题",
+    "version": "1.0.0",
+    "author": {
+      "name": "CareerAI"
+    },
+    "tags": [
+      "gpt-store",
+      "career",
+      "面试教练"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "面试教练",
+        "description": "模拟面试练习，提供实时反馈和改进建议，帮你准备常见面试题",
+        "intents": [
+          "面试教练"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-fitness-tracker",
+    "name": "健身规划师",
+    "description": "根据你的身体状况和目标制定个性化训练计划和饮食建议",
+    "version": "1.0.0",
+    "author": {
+      "name": "FitAI"
+    },
+    "tags": [
+      "gpt-store",
+      "health",
+      "健身规划师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "create_workout_plan",
+        "name": "Create Workout Plan",
+        "description": "制定训练计划",
+        "intents": [
+          "制定训练计划"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "diet_advice",
+        "name": "Diet Advice",
+        "description": "饮食建议",
+        "intents": [
+          "饮食建议"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-music-composer",
+    "name": "音乐创作人",
+    "description": "帮你作曲、编曲、写歌词，支持多种音乐风格",
+    "version": "1.0.0",
+    "author": {
+      "name": "MusicAI"
+    },
+    "tags": [
+      "gpt-store",
+      "creative",
+      "音乐创作人"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "音乐创作人",
+        "description": "帮你作曲、编曲、写歌词，支持多种音乐风格",
+        "intents": [
+          "生成{内容}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-sql-helper",
+    "name": "SQL 专家",
+    "description": "写 SQL 查询、优化慢查询、设计数据库表结构",
+    "version": "1.0.0",
+    "author": {
+      "name": "DataTools"
+    },
+    "tags": [
+      "gpt-store",
+      "developer-tools",
+      "sql"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "write_query",
+        "name": "Write Query",
+        "description": "写 SQL 查询",
+        "intents": [
+          "写 SQL 查询"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "optimize_query",
+        "name": "Optimize Query",
+        "description": "优化查询性能",
+        "intents": [
+          "优化查询性能"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-interior-designer",
+    "name": "室内设计师",
+    "description": "根据你的空间和喜好推荐装修风格、家具搭配和色彩方案",
+    "version": "1.0.0",
+    "author": {
+      "name": "DesignAI"
+    },
+    "tags": [
+      "gpt-store",
+      "creative",
+      "室内设计师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "室内设计师",
+        "description": "根据你的空间和喜好推荐装修风格、家具搭配和色彩方案",
+        "intents": [
+          "推荐{类别}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-stock-analyst",
+    "name": "股票分析师",
+    "description": "分析股票走势、财报数据、行业趋势，提供投资洞察",
+    "version": "1.0.0",
+    "author": {
+      "name": "FinAI"
+    },
+    "tags": [
+      "gpt-store",
+      "finance",
+      "股票分析师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "analyze_stock",
+        "name": "Analyze Stock",
+        "description": "分析个股",
+        "intents": [
+          "分析个股"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "market_news",
+        "name": "Market News",
+        "description": "市场资讯摘要",
+        "intents": [
+          "市场资讯摘要"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-english-tutor",
+    "name": "英语老师",
+    "description": "练习英语口语、纠正发音、改进语法、扩充词汇量",
+    "version": "1.0.0",
+    "author": {
+      "name": "EduAI"
+    },
+    "tags": [
+      "gpt-store",
+      "education",
+      "英语老师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "英语老师",
+        "description": "练习英语口语、纠正发音、改进语法、扩充词汇量",
+        "intents": [
+          "英语老师"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-meme-creator",
+    "name": "表情包大师",
+    "description": "根据你的创意生成搞笑表情包和梗图",
+    "version": "1.0.0",
+    "author": {
+      "name": "FunAI"
+    },
+    "tags": [
+      "gpt-store",
+      "entertainment",
+      "表情包大师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "表情包大师",
+        "description": "根据你的创意生成搞笑表情包和梗图",
+        "intents": [
+          "生成{内容}",
+          "生成{描述}的图片"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-contract-reviewer",
+    "name": "合同审查员",
+    "description": "审查合同条款，识别风险点，提供修改建议",
+    "version": "1.0.0",
+    "author": {
+      "name": "LexAI"
+    },
+    "tags": [
+      "gpt-store",
+      "legal",
+      "合同审查员"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "合同审查员",
+        "description": "审查合同条款，识别风险点，提供修改建议",
+        "intents": [
+          "合同审查员"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-study-planner",
+    "name": "学习规划师",
+    "description": "制定学习计划、推荐学习资源、跟踪学习进度",
+    "version": "1.0.0",
+    "author": {
+      "name": "EduAI"
+    },
+    "tags": [
+      "gpt-store",
+      "education",
+      "学习规划师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "学习规划师",
+        "description": "制定学习计划、推荐学习资源、跟踪学习进度",
+        "intents": [
+          "推荐{类别}",
+          "规划{目的地}的{天数}天行程"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-content-writer",
+    "name": "内容写作专家",
+    "description": "写文章、博客、新闻稿、产品描述等各种文案",
+    "version": "1.0.0",
+    "author": {
+      "name": "WriteAI"
+    },
+    "tags": [
+      "gpt-store",
+      "creative",
+      "内容写作专家"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "内容写作专家",
+        "description": "写文章、博客、新闻稿、产品描述等各种文案",
+        "intents": [
+          "生成{内容}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-personal-shopper",
+    "name": "私人购物顾问",
+    "description": "根据你的风格、预算和需求推荐商品",
+    "version": "1.0.0",
+    "author": {
+      "name": "ShopAI"
+    },
+    "tags": [
+      "gpt-store",
+      "lifestyle",
+      "私人购物顾问"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "私人购物顾问",
+        "description": "根据你的风格、预算和需求推荐商品",
+        "intents": [
+          "推荐{类别}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-meditation-guide",
+    "name": "冥想引导师",
+    "description": "引导冥想练习、提供放松技巧和正念训练",
+    "version": "1.0.0",
+    "author": {
+      "name": "MindAI"
+    },
+    "tags": [
+      "gpt-store",
+      "health",
+      "冥想引导师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "冥想引导师",
+        "description": "引导冥想练习、提供放松技巧和正念训练",
+        "intents": [
+          "冥想引导师"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-investment-advisor",
+    "name": "投资顾问",
+    "description": "提供资产配置建议、风险评估和投资组合分析",
+    "version": "1.0.0",
+    "author": {
+      "name": "FinAI"
+    },
+    "tags": [
+      "gpt-store",
+      "finance",
+      "投资顾问"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "portfolio_analysis",
+        "name": "Portfolio Analysis",
+        "description": "投资组合分析",
+        "intents": [
+          "投资组合分析"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "risk_assessment",
+        "name": "Risk Assessment",
+        "description": "风险评估",
+        "intents": [
+          "风险评估"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-movie-recommender",
+    "name": "电影推荐官",
+    "description": "根据你的口味推荐电影、电视剧和纪录片",
+    "version": "1.0.0",
+    "author": {
+      "name": "MediaAI"
+    },
+    "tags": [
+      "gpt-store",
+      "entertainment",
+      "电影推荐官"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "电影推荐官",
+        "description": "根据你的口味推荐电影、电视剧和纪录片",
+        "intents": [
+          "推荐{类别}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-crypto-analyst",
+    "name": "加密货币分析师",
+    "description": "分析加密货币市场、技术指标和链上数据",
+    "version": "1.0.0",
+    "author": {
+      "name": "CryptoAI"
+    },
+    "tags": [
+      "gpt-store",
+      "finance",
+      "加密货币分析师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "加密货币分析师",
+        "description": "分析加密货币市场、技术指标和链上数据",
+        "intents": [
+          "分析{内容}",
+          "分析这份{类型}数据"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-career-counselor",
+    "name": "职业规划师",
+    "description": "帮你分析职业方向、规划晋升路径、准备跳槽策略",
+    "version": "1.0.0",
+    "author": {
+      "name": "CareerAI"
+    },
+    "tags": [
+      "gpt-store",
+      "career",
+      "职业规划师"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "职业规划师",
+        "description": "帮你分析职业方向、规划晋升路径、准备跳槽策略",
+        "intents": [
+          "分析{内容}",
+          "规划{目的地}的{天数}天行程"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-photo-editor",
+    "name": "修图助手",
+    "description": "指导你修图技巧、推荐滤镜参数、讲解构图原理",
+    "version": "1.0.0",
+    "author": {
+      "name": "PhotoAI"
+    },
+    "tags": [
+      "gpt-store",
+      "creative",
+      "修图助手"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "修图助手",
+        "description": "指导你修图技巧、推荐滤镜参数、讲解构图原理",
+        "intents": [
+          "推荐{类别}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-podcast-script-writer",
+    "name": "播客脚本写手",
+    "description": "帮你写播客脚本、设计节目结构、优化口语表达",
+    "version": "1.0.0",
+    "author": {
+      "name": "MediaAI"
+    },
+    "tags": [
+      "gpt-store",
+      "creative",
+      "播客脚本写手"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "播客脚本写手",
+        "description": "帮你写播客脚本、设计节目结构、优化口语表达",
+        "intents": [
+          "生成{内容}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "isolated",
+      "verified_by": []
+    }
+  },
+  {
+    "$schema": "https://agent-protocol.dev/v0.1/manifest.schema.json",
+    "id": "com.openai.gpt-tax-advisor",
+    "name": "税务顾问",
+    "description": "提供个税计算、税务筹划和报税指导",
+    "version": "1.0.0",
+    "author": {
+      "name": "FinAI"
+    },
+    "tags": [
+      "gpt-store",
+      "finance",
+      "税务顾问"
+    ],
+    "license": "custom",
+    "capabilities": [
+      {
+        "id": "chat",
+        "name": "税务顾问",
+        "description": "提供个税计算、税务筹划和报税指导",
+        "intents": [
+          "计算{表达式}"
+        ],
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openai-gpts",
+      "type": "skill",
+      "config_url": ""
+    },
+    "trust": {
+      "permissions": [],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openai_gpt_store"
+      ]
+    }
   }
 ]

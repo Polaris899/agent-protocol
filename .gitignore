@@ -3,3 +3,9 @@ node_modules/
 *.log
 .env
 .DS_Store
+
+# Crawler ephemeral data
+crawler/data/cache.json
+
+# Converter seed data (not for distribution)
+converter/seed-*.json
