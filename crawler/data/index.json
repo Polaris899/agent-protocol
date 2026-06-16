@@ -1515,76 +1515,109 @@
     }
   },
   {
-    "_repo": "openclaw/weather",
-    "_path": "agent.json",
-    "_url": "https://github.com/openclaw/weather/blob/main/agent.json",
-    "_indexed_at": "2026-06-16T02:01:38.176Z",
-    "id": "com.openclaw.weather",
-    "name": "天气查询",
-    "description": "获取实时天气和天气预报，支持任意城市查询",
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/fitness-coach.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/fitness-coach.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.601Z",
+    "id": "com.openclaw.fitness-coach",
+    "name": "科学健身教练",
+    "description": "制定个性化健身计划、动作指导、渐进式负荷调整和营养建议",
     "version": "1.0.0",
     "author": {
-      "name": "OpenClaw Team"
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
     },
     "tags": [
-      "weather",
-      "天气",
-      "forecast",
-      "天气预报",
-      "temperature"
+      "fitness",
+      "健身",
+      "运动",
+      "训练",
+      "workout"
     ],
     "license": "MIT",
     "capabilities": [
       {
-        "id": "get_current_weather",
-        "name": "当前天气",
-        "description": "查询指定城市的实时温度、湿度、风力等天气信息",
+        "id": "create_plan",
+        "name": "制定计划",
+        "description": "根据目标和个人状况制定训练方案",
         "intents": [
-          "现在{城市}的天气怎么样",
-          "{城市}今天多少度",
-          "{城市}天气"
+          "制定健身计划",
+          "增肌计划",
+          "减脂方案",
+          "create workout plan"
         ],
-        "latency": "real-time",
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
         "security_level": "low",
         "cost_per_call": 0
       },
       {
-        "id": "get_forecast",
-        "name": "天气预报",
-        "description": "查询未来多天的天气预报",
+        "id": "exercise_guide",
+        "name": "动作指导",
+        "description": "提供标准动作步骤和常见错误纠正",
         "intents": [
-          "未来{天数}天{城市}天气",
-          "{城市}这周天气",
-          "weekend weather in {city}"
+          "这个动作怎么做",
+          "正确姿势",
+          "exercise form guide"
         ],
-        "latency": "real-time",
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "nutrition_advice",
+        "name": "营养建议",
+        "description": "提供健身相关的膳食搭配建议",
+        "intents": [
+          "健身怎么吃",
+          "增肌饮食",
+          "减脂餐",
+          "workout nutrition"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
         "security_level": "low",
         "cost_per_call": 0
       }
     ],
     "runtime": {
       "engine": "openclaw",
-      "type": "skill"
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
     },
     "trust": {
-      "permissions": [
-        "network"
-      ],
+      "permissions": [],
       "sandbox_level": "basic",
-      "verified_by": []
+      "verified_by": [
+        "openclaw_team"
+      ]
     }
   },
   {
-    "_repo": "openclaw/fsa-analyzer",
-    "_path": "agent.json",
-    "_url": "https://github.com/openclaw/fsa-analyzer/blob/main/agent.json",
-    "_indexed_at": "2026-06-16T02:01:38.179Z",
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/fsa-analyzer.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/fsa-analyzer.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.603Z",
     "id": "com.openclaw.fsa-analyzer",
     "name": "财报分析专家",
     "description": "企业财务报表深度分析，支持资产负债表、利润表、现金流量表，含杜邦分解和舞弊检测",
     "version": "1.0.0",
     "author": {
-      "name": "OpenClaw Team"
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
     },
     "tags": [
       "finance",
@@ -1606,6 +1639,10 @@
           "看看负债率",
           "analyze balance sheet"
         ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
         "latency": "low",
         "security_level": "low",
         "cost_per_call": 0
@@ -1620,6 +1657,10 @@
           "盈利质量分析",
           "analyze income statement"
         ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
         "latency": "low",
         "security_level": "low",
         "cost_per_call": 0
@@ -1634,6 +1675,10 @@
           "自由现金流",
           "analyze cash flow"
         ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
         "latency": "low",
         "security_level": "low",
         "cost_per_call": 0
@@ -1648,6 +1693,10 @@
           "净资产收益率",
           "dupont analysis"
         ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
         "latency": "low",
         "security_level": "low",
         "cost_per_call": 0
@@ -1662,6 +1711,10 @@
           "舞弊风险",
           "fraud detection"
         ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
         "latency": "low",
         "security_level": "low",
         "cost_per_call": 0
@@ -1669,7 +1722,11 @@
     ],
     "runtime": {
       "engine": "openclaw",
-      "type": "skill"
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
     },
     "trust": {
       "permissions": [
@@ -1682,626 +1739,17 @@
     }
   },
   {
-    "_repo": "openclaw/xiaoyi-web-search",
-    "_path": "agent.json",
-    "_url": "https://github.com/openclaw/xiaoyi-web-search/blob/main/agent.json",
-    "_indexed_at": "2026-06-16T02:01:38.181Z",
-    "id": "com.openclaw.web-search",
-    "name": "联网搜索",
-    "description": "使用华为云AI联网搜索API进行网页内容检索，获取实时网络信息",
-    "version": "1.0.0",
-    "author": {
-      "name": "OpenClaw Team"
-    },
-    "tags": [
-      "search",
-      "搜索",
-      "网络搜索",
-      "web",
-      "资讯",
-      "联网"
-    ],
-    "license": "MIT",
-    "capabilities": [
-      {
-        "id": "web_search",
-        "name": "网页搜索",
-        "description": "搜索互联网获取最新信息",
-        "intents": [
-          "搜索{query}",
-          "查一下{query}",
-          "最新{topic}资讯",
-          "search for {query}"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      }
-    ],
-    "runtime": {
-      "engine": "huawei-api",
-      "type": "skill"
-    },
-    "trust": {
-      "permissions": [
-        "network"
-      ],
-      "sandbox_level": "basic",
-      "verified_by": []
-    }
-  },
-  {
-    "_repo": "openclaw/xiaoyi-image-understanding",
-    "_path": "agent.json",
-    "_url": "https://github.com/openclaw/xiaoyi-image-understanding/blob/main/agent.json",
-    "_indexed_at": "2026-06-16T02:01:38.183Z",
-    "id": "com.openclaw.image-understanding",
-    "name": "图像理解",
-    "description": "使用AI进行图像内容识别和描述，支持多图对比、OCR文字识别、图表分析",
-    "version": "1.0.0",
-    "author": {
-      "name": "OpenClaw Team"
-    },
-    "tags": [
-      "image",
-      "图片识别",
-      "OCR",
-      "图像分析",
-      "vision"
-    ],
-    "license": "MIT",
-    "capabilities": [
-      {
-        "id": "describe_image",
-        "name": "图片描述",
-        "description": "识别图片内容并生成详细文字描述",
-        "intents": [
-          "这张图是什么",
-          "描述这张图片",
-          "图片内容",
-          "describe this image"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      },
-      {
-        "id": "ocr",
-        "name": "文字识别",
-        "description": "从图片中提取文字信息",
-        "intents": [
-          "识别这张图的文字",
-          "提取文字",
-          "图片转文字",
-          "OCR"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      },
-      {
-        "id": "compare_images",
-        "name": "图片对比",
-        "description": "比较多张图片的异同",
-        "intents": [
-          "对比这些图片",
-          "图片对比",
-          "比较这两张图"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      }
-    ],
-    "runtime": {
-      "engine": "openclaw",
-      "type": "skill"
-    },
-    "trust": {
-      "permissions": [
-        "network"
-      ],
-      "sandbox_level": "basic",
-      "verified_by": []
-    }
-  },
-  {
-    "_repo": "openclaw/xiaoyi-ppt",
-    "_path": "agent.json",
-    "_url": "https://github.com/openclaw/xiaoyi-ppt/blob/main/agent.json",
-    "_indexed_at": "2026-06-16T02:01:38.184Z",
-    "id": "com.openclaw.ppt-generator",
-    "name": "PPT 生成器",
-    "description": "自动生成和编辑专业演示文稿，支持多种模板风格，三步流程：采集信息→生成大纲→生成PPT",
-    "version": "1.0.0",
-    "author": {
-      "name": "OpenClaw Team"
-    },
-    "tags": [
-      "ppt",
-      "presentation",
-      "演示文稿",
-      "幻灯片",
-      "办公"
-    ],
-    "license": "MIT",
-    "capabilities": [
-      {
-        "id": "generate_ppt",
-        "name": "生成PPT",
-        "description": "根据内容提纲或文档生成完整演示文稿",
-        "intents": [
-          "帮我做个PPT",
-          "生成演示文稿",
-          "创建幻灯片",
-          "create presentation"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      },
-      {
-        "id": "edit_ppt",
-        "name": "编辑PPT",
-        "description": "修改现有PPT的内容和样式",
-        "intents": [
-          "修改这个PPT",
-          "换模板",
-          "编辑幻灯片"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      }
-    ],
-    "runtime": {
-      "engine": "openclaw",
-      "type": "skill"
-    },
-    "trust": {
-      "permissions": [
-        "network",
-        "read_file",
-        "write_file"
-      ],
-      "sandbox_level": "isolated",
-      "verified_by": [
-        "openclaw_team"
-      ]
-    }
-  },
-  {
-    "_repo": "openclaw/xiaoyi-pdf",
-    "_path": "agent.json",
-    "_url": "https://github.com/openclaw/xiaoyi-pdf/blob/main/agent.json",
-    "_indexed_at": "2026-06-16T02:01:38.186Z",
-    "id": "com.openclaw.pdf-toolkit",
-    "name": "PDF 工具箱",
-    "description": "完整PDF处理能力——生成、设计、填表、合并、拆分、加密、加水印、提取内容",
-    "version": "1.0.0",
-    "author": {
-      "name": "OpenClaw Team"
-    },
-    "tags": [
-      "pdf",
-      "document",
-      "文档处理",
-      "PDF编辑"
-    ],
-    "license": "MIT",
-    "capabilities": [
-      {
-        "id": "generate_pdf",
-        "name": "生成PDF",
-        "description": "从内容生成格式精美的PDF文档",
-        "intents": [
-          "生成PDF",
-          "创建PDF",
-          "make a pdf",
-          "导出PDF"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      },
-      {
-        "id": "merge_pdf",
-        "name": "合并PDF",
-        "description": "将多个PDF文件合并为一个",
-        "intents": [
-          "合并PDF",
-          "合并文件",
-          "merge pdfs"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      },
-      {
-        "id": "split_pdf",
-        "name": "拆分PDF",
-        "description": "将PDF按页拆分",
-        "intents": [
-          "拆分PDF",
-          "提取页",
-          "split pdf"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      },
-      {
-        "id": "watermark_pdf",
-        "name": "加/去水印",
-        "description": "给PDF添加或去除水印",
-        "intents": [
-          "加水印",
-          "去除水印",
-          "watermark pdf"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      },
-      {
-        "id": "extract_pdf",
-        "name": "提取内容",
-        "description": "从PDF提取文字和表格",
-        "intents": [
-          "提取PDF文字",
-          "PDF转文字",
-          "extract text from pdf"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      }
-    ],
-    "runtime": {
-      "engine": "openclaw",
-      "type": "skill"
-    },
-    "trust": {
-      "permissions": [
-        "network",
-        "read_file",
-        "write_file"
-      ],
-      "sandbox_level": "isolated",
-      "verified_by": [
-        "openclaw_team"
-      ]
-    }
-  },
-  {
-    "_repo": "openclaw/xiaoyi-xlsx",
-    "_path": "agent.json",
-    "_url": "https://github.com/openclaw/xiaoyi-xlsx/blob/main/agent.json",
-    "_indexed_at": "2026-06-16T02:01:38.187Z",
-    "id": "com.openclaw.spreadsheet",
-    "name": "电子表格工具",
-    "description": "创建、编辑和分析电子表格，支持公式、图表、透视表、条件格式",
-    "version": "1.0.0",
-    "author": {
-      "name": "OpenClaw Team"
-    },
-    "tags": [
-      "excel",
-      "spreadsheet",
-      "表格",
-      "数据分析",
-      "xlsx"
-    ],
-    "license": "MIT",
-    "capabilities": [
-      {
-        "id": "create_spreadsheet",
-        "name": "创建表格",
-        "description": "从数据创建电子表格",
-        "intents": [
-          "帮我做个表",
-          "创建表格",
-          "创建Excel",
-          "create spreadsheet"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      },
-      {
-        "id": "analyze_data",
-        "name": "数据分析",
-        "description": "排序、筛选、汇总、透视表分析",
-        "intents": [
-          "分析这份数据",
-          "做数据透视",
-          "汇总数据",
-          "analyze data"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      },
-      {
-        "id": "create_chart",
-        "name": "生成图表",
-        "description": "根据数据生成各类图表",
-        "intents": [
-          "生成图表",
-          "画个图",
-          "可视化数据",
-          "create chart"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      }
-    ],
-    "runtime": {
-      "engine": "openclaw",
-      "type": "skill"
-    },
-    "trust": {
-      "permissions": [
-        "network",
-        "read_file",
-        "write_file"
-      ],
-      "sandbox_level": "isolated",
-      "verified_by": [
-        "openclaw_team"
-      ]
-    }
-  },
-  {
-    "_repo": "openclaw/xiaoyi-doc-convert",
-    "_path": "agent.json",
-    "_url": "https://github.com/openclaw/xiaoyi-doc-convert/blob/main/agent.json",
-    "_indexed_at": "2026-06-16T02:01:38.188Z",
-    "id": "com.openclaw.doc-convert",
-    "name": "文档格式转换",
-    "description": "支持 Word、PDF、Excel、PPT、Markdown、HTML 等多格式互转",
-    "version": "1.0.0",
-    "author": {
-      "name": "OpenClaw Team"
-    },
-    "tags": [
-      "convert",
-      "格式转换",
-      "document",
-      "pdf",
-      "word"
-    ],
-    "license": "MIT",
-    "capabilities": [
-      {
-        "id": "convert_format",
-        "name": "格式转换",
-        "description": "在各种文档格式之间自由转换",
-        "intents": [
-          "把这个PDF转成Word",
-          "docx转pdf",
-          "md转html",
-          "convert {source} to {target}"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      }
-    ],
-    "runtime": {
-      "engine": "openclaw",
-      "type": "skill"
-    },
-    "trust": {
-      "permissions": [
-        "network",
-        "read_file",
-        "write_file"
-      ],
-      "sandbox_level": "isolated",
-      "verified_by": [
-        "openclaw_team"
-      ]
-    }
-  },
-  {
-    "_repo": "openclaw/xiaoyi-image-search",
-    "_path": "agent.json",
-    "_url": "https://github.com/openclaw/xiaoyi-image-search/blob/main/agent.json",
-    "_indexed_at": "2026-06-16T02:01:38.190Z",
-    "id": "com.openclaw.image-search",
-    "name": "图片搜索",
-    "description": "搜索图片并下载到本地，支持为文档、PPT、报告查找配图素材",
-    "version": "1.0.0",
-    "author": {
-      "name": "OpenClaw Team"
-    },
-    "tags": [
-      "image",
-      "图片",
-      "搜索",
-      "素材",
-      "配图"
-    ],
-    "license": "MIT",
-    "capabilities": [
-      {
-        "id": "search_images",
-        "name": "搜索图片",
-        "description": "根据关键词搜索图片并下载",
-        "intents": [
-          "找{query}的图片",
-          "搜索{subject}图片",
-          "找素材",
-          "search images of {query}"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      }
-    ],
-    "runtime": {
-      "engine": "openclaw",
-      "type": "skill"
-    },
-    "trust": {
-      "permissions": [
-        "network"
-      ],
-      "sandbox_level": "basic",
-      "verified_by": []
-    }
-  },
-  {
-    "_repo": "openclaw/xiaoyi-health",
-    "_path": "agent.json",
-    "_url": "https://github.com/openclaw/xiaoyi-health/blob/main/agent.json",
-    "_indexed_at": "2026-06-16T02:01:38.191Z",
-    "id": "com.openclaw.health",
-    "name": "运动健康助手",
-    "description": "查询运动健康数据并提供分析解读，覆盖心率、睡眠、运动、压力、营养等",
-    "version": "1.0.0",
-    "author": {
-      "name": "OpenClaw Team"
-    },
-    "tags": [
-      "health",
-      "健康",
-      "运动",
-      "心率",
-      "睡眠",
-      "fitness"
-    ],
-    "license": "MIT",
-    "capabilities": [
-      {
-        "id": "query_health_data",
-        "name": "查询健康数据",
-        "description": "查询心率、睡眠、运动、压力等健康数据",
-        "intents": [
-          "我的睡眠怎么样",
-          "今天心率多少",
-          "查看运动数据",
-          "健康概览"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      },
-      {
-        "id": "analyze_health",
-        "name": "健康分析",
-        "description": "解读健康数据趋势并提供建议",
-        "intents": [
-          "分析我的健康趋势",
-          "这周运动量够吗",
-          "健康建议",
-          "health analysis"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      }
-    ],
-    "runtime": {
-      "engine": "openclaw",
-      "type": "skill"
-    },
-    "trust": {
-      "permissions": [
-        "read_health_data"
-      ],
-      "sandbox_level": "basic",
-      "verified_by": []
-    }
-  },
-  {
-    "_repo": "openclaw/fitness-coach",
-    "_path": "agent.json",
-    "_url": "https://github.com/openclaw/fitness-coach/blob/main/agent.json",
-    "_indexed_at": "2026-06-16T02:01:38.193Z",
-    "id": "com.openclaw.fitness-coach",
-    "name": "科学健身教练",
-    "description": "制定个性化健身计划、动作指导、渐进式负荷调整和营养建议",
-    "version": "1.0.0",
-    "author": {
-      "name": "OpenClaw Team"
-    },
-    "tags": [
-      "fitness",
-      "健身",
-      "运动",
-      "训练",
-      "workout"
-    ],
-    "license": "MIT",
-    "capabilities": [
-      {
-        "id": "create_plan",
-        "name": "制定计划",
-        "description": "根据目标和个人状况制定训练方案",
-        "intents": [
-          "制定健身计划",
-          "增肌计划",
-          "减脂方案",
-          "create workout plan"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      },
-      {
-        "id": "exercise_guide",
-        "name": "动作指导",
-        "description": "提供标准动作步骤和常见错误纠正",
-        "intents": [
-          "这个动作怎么做",
-          "正确姿势",
-          "exercise form guide"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      },
-      {
-        "id": "nutrition_advice",
-        "name": "营养建议",
-        "description": "提供健身相关的膳食搭配建议",
-        "intents": [
-          "健身怎么吃",
-          "增肌饮食",
-          "减脂餐",
-          "workout nutrition"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      }
-    ],
-    "runtime": {
-      "engine": "openclaw",
-      "type": "skill"
-    },
-    "trust": {
-      "permissions": [],
-      "sandbox_level": "basic",
-      "verified_by": [
-        "openclaw_team"
-      ]
-    }
-  },
-  {
-    "_repo": "openclaw/huawei-drive",
-    "_path": "agent.json",
-    "_url": "https://github.com/openclaw/huawei-drive/blob/main/agent.json",
-    "_indexed_at": "2026-06-16T02:01:38.194Z",
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/huawei-drive.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/huawei-drive.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.604Z",
     "id": "com.openclaw.huawei-drive",
     "name": "华为云空间",
     "description": "华为云空间云盘文件管理，支持文件上传、列表查询、用量查看",
     "version": "1.0.0",
     "author": {
-      "name": "OpenClaw Team"
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
     },
     "tags": [
       "cloud",
@@ -2322,6 +1770,10 @@
           "备份这个文件",
           "upload to cloud"
         ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
         "latency": "low",
         "security_level": "low",
         "cost_per_call": 0
@@ -2335,6 +1787,10 @@
           "云盘用量",
           "list cloud files"
         ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
         "latency": "low",
         "security_level": "low",
         "cost_per_call": 0
@@ -2342,307 +1798,25 @@
     ],
     "runtime": {
       "engine": "huawei-api",
-      "type": "skill"
-    },
-    "trust": {
-      "permissions": [
-        "network"
-      ],
-      "sandbox_level": "basic",
-      "verified_by": []
-    }
-  },
-  {
-    "_repo": "openclaw/seedream-image_gen",
-    "_path": "agent.json",
-    "_url": "https://github.com/openclaw/seedream-image_gen/blob/main/agent.json",
-    "_indexed_at": "2026-06-16T02:01:38.195Z",
-    "id": "com.openclaw.image-gen",
-    "name": "AI 图像创作",
-    "description": "基于Seedream5的AI图像生成，支持文生图、图生图、风格迁移、系列组图",
-    "version": "1.0.0",
-    "author": {
-      "name": "OpenClaw Team"
-    },
-    "tags": [
-      "image",
-      "生成图片",
-      "AI绘画",
-      "设计",
-      "创作"
-    ],
-    "license": "MIT",
-    "capabilities": [
-      {
-        "id": "text_to_image",
-        "name": "文生图",
-        "description": "根据文字描述生成图片",
-        "intents": [
-          "画一张{描述}的图",
-          "生成一张{描述}的图片",
-          "generate an image of {subject}"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      },
-      {
-        "id": "image_to_image",
-        "name": "图生图",
-        "description": "基于参考图片生成新图片",
-        "intents": [
-          "把这个改成{风格}风格",
-          "基于这张图生成",
-          "风格迁移"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      },
-      {
-        "id": "edit_image",
-        "name": "编辑图片",
-        "description": "局部修改、扩展、擦除等",
-        "intents": [
-          "去掉这个物体",
-          "扩展背景",
-          "edit image"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      }
-    ],
-    "runtime": {
-      "engine": "openclaw",
-      "type": "skill"
-    },
-    "trust": {
-      "permissions": [
-        "network"
-      ],
-      "sandbox_level": "basic",
-      "verified_by": []
-    }
-  },
-  {
-    "_repo": "openclaw/xiaoyi-vlog-gen",
-    "_path": "agent.json",
-    "_url": "https://github.com/openclaw/xiaoyi-vlog-gen/blob/main/agent.json",
-    "_indexed_at": "2026-06-16T02:01:38.199Z",
-    "id": "com.openclaw.vlog-gen",
-    "name": "一键成片",
-    "description": "多图自动生成vlog短片，智能编排画面、匹配BGM、添加转场特效",
-    "version": "1.0.0",
-    "author": {
-      "name": "OpenClaw Team"
-    },
-    "tags": [
-      "video",
-      "vlog",
-      "视频",
-      "剪辑",
-      "成片"
-    ],
-    "license": "MIT",
-    "capabilities": [
-      {
-        "id": "generate_vlog",
-        "name": "生成视频",
-        "description": "从图片批量生成短片",
-        "intents": [
-          "把这几张图做成视频",
-          "一键成片",
-          "生成vlog",
-          "create video from photos"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      }
-    ],
-    "runtime": {
-      "engine": "openclaw",
-      "type": "skill"
-    },
-    "trust": {
-      "permissions": [
-        "network",
-        "read_file"
-      ],
-      "sandbox_level": "basic",
-      "verified_by": []
-    }
-  },
-  {
-    "_repo": "openclaw/xiaoyi-docx",
-    "_path": "agent.json",
-    "_url": "https://github.com/openclaw/xiaoyi-docx/blob/main/agent.json",
-    "_indexed_at": "2026-06-16T02:01:38.202Z",
-    "id": "com.openclaw.docx-generator",
-    "name": "Word 文档生成",
-    "description": "创建和编辑Word文档，支持表格、目录、中文排版、格式化报告",
-    "version": "1.0.0",
-    "author": {
-      "name": "OpenClaw Team"
-    },
-    "tags": [
-      "word",
-      "docx",
-      "文档",
-      "报告",
-      "办公"
-    ],
-    "license": "MIT",
-    "capabilities": [
-      {
-        "id": "create_docx",
-        "name": "生成文档",
-        "description": "从内容生成格式化的Word文档",
-        "intents": [
-          "生成Word文档",
-          "帮我写个报告",
-          "创建docx",
-          "create word document"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      },
-      {
-        "id": "edit_docx",
-        "name": "编辑文档",
-        "description": "对现有Word文档进行修改",
-        "intents": [
-          "修改这个文档",
-          "编辑Word",
-          "edit document"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      }
-    ],
-    "runtime": {
-      "engine": "openclaw",
-      "type": "skill"
-    },
-    "trust": {
-      "permissions": [
-        "network",
-        "read_file",
-        "write_file"
-      ],
-      "sandbox_level": "isolated",
-      "verified_by": [
-        "openclaw_team"
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
       ]
-    }
-  },
-  {
-    "_repo": "openclaw/xiaoyi-report",
-    "_path": "agent.json",
-    "_url": "https://github.com/openclaw/xiaoyi-report/blob/main/agent.json",
-    "_indexed_at": "2026-06-16T02:01:38.203Z",
-    "id": "com.openclaw.report-gen",
-    "name": "深度研究报告",
-    "description": "从多源信息生成带引用的专业分析报告，支持学术研究、市场调研、竞品分析",
-    "version": "1.0.0",
-    "author": {
-      "name": "OpenClaw Team"
-    },
-    "tags": [
-      "report",
-      "报告",
-      "研究",
-      "调研",
-      "分析"
-    ],
-    "license": "MIT",
-    "capabilities": [
-      {
-        "id": "generate_report",
-        "name": "生成报告",
-        "description": "基于搜索信息生成带引用的研究报告",
-        "intents": [
-          "调研{topic}",
-          "分析{industry}行业",
-          "写一份关于{topic}的研究报告",
-          "research {topic}"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      }
-    ],
-    "runtime": {
-      "engine": "openclaw",
-      "type": "skill"
     },
     "trust": {
       "permissions": [
         "network"
       ],
       "sandbox_level": "basic",
-      "verified_by": [
-        "openclaw_team"
-      ]
-    }
-  },
-  {
-    "_repo": "openclaw/xiaoyi-file-upload",
-    "_path": "agent.json",
-    "_url": "https://github.com/openclaw/xiaoyi-file-upload/blob/main/agent.json",
-    "_indexed_at": "2026-06-16T02:01:38.204Z",
-    "id": "com.openclaw.file-upload",
-    "name": "文件上传",
-    "description": "上传本地文件到对象存储，获取可共享的下载链接",
-    "version": "1.0.0",
-    "author": {
-      "name": "OpenClaw Team"
-    },
-    "tags": [
-      "file",
-      "upload",
-      "上传",
-      "文件",
-      "share"
-    ],
-    "license": "MIT",
-    "capabilities": [
-      {
-        "id": "upload_file",
-        "name": "文件上传",
-        "description": "上传文件到云端获取下载链接",
-        "intents": [
-          "上传这个文件",
-          "获取下载链接",
-          "分享文件",
-          "upload file"
-        ],
-        "latency": "low",
-        "security_level": "low",
-        "cost_per_call": 0
-      }
-    ],
-    "runtime": {
-      "engine": "huawei-api",
-      "type": "skill"
-    },
-    "trust": {
-      "permissions": [
-        "network",
-        "read_file"
-      ],
-      "sandbox_level": "basic",
       "verified_by": []
     }
   },
   {
-    "_repo": "openclaw/minimax-music-gen",
-    "_path": "agent.json",
-    "_url": "https://github.com/openclaw/minimax-music-gen/blob/main/agent.json",
-    "_indexed_at": "2026-06-16T02:02:02.441Z",
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/minimax-music-gen.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/minimax-music-gen.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.604Z",
     "id": "com.openclaw.music-gen",
     "name": "音乐创作",
     "description": "基于MiniMax Music2.6的音乐生成，支持作曲、编曲、写歌词多风格创作",
@@ -2670,6 +1844,10 @@
           "来一段{风格}的音乐",
           "create music"
         ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
         "latency": "medium",
         "security_level": "low",
         "cost_per_call": 0
@@ -2683,6 +1861,10 @@
           "帮我填词",
           "write lyrics about {topic}"
         ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
         "latency": "medium",
         "security_level": "low",
         "cost_per_call": 0
@@ -2690,13 +1872,1080 @@
     ],
     "runtime": {
       "engine": "openclaw",
-      "type": "skill"
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
     },
     "trust": {
       "permissions": [
         "network"
       ],
       "sandbox_level": "basic",
+      "verified_by": [
+        "openclaw_team"
+      ]
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/seedream-image_gen.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/seedream-image_gen.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.604Z",
+    "id": "com.openclaw.image-gen",
+    "name": "AI 图像创作",
+    "description": "基于Seedream5的AI图像生成，支持文生图、图生图、风格迁移、系列组图",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "image",
+      "生成图片",
+      "AI绘画",
+      "设计",
+      "创作"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "text_to_image",
+        "name": "文生图",
+        "description": "根据文字描述生成图片",
+        "intents": [
+          "画一张{描述}的图",
+          "生成一张{描述}的图片",
+          "generate an image of {subject}"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "image_to_image",
+        "name": "图生图",
+        "description": "基于参考图片生成新图片",
+        "intents": [
+          "把这个改成{风格}风格",
+          "基于这张图生成",
+          "风格迁移"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "edit_image",
+        "name": "编辑图片",
+        "description": "局部修改、扩展、擦除等",
+        "intents": [
+          "去掉这个物体",
+          "扩展背景",
+          "edit image"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": []
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/weather.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/weather.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.604Z",
+    "id": "com.openclaw.weather",
+    "name": "天气查询",
+    "description": "获取实时天气和天气预报，支持任意城市查询",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "weather",
+      "天气",
+      "forecast",
+      "天气预报",
+      "temperature"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "get_current_weather",
+        "name": "当前天气",
+        "description": "查询指定城市的实时温度、湿度、风力等天气信息",
+        "intents": [
+          "现在{城市}的天气怎么样",
+          "{城市}今天多少度",
+          "{城市}天气"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "real-time",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "get_forecast",
+        "name": "天气预报",
+        "description": "查询未来多天的天气预报",
+        "intents": [
+          "未来{天数}天{城市}天气",
+          "{城市}这周天气",
+          "weekend weather in {city}"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "real-time",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": []
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-doc-convert.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-doc-convert.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.doc-convert",
+    "name": "文档格式转换",
+    "description": "支持 Word、PDF、Excel、PPT、Markdown、HTML 等多格式互转",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "convert",
+      "格式转换",
+      "document",
+      "pdf",
+      "word"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "convert_format",
+        "name": "格式转换",
+        "description": "在各种文档格式之间自由转换",
+        "intents": [
+          "把这个PDF转成Word",
+          "docx转pdf",
+          "md转html",
+          "convert {source} to {target}"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network",
+        "read_file",
+        "write_file"
+      ],
+      "sandbox_level": "isolated",
+      "verified_by": [
+        "openclaw_team"
+      ]
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-docx.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-docx.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.docx-generator",
+    "name": "Word 文档生成",
+    "description": "创建和编辑Word文档，支持表格、目录、中文排版、格式化报告",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "word",
+      "docx",
+      "文档",
+      "报告",
+      "办公"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "create_docx",
+        "name": "生成文档",
+        "description": "从内容生成格式化的Word文档",
+        "intents": [
+          "生成Word文档",
+          "帮我写个报告",
+          "创建docx",
+          "create word document"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "edit_docx",
+        "name": "编辑文档",
+        "description": "对现有Word文档进行修改",
+        "intents": [
+          "修改这个文档",
+          "编辑Word",
+          "edit document"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network",
+        "read_file",
+        "write_file"
+      ],
+      "sandbox_level": "isolated",
+      "verified_by": [
+        "openclaw_team"
+      ]
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-file-upload.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-file-upload.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.file-upload",
+    "name": "文件上传",
+    "description": "上传本地文件到对象存储，获取可共享的下载链接",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "file",
+      "upload",
+      "上传",
+      "文件",
+      "share"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "upload_file",
+        "name": "文件上传",
+        "description": "上传文件到云端获取下载链接",
+        "intents": [
+          "上传这个文件",
+          "获取下载链接",
+          "分享文件",
+          "upload file"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "huawei-api",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network",
+        "read_file"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": []
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-health.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-health.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.health",
+    "name": "运动健康助手",
+    "description": "查询运动健康数据并提供分析解读，覆盖心率、睡眠、运动、压力、营养等",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "health",
+      "健康",
+      "运动",
+      "心率",
+      "睡眠",
+      "fitness"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "query_health_data",
+        "name": "查询健康数据",
+        "description": "查询心率、睡眠、运动、压力等健康数据",
+        "intents": [
+          "我的睡眠怎么样",
+          "今天心率多少",
+          "查看运动数据",
+          "健康概览"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "analyze_health",
+        "name": "健康分析",
+        "description": "解读健康数据趋势并提供建议",
+        "intents": [
+          "分析我的健康趋势",
+          "这周运动量够吗",
+          "健康建议",
+          "health analysis"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "read_health_data"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": []
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-image-search.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-image-search.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.image-search",
+    "name": "图片搜索",
+    "description": "搜索图片并下载到本地，支持为文档、PPT、报告查找配图素材",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "image",
+      "图片",
+      "搜索",
+      "素材",
+      "配图"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "search_images",
+        "name": "搜索图片",
+        "description": "根据关键词搜索图片并下载",
+        "intents": [
+          "找{query}的图片",
+          "搜索{subject}图片",
+          "找素材",
+          "search images of {query}"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": []
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-image-understanding.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-image-understanding.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.image-understanding",
+    "name": "图像理解",
+    "description": "使用AI进行图像内容识别和描述，支持多图对比、OCR文字识别、图表分析",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "image",
+      "图片识别",
+      "OCR",
+      "图像分析",
+      "vision"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "describe_image",
+        "name": "图片描述",
+        "description": "识别图片内容并生成详细文字描述",
+        "intents": [
+          "这张图是什么",
+          "描述这张图片",
+          "图片内容",
+          "describe this image"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "ocr",
+        "name": "文字识别",
+        "description": "从图片中提取文字信息",
+        "intents": [
+          "识别这张图的文字",
+          "提取文字",
+          "图片转文字",
+          "OCR"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "compare_images",
+        "name": "图片对比",
+        "description": "比较多张图片的异同",
+        "intents": [
+          "对比这些图片",
+          "图片对比",
+          "比较这两张图"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": []
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-pdf.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-pdf.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.pdf-toolkit",
+    "name": "PDF 工具箱",
+    "description": "完整PDF处理能力——生成、设计、填表、合并、拆分、加密、加水印、提取内容",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "pdf",
+      "document",
+      "文档处理",
+      "PDF编辑"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "generate_pdf",
+        "name": "生成PDF",
+        "description": "从内容生成格式精美的PDF文档",
+        "intents": [
+          "生成PDF",
+          "创建PDF",
+          "make a pdf",
+          "导出PDF"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "merge_pdf",
+        "name": "合并PDF",
+        "description": "将多个PDF文件合并为一个",
+        "intents": [
+          "合并PDF",
+          "合并文件",
+          "merge pdfs"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "split_pdf",
+        "name": "拆分PDF",
+        "description": "将PDF按页拆分",
+        "intents": [
+          "拆分PDF",
+          "提取页",
+          "split pdf"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "watermark_pdf",
+        "name": "加/去水印",
+        "description": "给PDF添加或去除水印",
+        "intents": [
+          "加水印",
+          "去除水印",
+          "watermark pdf"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "extract_pdf",
+        "name": "提取内容",
+        "description": "从PDF提取文字和表格",
+        "intents": [
+          "提取PDF文字",
+          "PDF转文字",
+          "extract text from pdf"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network",
+        "read_file",
+        "write_file"
+      ],
+      "sandbox_level": "isolated",
+      "verified_by": [
+        "openclaw_team"
+      ]
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-ppt.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-ppt.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.ppt-generator",
+    "name": "PPT 生成器",
+    "description": "自动生成和编辑专业演示文稿，支持多种模板风格，三步流程：采集信息→生成大纲→生成PPT",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "ppt",
+      "presentation",
+      "演示文稿",
+      "幻灯片",
+      "办公"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "generate_ppt",
+        "name": "生成PPT",
+        "description": "根据内容提纲或文档生成完整演示文稿",
+        "intents": [
+          "帮我做个PPT",
+          "生成演示文稿",
+          "创建幻灯片",
+          "create presentation"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "edit_ppt",
+        "name": "编辑PPT",
+        "description": "修改现有PPT的内容和样式",
+        "intents": [
+          "修改这个PPT",
+          "换模板",
+          "编辑幻灯片"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network",
+        "read_file",
+        "write_file"
+      ],
+      "sandbox_level": "isolated",
+      "verified_by": [
+        "openclaw_team"
+      ]
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-report.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-report.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.report-gen",
+    "name": "深度研究报告",
+    "description": "从多源信息生成带引用的专业分析报告，支持学术研究、市场调研、竞品分析",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "report",
+      "报告",
+      "研究",
+      "调研",
+      "分析"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "generate_report",
+        "name": "生成报告",
+        "description": "基于搜索信息生成带引用的研究报告",
+        "intents": [
+          "调研{topic}",
+          "分析{industry}行业",
+          "写一份关于{topic}的研究报告",
+          "research {topic}"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": [
+        "openclaw_team"
+      ]
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-vlog-gen.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-vlog-gen.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.vlog-gen",
+    "name": "一键成片",
+    "description": "多图自动生成vlog短片，智能编排画面、匹配BGM、添加转场特效",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "video",
+      "vlog",
+      "视频",
+      "剪辑",
+      "成片"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "generate_vlog",
+        "name": "生成视频",
+        "description": "从图片批量生成短片",
+        "intents": [
+          "把这几张图做成视频",
+          "一键成片",
+          "生成vlog",
+          "create video from photos"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network",
+        "read_file"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": []
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-web-search.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-web-search.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.web-search",
+    "name": "联网搜索",
+    "description": "使用华为云AI联网搜索API进行网页内容检索，获取实时网络信息",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "search",
+      "搜索",
+      "网络搜索",
+      "web",
+      "资讯",
+      "联网"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "web_search",
+        "name": "网页搜索",
+        "description": "搜索互联网获取最新信息",
+        "intents": [
+          "搜索{query}",
+          "查一下{query}",
+          "最新{topic}资讯",
+          "search for {query}"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "huawei-api",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network"
+      ],
+      "sandbox_level": "basic",
+      "verified_by": []
+    }
+  },
+  {
+    "_repo": "Polaris899/agent-protocol",
+    "_path": "registry/xiaoyi-xlsx.agent.json",
+    "_url": "https://github.com/Polaris899/agent-protocol/blob/main/registry/xiaoyi-xlsx.agent.json",
+    "_indexed_at": "2026-06-16T02:07:37.605Z",
+    "id": "com.openclaw.spreadsheet",
+    "name": "电子表格工具",
+    "description": "创建、编辑和分析电子表格，支持公式、图表、透视表、条件格式",
+    "version": "1.0.0",
+    "author": {
+      "name": "OpenClaw Team",
+      "url": "https://github.com/openclaw"
+    },
+    "tags": [
+      "excel",
+      "spreadsheet",
+      "表格",
+      "数据分析",
+      "xlsx"
+    ],
+    "license": "MIT",
+    "capabilities": [
+      {
+        "id": "create_spreadsheet",
+        "name": "创建表格",
+        "description": "从数据创建电子表格",
+        "intents": [
+          "帮我做个表",
+          "创建表格",
+          "创建Excel",
+          "create spreadsheet"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "analyze_data",
+        "name": "数据分析",
+        "description": "排序、筛选、汇总、透视表分析",
+        "intents": [
+          "分析这份数据",
+          "做数据透视",
+          "汇总数据",
+          "analyze data"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      },
+      {
+        "id": "create_chart",
+        "name": "生成图表",
+        "description": "根据数据生成各类图表",
+        "intents": [
+          "生成图表",
+          "画个图",
+          "可视化数据",
+          "create chart"
+        ],
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "latency": "low",
+        "security_level": "low",
+        "cost_per_call": 0
+      }
+    ],
+    "runtime": {
+      "engine": "openclaw",
+      "min_version": "1.0.0",
+      "type": "skill",
+      "engines": [
+        "openclaw"
+      ]
+    },
+    "trust": {
+      "permissions": [
+        "network",
+        "read_file",
+        "write_file"
+      ],
+      "sandbox_level": "isolated",
       "verified_by": [
         "openclaw_team"
       ]
