@@ -1,5 +1,5 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.image-search",
   "name": "图片搜索",
   "description": "搜索图片并下载到本地，支持为文档、PPT、报告查找配图素材",

@@ -26,7 +26,7 @@ const program = new Command();
 program
   .name('agent')
   .description('Agent Manifest Protocol CLI — discover and manage AI Skills')
-  .version('0.1.0');
+  .version('1.0.0');
 
 program
   .command('search')
@@ -41,6 +41,10 @@ program
   .description('Install a Skill from GitHub (user/repo)')
   .argument('<repo>', 'GitHub repository (e.g., openclaw/weather-skill)')
   .option('--dir <path>', 'Install directory', '~/.agents')
+  .option('-v, --version <ver>', 'Specific version (tag) to install')
+  .option('-b, --branch <branch>', 'Specific branch to install')
+  .option('--no-validate', 'Skip schema validation')
+  .option('--no-symlink', 'Skip registering symlink in OpenClaw')
   .action(installCommand);
 
 program
@@ -51,7 +55,13 @@ program
 
 program
   .command('update')
-  .description('Update all installed Skills')
+  .description('Update installed Skills')
+  .argument('[name]', 'Skill name to update (omit to update all)')
+  .option('-a, --all', 'Update all installed Skills')
+  .option('--check', 'Check for updates without applying')
+  .option('--rollback', 'Rollback to a previous version')
+  .option('--to <ref>', 'Rollback target commit/ref')
+  .option('-f, --force', 'Force update even if already latest')
   .action(updateCommand);
 
 program

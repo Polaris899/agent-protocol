@@ -13,7 +13,7 @@ export function toManifest(raw) {
   const gptId = raw.gpt_id || raw.name?.toLowerCase().replace(/[^a-z0-9]+/g, '-') || 'unknown';
 
   const manifest = {
-    $schema: 'https://agent-protocol.dev/v0.2/manifest.schema.json',
+    $schema: 'https://agent-protocol.dev/v1.0/manifest.schema.json',
     id: `com.openai.gpt-${gptId}`,
     name: raw.name || 'Unnamed Skill',
     description: raw.description || 'Converted from GPT Store',

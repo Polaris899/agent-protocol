@@ -1,5 +1,5 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.doc-convert",
   "name": "文档格式转换",
   "description": "支持 Word、PDF、Excel、PPT、Markdown、HTML 等多格式互转",

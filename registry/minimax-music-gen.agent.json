@@ -1,5 +1,5 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.music-gen",
   "name": "音乐创作",
   "description": "基于MiniMax Music2.6的音乐生成，支持作曲、编曲、写歌词多风格创作",

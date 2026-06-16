@@ -26,7 +26,7 @@ AI Skill 分发为什么需要？
 
 ```json
 {
-  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.weather",
   "name": "天气助手",
   "capabilities": [
@@ -87,7 +87,7 @@ agent info "天气助手"
 
 ## 当前状态
 
-- 协议规范 v0.2-draft ✅
+- 协议规范 v1.0-draft ✅
 - CLI 工具（search/install/list/update/validate） ✅
 - GitHub 爬虫 + 搜索 API ✅
 - GPT Store → AMP 转换器（寄生兼容层） ✅

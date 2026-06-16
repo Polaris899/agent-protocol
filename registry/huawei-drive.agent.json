@@ -1,5 +1,5 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.huawei-drive",
   "name": "华为云空间",
   "description": "华为云空间云盘文件管理，支持文件上传、列表查询、用量查看",

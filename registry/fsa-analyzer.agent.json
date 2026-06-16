@@ -1,5 +1,5 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.fsa-analyzer",
   "name": "财报分析专家",
   "description": "企业财务报表深度分析，支持资产负债表、利润表、现金流量表，含杜邦分解和舞弊检测",

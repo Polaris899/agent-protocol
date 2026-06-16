@@ -24,7 +24,7 @@ Put an `agent.json` in your GitHub repo root, and any AI Runtime can discover an
 
 ```json
 {
-  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.weather",
   "name": "Weather Assistant",
   "capabilities": [
@@ -60,7 +60,7 @@ Versioning, forking, PRs — the entire GitHub ecosystem, aligned.
 
 **What's shipping today:**
 
-✅ Protocol spec v0.2 — intent declarations, runtime config, trust & permissions
+✅ Protocol spec v1.0 — intent declarations, runtime config, trust & permissions
 ✅ CLI — `search`, `install`, `list`, `update`, `info`, `validate`
 ✅ Search engine — GitHub crawler + semantic search API
 ✅ GPT Store converter — auto-transforms existing GPTs into AMP format

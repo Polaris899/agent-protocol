@@ -1,5 +1,5 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.file-upload",
   "name": "文件上传",
   "description": "上传本地文件到对象存储，获取可共享的下载链接",

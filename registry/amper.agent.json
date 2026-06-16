@@ -1,5 +1,5 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.amper",
   "name": "AMP 桥梁",
   "description": "Bridges Agent Manifest Protocol with OpenClaw Runtime. Resolves agent.json manifests, searches the protocol registry, and routes intents to installed skills.",

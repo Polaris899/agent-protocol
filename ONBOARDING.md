@@ -14,7 +14,7 @@
 
 ```json
 {
-  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.yourname.your-skill",
   "name": "你的 Skill 名称",
   "version": "1.0.0",

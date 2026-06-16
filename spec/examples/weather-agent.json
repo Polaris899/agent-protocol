@@ -1,57 +1,81 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.weather",
-  "name": "天气助手",
-  "description": "查询实时天气和未来天气预报，支持国内主要城市",
+  "name": "\u5929\u6c14\u52a9\u624b",
+  "description": "\u67e5\u8be2\u5b9e\u65f6\u5929\u6c14\u548c\u672a\u6765\u5929\u6c14\u9884\u62a5\uff0c\u652f\u6301\u56fd\u5185\u4e3b\u8981\u57ce\u5e02",
   "description_i18n": {
-    "zh-CN": "查询实时天气和未来天气预报",
+    "zh-CN": "\u67e5\u8be2\u5b9e\u65f6\u5929\u6c14\u548c\u672a\u6765\u5929\u6c14\u9884\u62a5",
     "en": "Query real-time weather and forecasts",
-    "ja": "リアルタイムの天気予報を検索"
+    "ja": "\u30ea\u30a2\u30eb\u30bf\u30a4\u30e0\u306e\u5929\u6c17\u4e88\u5831\u3092\u691c\u7d22"
   },
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team",
     "url": "https://github.com/openclaw"
   },
-  "keywords": ["天气", "weather", "forecast", "温度", "降水"],
+  "keywords": [
+    "\u5929\u6c14",
+    "weather",
+    "forecast",
+    "\u6e29\u5ea6",
+    "\u964d\u6c34"
+  ],
   "category": "weather",
-  "tags": ["weather", "天气", "forecast", "天气预报", "temperature"],
+  "tags": [
+    "weather",
+    "\u5929\u6c14",
+    "forecast",
+    "\u5929\u6c14\u9884\u62a5",
+    "temperature"
+  ],
   "license": "MIT",
   "capabilities": [
     {
       "id": "get_weather",
-      "name": "查询当天天气",
+      "name": "\u67e5\u8be2\u5f53\u5929\u5929\u6c14",
       "name_i18n": {
-        "zh-CN": "查询当天天气",
+        "zh-CN": "\u67e5\u8be2\u5f53\u5929\u5929\u6c14",
         "en": "Get Current Weather",
-        "ja": "現在の天気を取得"
+        "ja": "\u73fe\u5728\u306e\u5929\u6c17\u3092\u53d6\u5f97"
       },
-      "description": "根据城市名查询当前实时温度、湿度、风速和天气状况",
+      "description": "\u6839\u636e\u57ce\u5e02\u540d\u67e5\u8be2\u5f53\u524d\u5b9e\u65f6\u6e29\u5ea6\u3001\u6e7f\u5ea6\u3001\u98ce\u901f\u548c\u5929\u6c14\u72b6\u51b5",
       "type": "query",
       "mode": "sync",
       "intents": [
-        "现在{城市}的天气怎么样",
-        "{城市}现在多少度",
-        "{城市}今天冷吗",
+        "\u73b0\u5728{\u57ce\u5e02}\u7684\u5929\u6c14\u600e\u4e48\u6837",
+        "{\u57ce\u5e02}\u73b0\u5728\u591a\u5c11\u5ea6",
+        "{\u57ce\u5e02}\u4eca\u5929\u51b7\u5417",
         "what's the weather in {city} now"
       ],
       "input": {
         "type": "object",
         "properties": {
-          "city": { "type": "string", "description": "城市名称，如北京、上海、广州" },
-          "unit": { "type": "string", "enum": ["celsius", "fahrenheit"], "default": "celsius" }
+          "city": {
+            "type": "string",
+            "description": "\u57ce\u5e02\u540d\u79f0\uff0c\u5982\u5317\u4eac\u3001\u4e0a\u6d77\u3001\u5e7f\u5dde"
+          },
+          "unit": {
+            "type": "string",
+            "enum": [
+              "celsius",
+              "fahrenheit"
+            ],
+            "default": "celsius"
+          }
         },
-        "required": ["city"]
+        "required": [
+          "city"
+        ]
       },
       "output": {
         "type": "object",
-        "description": "天气数据，包含温度、湿度、风速、天气状况",
+        "description": "\u5929\u6c14\u6570\u636e\uff0c\u5305\u542b\u6e29\u5ea6\u3001\u6e7f\u5ea6\u3001\u98ce\u901f\u3001\u5929\u6c14\u72b6\u51b5",
         "example": {
-          "city": "北京",
+          "city": "\u5317\u4eac",
           "temperature": 22,
           "humidity": 65,
           "wind_speed": 12,
-          "condition": "晴"
+          "condition": "\u6674"
         }
       },
       "latency": "real-time",
@@ -65,32 +89,43 @@
     },
     {
       "id": "get_forecast",
-      "name": "天气预报",
+      "name": "\u5929\u6c14\u9884\u62a5",
       "name_i18n": {
-        "zh-CN": "天气预报",
+        "zh-CN": "\u5929\u6c14\u9884\u62a5",
         "en": "Weather Forecast",
-        "ja": "天気予報"
+        "ja": "\u5929\u6c17\u4e88\u5831"
       },
-      "description": "查询指定城市未来几天的天气预报，包括最高最低温度、降水概率等",
+      "description": "\u67e5\u8be2\u6307\u5b9a\u57ce\u5e02\u672a\u6765\u51e0\u5929\u7684\u5929\u6c14\u9884\u62a5\uff0c\u5305\u62ec\u6700\u9ad8\u6700\u4f4e\u6e29\u5ea6\u3001\u964d\u6c34\u6982\u7387\u7b49",
       "type": "query",
       "mode": "sync",
       "intents": [
-        "未来{天数}天{城市}的天气",
-        "{城市}这周天气",
-        "{城市}周末天气",
+        "\u672a\u6765{\u5929\u6570}\u5929{\u57ce\u5e02}\u7684\u5929\u6c14",
+        "{\u57ce\u5e02}\u8fd9\u5468\u5929\u6c14",
+        "{\u57ce\u5e02}\u5468\u672b\u5929\u6c14",
         "forecast for {city} for {days} days"
       ],
       "input": {
         "type": "object",
         "properties": {
-          "city": { "type": "string", "description": "城市名称" },
-          "days": { "type": "integer", "description": "预报天数", "default": 3, "minimum": 1, "maximum": 15 }
+          "city": {
+            "type": "string",
+            "description": "\u57ce\u5e02\u540d\u79f0"
+          },
+          "days": {
+            "type": "integer",
+            "description": "\u9884\u62a5\u5929\u6570",
+            "default": 3,
+            "minimum": 1,
+            "maximum": 15
+          }
         },
-        "required": ["city"]
+        "required": [
+          "city"
+        ]
       },
       "output": {
         "type": "array",
-        "description": "每日预报数据列表"
+        "description": "\u6bcf\u65e5\u9884\u62a5\u6570\u636e\u5217\u8868"
       },
       "latency": "real-time",
       "security_level": "low",
@@ -101,7 +136,9 @@
   "runtime": {
     "engine": "openclaw",
     "min_version": "1.0.0",
-    "engines": ["openclaw"],
+    "engines": [
+      "openclaw"
+    ],
     "type": "skill",
     "entrypoint": "main.py",
     "requirements": {
@@ -109,12 +146,16 @@
         "memory_mb": 128,
         "disk_mb": 10,
         "network": true,
-        "bins": ["curl"]
+        "bins": [
+          "curl"
+        ]
       }
     }
   },
   "trust": {
-    "permissions": ["network"],
+    "permissions": [
+      "network"
+    ],
     "sandbox_level": "basic"
   }
 }

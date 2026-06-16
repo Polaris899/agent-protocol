@@ -80,7 +80,7 @@ agent update    # 更新所有
 
 ```json
 {
-  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.weather",
   "name": "天气助手",
   "version": "1.0.0",

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.ppt-generator",
   "name": "PPT 生成器",
   "description": "自动生成和编辑专业演示文稿，支持多种模板风格，三步流程：采集信息→生成大纲→生成PPT",

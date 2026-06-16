@@ -1,5 +1,5 @@
 {
-  "$schema": "https://agent-protocol.dev/v0.2/manifest.schema.json",
+  "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.vlog-gen",
   "name": "一键成片",
   "description": "多图自动生成vlog短片，智能编排画面、匹配BGM、添加转场特效",
