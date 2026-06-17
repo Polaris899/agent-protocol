@@ -313,7 +313,7 @@
         var author = (m.author && typeof m.author === 'object') ? (m.author.name||'') : (m.author||'');
         var engine = m.runtime ? m.runtime.engine : '';
         var sandbox = m.trust ? m.trust.sandbox_level : 'basic';
-        el.innerHTML = '<div class="detail-header"><a href="#" id="backBtn">← 返回</a></div>' +
+        el.innerHTML = '<div class="detail-header"><a href="#" id="backBtn">← Back</a></div>'
           '<div class="result-card detail-card">' +
           '<div class="top"><div><h2>' + (m.name||'') + '</h2><div class="subtitle">' + (m.id||'') + ' · v' + (m.version||'0.1') + '</div></div></div>' +
           '<div class="desc-text">' + (m.description||t('ui.no_description')) + '</div>' +
