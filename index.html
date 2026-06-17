@@ -88,6 +88,10 @@
       display: flex; flex-wrap: wrap; gap: 16px; margin-top: 10px; font-size: 0.8rem; color: var(--text-muted);
     }
     .result-card .meta .cap-count { color: var(--accent); }
+    .score-bar-wrap { display: flex; align-items: center; gap: 6px; min-width: 100px; }
+    .score-bar-track { flex: 1; height: 4px; background: var(--surface-2); border-radius: 2px; overflow: hidden; }
+    .score-bar-fill { height: 100%; border-radius: 2px; transition: width 0.3s; }
+    .score-bar-label { font-size: 0.75rem; min-width: 32px; text-align: right; }
     .result-card .install-cmd {
       margin-top: 10px; background: var(--surface-2); border-radius: 6px;
       padding: 6px 12px; font-family: 'JetBrains Mono', 'Cascadia Code', monospace;
@@ -209,6 +213,12 @@
         document.getElementById('totalTags').textContent = tags.size;
       }
 
+      function scoreColor(s) {
+        if (s >= 0.6) return '#48bb78';
+        if (s >= 0.3) return '#ecc94b';
+        return '#e53e3e';
+      }
+
       function renderResults(results) {
         var el = document.getElementById('results');
         if (!results || results.length === 0) {
@@ -233,7 +243,7 @@
             (author ? '<span>👤 ' + author + '</span>' : '') +
             (engine ? '<span>⚙ ' + engine + '</span>' : '') +
             (m.tags && m.tags.length ? '<span>🏷 ' + m.tags.slice(0,3).join(', ') + '</span>' : '') +
-            (scorePct ? '<span style="color:var(--accent)">' + scorePct + '</span>' : '') +
+            (scorePct ? '<span class="score-bar-wrap"><span class="score-bar-track"><span class="score-bar-fill" style="width:' + (m.score * 100) + '%;background:' + scoreColor(m.score) + '"></span></span><span class="score-bar-label" style="color:' + scoreColor(m.score) + '">' + scorePct + '</span></span>' : '') +
             '</div><span class="install-cmd">agent install ' + repo + '</span></div>';
         }).join('');
 
