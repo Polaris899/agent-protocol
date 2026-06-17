@@ -81,8 +81,13 @@ function searchVec(query) {
   const qv = {};
   tokens.forEach(t => { qv[t] = (qtf[t] / qmf) * Math.log((N + 1) / ((df[t] || 1) + 1) + 1); });
 
+  // Reject queries where ALL tokens are too common (short common words like "make", "up")
+  const commonTokenThreshold = N * 0.5;
+  const allCommon = tokens.every(t => (df[t] || 0) > commonTokenThreshold);
+  if (allCommon && tokens.length <= 3) return [];
+
   const scored = vectors.map((v, i) => ({ score: cosim(qv, v), idx: i }));
-  return scored.filter(s => s.score > 0.001)
+  return scored.filter(s => s.score > 0.1)
     .sort((a, b) => b.score - a.score)
     .slice(0, 20)
     .map(s => ({ ...raw[s.idx], score: Math.round(s.score * 10000) / 10000 }));

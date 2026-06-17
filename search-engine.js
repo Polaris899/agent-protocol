@@ -34,6 +34,13 @@
     tokens.forEach(t => {
       vec[t] = (tf[t] / maxFreq) * Math.log((N + 1) / ((df[t] || 1) + 1) + 1);
     });
+
+    // Reject queries where ALL tokens are very common (df > 50% of corpus)
+    // Example: "make up" → "make" and "up" exist in 2500+ docs, match is meaningless
+    const commonTokenThreshold = N * 0.5;
+    const allCommon = tokens.every(t => (df[t] || 0) > commonTokenThreshold);
+    if (allCommon && tokens.length <= 3) return null;
+
     return vec;
   }
 
@@ -64,7 +71,8 @@
     });
 
     return scored
-      .filter(s => s.score > 0.001)
+      // Minimum 10% similarity threshold — filters out noise from short/common words
+      .filter(s => s.score > 0.1)
       .sort((a, b) => b.score - a.score)
       .slice(0, limit)
       .map(s => Object.assign({}, bundle.m[s.idx], { score: s.score }));
