@@ -198,9 +198,9 @@ export default function handler(req, res) {
 
       // ── GET /api/openapi.json ───────────────────────────────────────
       case '/api/openapi.json': {
-        // Also available at: https://raw.githubusercontent.com/Polaris899/agent-protocol/main/api/openapi.json
-        import { readFileSync } from 'fs';
-        const oapi = JSON.parse(readFileSync(join(process.cwd(), 'api', 'openapi.json'), 'utf-8'));
+        // This route is now handled by Vercel rewrite → /openapi.json (root level)
+        // Keep as fallback for non-Vercel deployments
+        const oapi = JSON.parse(readFileSync(join(process.cwd(), 'openapi.json'), 'utf-8'));
         oapi.servers[0].url = 'https://' + req.headers.host;
         return res.json(oapi);
       }
