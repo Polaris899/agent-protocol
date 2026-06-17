@@ -223,6 +223,30 @@
       var engine = window.AMPSearch;
       var bundle = null;
       var loading = false;
+      var apiBase = 'https://api.agent-trust-protocol.org';
+
+      // API-based search (fallback when 19MB index can't load)
+      function apiSearch(query, limit, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+          try {
+            var data = JSON.parse(xhr.responseText);
+            // API wraps results in {results:[...]}, may not have score
+            var list = data.results || [];
+            // Add a dummy score for display consistency
+            list.forEach(function(m) {
+              if (m.score === undefined) m.score = m.match_score || 0.5;
+              // Ensure name is always present
+              if (!m.name && m.name_zh) m.name = m.name_zh;
+              if (!m.name) m.name = m.id || 'Skill';
+            });
+            callback(list);
+          } catch(e) { callback([]); }
+        };
+        xhr.onerror = function() { callback([]); };
+        xhr.open('GET', apiBase + '/api/search?q=' + encodeURIComponent(query) + '&limit=' + (limit || 20) + '&format=simple', true);
+        xhr.send();
+      }
 
       function ensureData(callback) {
         if (bundle) { callback(bundle); return; }
@@ -244,6 +268,29 @@
           callback(bundle);
         };
         document.head.appendChild(script);
+
+        // Timeout: if 19MB index doesn't load in 8s, switch to API mode
+        setTimeout(function() {
+          if (bundle) return;
+          // Mark as API mode — override doSearch
+          window.__apiMode = true;
+          var el2 = document.getElementById('results');
+          el2.innerHTML = '<div class="empty-state"><div class="icon">🔍</div><h3>'+t('ui.empty_title')+'</h3><p>'+t('ui.empty_hint')+'</p></div>';
+          // Update stats from API
+          var sxhr = new XMLHttpRequest();
+          sxhr.onload = function() {
+            try {
+              var s = JSON.parse(sxhr.responseText);
+              document.getElementById('totalSkills').textContent = s.total_manifests || s.results?.length || '-';
+              document.getElementById('totalCaps').textContent = s.total_capabilities || '-';
+              document.getElementById('totalTags').textContent = s.total_tags || s.unique_tags || '-';
+            } catch(e) {}
+          };
+          sxhr.open('GET', apiBase + '/api/stats', true);
+          sxhr.send();
+          // Resolve all pending ensureData calls
+          callback(null);
+        }, 8000);
       }
 
       function renderStats() {
@@ -334,7 +381,21 @@
       }
 
       function doSearch(query) {
+        if (window.__apiMode) {
+          // Use API search when 19MB index failed to load
+          apiSearch(query, 20, function(results) {
+            renderResults(results, query);
+          });
+          return;
+        }
         ensureData(function(b) {
+          if (!b) {
+            // Fallback to API if ensureData timed out
+            apiSearch(query, 20, function(results) {
+              renderResults(results, query);
+            });
+            return;
+          }
           var results = engine.search(query, b, 20);
           renderResults(results, query);
         });
