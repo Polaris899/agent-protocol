@@ -224,7 +224,11 @@ export default function handler(req, res) {
 
       // ── GET /api/search?q=xxx ──────────────────────────────────────
       case '/api/search': {
-        if (!q) return res.status(400).json({ error: 'Missing query parameter q' });
+        // Empty/no query → return top Skills (hot/trending)
+        if (!q) {
+          const top = raw.slice(0, 20).map(m => ({ name: m.name, id: m.id, description: m.description, version: m.version, tags: m.tags, capabilities: m.capabilities, runtime: m.runtime, trust: m.trust, author: m.author, license: m.license, _repo: m._repo || m.id }));
+          return res.json({ query: '', total: top.length, results: top, trending: true });
+        }
         const results = searchVec(q);
         return res.json({ query: q, total: results.length, results });
       }

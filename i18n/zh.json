@@ -100,5 +100,8 @@
   "cli.installed_skills": "已安装",
   "cli.remove_from_config": "是否从配置中移除？[y/N] ",
   "cli.removed_from_config": "✓ {name} 已从注册表中移除",
-  "cli.overwrite_confirm": "覆盖？[y/N] "
+  "cli.overwrite_confirm": "覆盖？[y/N] ",
+  "ui.load_more": "加载更多",
+  "ui.loading": "加载中...",
+  "ui.searching": "搜索中..."
 }

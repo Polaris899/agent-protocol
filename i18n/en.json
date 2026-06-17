@@ -100,5 +100,8 @@
   "cli.installed_skills": "Installed",
   "cli.remove_from_config": "Remove from config? [y/N]",
   "cli.removed_from_config": "✓ {name} removed from registry",
-  "cli.overwrite_confirm": "Overwrite? [y/N]"
+  "cli.overwrite_confirm": "Overwrite? [y/N]",
+  "ui.load_more": "Load More",
+  "ui.loading": "Loading...",
+  "ui.searching": "Searching..."
 }

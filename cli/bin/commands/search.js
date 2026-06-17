@@ -5,10 +5,17 @@ import { buildCorpus, search as semanticSearch } from '../../vectorizer.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const INDEX_PATH = join(__dirname, '..', '..', 'data', 'index.json');
+const API_SEARCH = 'https://api.agent-trust-protocol.org/api/search';
 
 export async function searchCommand(query, options) {
   const limit = parseInt(options.limit || '10');
   const asJson = options.json || false;
+  const useApi = options.api || options.online || false;
+
+  // API mode: online search (no local index needed)
+  if (useApi) {
+    return apiSearch(query, limit, asJson);
+  }
 
   if (!query || !query.trim()) {
     const index = loadIndex();
@@ -29,6 +36,23 @@ export async function searchCommand(query, options) {
       return text.includes(kw);
     }).slice(0, limit);
     printResults(results, query, asJson);
+  }
+}
+
+async function apiSearch(query, limit, asJson) {
+  const url = API_SEARCH + '?q=' + encodeURIComponent(query || '') + '&limit=' + limit;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) {
+      console.error('❌ API request failed:', res.status, res.statusText);
+      process.exit(1);
+    }
+    const data = await res.json();
+    const results = data.results || [];
+    printResults(results, query, asJson);
+  } catch (err) {
+    console.error('❌ API request failed:', err.message);
+    process.exit(1);
   }
 }
 

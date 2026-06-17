@@ -34,6 +34,8 @@ program
   .argument('<query>', 'Search query (natural language or keywords)')
   .option('-l, --limit <n>', 'Max results', '10')
   .option('--json', 'Output as JSON')
+  .option('-a, --api', 'Use online API search (no local index needed)')
+  .option('--online', 'Alias for --api')
   .action(searchCommand);
 
 program

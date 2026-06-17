@@ -1,6 +1,6 @@
 {
   "name": "agent-protocol-cli",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Discover and install AI Skills via Agent Manifest Protocol — semantic search, one-command install, schema validation",
   "type": "module",
   "bin": {
