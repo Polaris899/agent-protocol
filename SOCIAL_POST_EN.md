@@ -1,4 +1,4 @@
-Show HN: Agent Manifest Protocol – Decentralized AI Skill Distribution
+Show HN: Agent Manifest Protocol – Decentralized AI Skill Distribution, 5,051 Skills Indexed
 
 I built an open protocol for discovering and installing AI Skills.
 
@@ -16,17 +16,17 @@ HTTP doesn't need a central registry. Git doesn't. AI skills shouldn't either.
 
 Key design decisions:
 - Intent-first routing → not "what endpoints", but "what intents can you resolve"
+- Semantic search → TF-IDF vector matching with CJK support, runs locally
 - Git-as-distribution → versioning, forking, PRs — everything you already know
 - Protocol-neutral → works with any runtime (OpenClaw, LangChain, custom agents)
-- Semantic search → TF-IDF vector matching with CJK support, runs locally
 
 What's shipping today:
 - Protocol spec v1.0 (stable) with JSON Schema
-- CLI: semantic search, install, list, update, info, validate
-- npm package: npx agent-protocol-cli
-- Web registry with semantic search: polaris899.github.io/agent-protocol
-- 50+ skills already indexed (including GPTs)
-- GPT-to-AMP converter included
+- CLI: semantic search across **5,051 Skills**, install, list, update, info, validate
+- npm package: `npx agent-protocol-cli`
+- Web registry: polaris899.github.io/agent-protocol (client-side search, zero backend)
+- GPT Action API: api.agent-trust-protocol.org/api/route
+- GPT-to-AMP converter included (batch generates manifests from GPT Store)
 
 Everything is open source: github.com/Polaris899/agent-protocol
 

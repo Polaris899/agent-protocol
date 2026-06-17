@@ -1,0 +1,46 @@
+openapi: 3.0.0
+info:
+  title: AMP Intent Router
+  description: Agent Manifest Protocol — 5,051 AI Skills, routed by natural language intent.
+  version: 1.0.0
+servers:
+  - url: https://api.agent-trust-protocol.org
+    description: Production (Vercel)
+paths:
+  /api/route:
+    post:
+      operationId: routeIntent
+      summary: Find matching AI Skill for a user intent
+      description: Semantic search across 5,051 indexed Skills. Returns top-3 matches.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [intent]
+              properties:
+                intent:
+                  type: string
+                  description: 'User intent, e.g. "帮我分析财务报表" or "what is the weather in Tokyo"'
+                user_id:
+                  type: string
+                  description: Optional user identifier for tracking
+      responses:
+        "200":
+          description: Successful routing result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  matched:
+                    type: boolean
+                  intent:
+                    type: string
+                  top_match:
+                    type: object
+                  alternatives:
+                    type: array
+                  total_matches:
+                    type: integer
