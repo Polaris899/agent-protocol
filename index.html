@@ -8,31 +8,17 @@
     // i18n: load default language
     var __i18n = {};
     var __i18nLang = 'en';
-    function t(key) {
-      return __i18n[key] || key;
-    }
-    function tFormat(key) {
-      var args = Array.prototype.slice.call(arguments, 1);
-      var s = __i18n[key] || key;
-      for (var i = 0; i < args.length; i++) {
-        s = s.replace('{'+i+'}', args[i]);
-      }
-      return s;
-    }
+    function t(key) { return __i18n[key] || key; }
     function loadI18n(lang, callback) {
-      var url = 'i18n/' + lang + '.json';
       var xhr = new XMLHttpRequest();
       xhr.onload = function() {
-        try {
-          __i18n = JSON.parse(xhr.responseText);
-          callback();
-        } catch(e) { callback(); }
+        try { __i18n = JSON.parse(xhr.responseText); callback(); }
+        catch(e) { callback(); }
       };
       xhr.onerror = function() { callback(); };
-      xhr.open('GET', url, true);
+      xhr.open('GET', 'i18n/' + lang + '.json', true);
       xhr.send();
     }
-    // Auto-detect language
     var navLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
     if (navLang.indexOf('zh') === 0) { __i18nLang = 'zh'; }
   </script>
@@ -200,113 +186,101 @@
     </p>
   </footer>
 
-  <script src="search-engine.js"></script>
   <script>
     (function() {
+      "use strict";
+      var apiBase = 'https://api.agent-trust-protocol.org';
+      var searchCache = {};
+      var detailCache = {};
+      var statsLoaded = false;
+      var currentSearchTerm = '';
+
       loadI18n(__i18nLang, function() {
-        initApp();
+        applyI18n();
+        loadStats();
+        bindEvents();
       });
 
-      function initApp() {
-      // Apply i18n to static elements
-      document.getElementById('headerDesc').textContent = t('ui.header_desc');
-      document.getElementById('searchInput').placeholder = t('ui.search_placeholder');
-      document.getElementById('statSkillsLabel').textContent = t('ui.stats_skills');
-      document.getElementById('statCapsLabel').textContent = t('ui.stats_caps');
-      document.getElementById('statTagsLabel').textContent = t('ui.stats_tags');
-      document.getElementById('emptyTitle').textContent = t('ui.empty_title');
-      document.getElementById('emptyHint').textContent = t('ui.empty_hint');
-      document.getElementById('browseAllLink').textContent = t('ui.browse_all');
-      document.getElementById('recruitLink').textContent = '💬 ' + t('ui.recruit_devs');
-      document.title = t('ui.title');
+      function applyI18n() {
+        document.getElementById('headerDesc').textContent = t('ui.header_desc');
+        document.getElementById('searchInput').placeholder = t('ui.search_placeholder');
+        document.getElementById('statSkillsLabel').textContent = t('ui.stats_skills');
+        document.getElementById('statCapsLabel').textContent = t('ui.stats_caps');
+        document.getElementById('statTagsLabel').textContent = t('ui.stats_tags');
+        document.getElementById('emptyTitle').textContent = t('ui.empty_title');
+        document.getElementById('emptyHint').textContent = t('ui.empty_hint');
+        document.getElementById('browseAllLink').textContent = t('ui.browse_all');
+        document.getElementById('recruitLink').textContent = '💬 ' + t('ui.recruit_devs');
+        document.getElementById('footerGithubLink').textContent = '📖 GitHub';
+        document.title = t('ui.title');
+      }
 
-      var engine = window.AMPSearch;
-      var bundle = null;
-      var loading = false;
-      var apiBase = 'https://api.agent-trust-protocol.org';
+      function loadStats() {
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+          try {
+            var s = JSON.parse(xhr.responseText);
+            document.getElementById('totalSkills').textContent = s.total_manifests || '-';
+            document.getElementById('totalCaps').textContent = s.total_capabilities || '-';
+            document.getElementById('totalTags').textContent = (s.unique_engines || ['-']).length || '-';
+          } catch(e) {}
+          statsLoaded = true;
+        };
+        xhr.onerror = function() { statsLoaded = true; };
+        xhr.open('GET', apiBase + '/api/stats', true);
+        xhr.send();
+      }
 
-      // API-based search (fallback when 19MB index can't load)
-      function apiSearch(query, limit, callback) {
+      function apiSearch(query, callback) {
+        if (searchCache[query]) {
+          callback(searchCache[query]);
+          return;
+        }
+        showLoading(t('ui.searching'));
         var xhr = new XMLHttpRequest();
         xhr.onload = function() {
           try {
             var data = JSON.parse(xhr.responseText);
-            // API wraps results in {results:[...]}, may not have score
-            var list = data.results || [];
-            // Add a dummy score for display consistency
+            var list = data.results || data || [];
+            // Normalize: API returns {results:[...]} or raw array
+            if (!Array.isArray(list) && list.length === undefined) list = [];
+            // Add score fallback
             list.forEach(function(m) {
               if (m.score === undefined) m.score = m.match_score || 0.5;
-              // Ensure name is always present
-              if (!m.name && m.name_zh) m.name = m.name_zh;
               if (!m.name) m.name = m.id || 'Skill';
             });
+            searchCache[query] = list;
             callback(list);
           } catch(e) { callback([]); }
         };
         xhr.onerror = function() { callback([]); };
-        xhr.open('GET', apiBase + '/api/search?q=' + encodeURIComponent(query) + '&limit=' + (limit || 20) + '&format=simple', true);
+        xhr.open('GET', apiBase + '/api/search?q=' + encodeURIComponent(query) + '&limit=20', true);
         xhr.send();
       }
 
-      function ensureData(callback) {
-        if (bundle) { callback(bundle); return; }
-        if (loading) {
-          var check = setInterval(function() {
-            if (bundle) { clearInterval(check); callback(bundle); }
-          }, 100);
-          return;
-        }
-        loading = true;
-        var el = document.getElementById('results');
-        el.innerHTML = '<div class="loading"><div class="spinner"></div><p>'+t('ui.loading_index')+'</p></div>';
-
-        var script = document.createElement('script');
-        script.src = 'search-data.js';
-        script.onload = function() {
-          bundle = window.SEARCH_DATA;
-          renderStats();
-          callback(bundle);
+      function fetchManifest(id, callback) {
+        if (detailCache[id]) { callback(detailCache[id]); return; }
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+          try {
+            var m = JSON.parse(xhr.responseText);
+            detailCache[id] = m;
+            callback(m);
+          } catch(e) { callback(null); }
         };
-        document.head.appendChild(script);
-
-        // Timeout: if 19MB index doesn't load in 8s, switch to API mode
-        setTimeout(function() {
-          if (bundle) return;
-          // Mark as API mode — override doSearch
-          window.__apiMode = true;
-          var el2 = document.getElementById('results');
-          el2.innerHTML = '<div class="empty-state"><div class="icon">🔍</div><h3>'+t('ui.empty_title')+'</h3><p>'+t('ui.empty_hint')+'</p></div>';
-          // Update stats from API
-          var sxhr = new XMLHttpRequest();
-          sxhr.onload = function() {
-            try {
-              var s = JSON.parse(sxhr.responseText);
-              document.getElementById('totalSkills').textContent = s.total_manifests || s.results?.length || '-';
-              document.getElementById('totalCaps').textContent = s.total_capabilities || '-';
-              document.getElementById('totalTags').textContent = s.total_tags || s.unique_tags || '-';
-            } catch(e) {}
-          };
-          sxhr.open('GET', apiBase + '/api/stats', true);
-          sxhr.send();
-          // Resolve all pending ensureData calls
-          callback(null);
-        }, 8000);
+        xhr.onerror = function() { callback(null); };
+        xhr.open('GET', apiBase + '/api/manifest?id=' + encodeURIComponent(id), true);
+        xhr.send();
       }
 
-      function renderStats() {
-        if (!bundle) return;
-        document.getElementById('totalSkills').textContent = bundle.m.length;
-        var caps = 0;
-        for (var i = 0; i < bundle.m.length; i++) {
-          caps += (bundle.m[i].capabilities || []).length;
-        }
-        document.getElementById('totalCaps').textContent = caps;
-        var tags = new Set();
-        for (var i = 0; i < bundle.m.length; i++) {
-          var t = bundle.m[i].tags || [];
-          for (var j = 0; j < t.length; j++) tags.add(t[j]);
-        }
-        document.getElementById('totalTags').textContent = tags.size;
+      function showLoading(msg) {
+        var el = document.getElementById('results');
+        el.innerHTML = '<div class="loading"><div class="spinner"></div><p>' + (msg || t('ui.searching')) + '</p></div>';
+      }
+
+      function showEmpty(title, hint) {
+        var el = document.getElementById('results');
+        el.innerHTML = '<div class="empty-state"><div class="icon">🔍</div><h3>' + (title || t('ui.no_results')) + '</h3><p>' + (hint || t('ui.no_results_hint')) + '</p></div>';
       }
 
       function scoreColor(s) {
@@ -315,30 +289,34 @@
         return '#e53e3e';
       }
 
-      function renderResults(results) {
+      function renderResults(results, query) {
         var el = document.getElementById('results');
         if (!results || results.length === 0) {
-          el.innerHTML = '<div class="empty-state"><div class="icon">🔍</div><h3>'+t('ui.no_results')+'</h3><p>'+t('ui.no_results_hint')+'</p></div>';
+          showEmpty(t('ui.no_results'), t('ui.no_results_hint'));
           return;
         }
+        currentSearchTerm = '';
         el.innerHTML = results.map(function(m) {
           var badges = [];
-          if (m.trust && m.trust.verified_by && m.trust.verified_by.length) badges.push('<span class="badge audited">'+t('ui.verified')+'</span>');
-          else badges.push('<span class="badge unaudited">'+t('ui.unverified')+'</span>');
+          if (m.trust && m.trust.verified_by && m.trust.verified_by.length) {
+            badges.push('<span class="badge audited">' + t('ui.verified') + '</span>');
+          } else {
+            badges.push('<span class="badge unaudited">' + t('ui.unverified') + '</span>');
+          }
           var repo = m._repo || m.id || 'unknown';
           var scorePct = m.score ? (m.score * 100).toFixed(1) + '%' : '';
           var capCount = (m.capabilities || []).length;
-          var author = (m.author && typeof m.author === 'object') ? (m.author.name||'') : (m.author||'');
+          var author = (m.author && typeof m.author === 'object') ? (m.author.name || '') : (m.author || '');
           var engine = m.runtime ? m.runtime.engine : '';
           return '<div class="result-card" data-id="' + m.id + '">' +
-            '<div class="top"><div><div class="name">' + (m.name||'') + ' <small>v' + (m.version||'0.1') + '</small></div></div>' +
+            '<div class="top"><div><div class="name">' + (m.name || '') + ' <small>v' + (m.version || '0.1') + '</small></div></div>' +
             '<div>' + badges.join('') + '</div></div>' +
-            '<div class="desc" style="-webkit-line-clamp:2">' + (m.description||t('ui.no_description')) + '</div>' +
+            '<div class="desc" style="-webkit-line-clamp:2">' + (m.description || t('ui.no_description')) + '</div>' +
             '<div class="meta">' +
             '<span class="cap-count">🎯 ' + capCount + ' ' + t('ui.stats_caps').toLowerCase() + '</span>' +
             (author ? '<span>👤 ' + t('ui.author') + ': ' + author + '</span>' : '') +
             (engine ? '<span>⚙ ' + t('ui.engine') + ': ' + engine + '</span>' : '') +
-            (m.tags && m.tags.length ? '<span>🏷 ' + m.tags.slice(0,3).join(', ') + '</span>' : '') +
+            (m.tags && m.tags.length ? '<span>🏷 ' + m.tags.slice(0, 3).join(', ') + '</span>' : '') +
             (scorePct ? '<span class="score-bar-wrap"><span class="score-bar-track"><span class="score-bar-fill" style="width:' + (m.score * 100) + '%;background:' + scoreColor(m.score) + '"></span></span><span class="score-bar-label" style="color:' + scoreColor(m.score) + '">' + scorePct + '</span></span>' : '') +
             '</div><span class="install-cmd">agent install ' + repo + '</span></div>';
         }).join('');
@@ -349,85 +327,92 @@
       }
 
       function showDetail(id) {
-        if (!bundle) return;
-        var m = null;
-        for (var i = 0; i < bundle.m.length; i++) {
-          if (bundle.m[i].id === id) { m = bundle.m[i]; break; }
+        // First try from cache (search results already have manifest data)
+        var card = null;
+        for (var key in searchCache) {
+          var list = searchCache[key];
+          for (var i = 0; i < list.length; i++) {
+            if (list[i].id === id) { card = list[i]; break; }
+          }
+          if (card) break;
         }
-        if (!m) return;
+
+        if (card) {
+          renderDetail(card);
+        } else {
+          showLoading(t('ui.loading'));
+          fetchManifest(id, function(m) {
+            if (m) renderDetail(m);
+            else showEmpty(t('ui.no_results'), t('ui.no_results_hint'));
+          });
+        }
+      }
+
+      function renderDetail(m) {
         var el = document.getElementById('results');
         var repo = m._repo || m.id || 'unknown';
-        var author = (m.author && typeof m.author === 'object') ? (m.author.name||'') : (m.author||'');
+        var author = (m.author && typeof m.author === 'object') ? (m.author.name || '') : (m.author || '');
         var engine = m.runtime ? m.runtime.engine : '';
         var sandbox = m.trust ? m.trust.sandbox_level : 'basic';
-        el.innerHTML = '<div class="detail-header"><a href="#" id="backBtn">← Back</a></div>'
+        el.innerHTML = '<div class="detail-header"><a href="#" id="backBtn">← ' + t('ui.back') + '</a></div>' +
           '<div class="result-card detail-card">' +
-          '<div class="top"><div><h2>' + (m.name||'') + '</h2><div class="subtitle">' + (m.id||'') + ' · v' + (m.version||'0.1') + '</div></div></div>' +
-          '<div class="desc-text">' + (m.description||t('ui.no_description')) + '</div>' +
+          '<div class="top"><div><h2>' + (m.name || '') + '</h2><div class="subtitle">' + (m.id || '') + ' · v' + (m.version || '0.1') + '</div></div></div>' +
+          '<div class="desc-text">' + (m.description || t('ui.no_description')) + '</div>' +
           '<div class="detail-grid">' +
-          '<div>👤 '+t('ui.author')+': ' + (author||t('ui.unknown')) + '</div>' +
-          '<div>📄 '+t('ui.license')+': ' + (m.license||t('ui.not_declared')) + '</div>' +
-          (engine ? '<div>⚙ '+t('ui.engine')+': ' + engine + '</div>' : '') +
-          '<div>🔒 '+t('ui.sandbox')+': ' + sandbox + '</div>' +
+          '<div>👤 ' + t('ui.author') + ': ' + (author || t('ui.unknown')) + '</div>' +
+          '<div>📄 ' + t('ui.license') + ': ' + (m.license || t('ui.not_declared')) + '</div>' +
+          (engine ? '<div>⚙ ' + t('ui.engine') + ': ' + engine + '</div>' : '') +
+          '<div>🔒 ' + t('ui.sandbox') + ': ' + sandbox + '</div>' +
           '</div>' +
           '<div class="install-cmd" style="margin-top:12px">agent install ' + repo + '</div>' +
           '</div>';
-        document.getElementById('backBtn').textContent = t('ui.back');
         document.getElementById('backBtn').addEventListener('click', function(e) {
           e.preventDefault();
           var q = document.getElementById('searchInput').value.trim();
-          if (q) doSearch(q); else loadAll();
+          if (q) doSearch(q); else showEmpty(t('ui.empty_title'), t('ui.empty_hint'));
         });
       }
 
       function doSearch(query) {
-        if (window.__apiMode) {
-          // Use API search when 19MB index failed to load
-          apiSearch(query, 20, function(results) {
-            renderResults(results, query);
-          });
+        if (!query || !query.trim()) {
+          showEmpty(t('ui.empty_title'), t('ui.empty_hint'));
           return;
         }
-        ensureData(function(b) {
-          if (!b) {
-            // Fallback to API if ensureData timed out
-            apiSearch(query, 20, function(results) {
-              renderResults(results, query);
-            });
-            return;
-          }
-          var results = engine.search(query, b, 20);
+        query = query.trim();
+        currentSearchTerm = query;
+        apiSearch(query, function(results) {
+          if (currentSearchTerm !== query) return; // stale response
           renderResults(results, query);
         });
       }
 
-      function loadAll() {
-        ensureData(function(b) {
-          renderResults(b.m.slice(0, 20));
+      function bindEvents() {
+        var input = document.getElementById('searchInput');
+        var timer;
+
+        input.addEventListener('input', function(e) {
+          clearTimeout(timer);
+          timer = setTimeout(function() {
+            var q = e.target.value.trim();
+            if (q) doSearch(q);
+            else showEmpty(t('ui.empty_title'), t('ui.empty_hint'));
+          }, 300);
+        });
+
+        input.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') {
+            clearTimeout(timer);
+            var q = e.target.value.trim();
+            if (q) doSearch(q);
+            else showEmpty(t('ui.empty_title'), t('ui.empty_hint'));
+          }
+        });
+
+        document.getElementById('browseAllLink').addEventListener('click', function(e) {
+          e.preventDefault();
+          doSearch('*');
         });
       }
-
-      var timer;
-      document.getElementById('searchInput').addEventListener('input', function(e) {
-        clearTimeout(timer);
-        timer = setTimeout(function() {
-          var q = e.target.value.trim();
-          if (q) doSearch(q);
-        }, 300);
-      });
-
-      document.getElementById('searchInput').addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-          clearTimeout(timer);
-          var q = e.target.value.trim();
-          if (q) doSearch(q); else loadAll();
-        }
-      });
-
-      document.getElementById('browseAllLink').addEventListener('click', function(e) {
-        e.preventDefault();
-        loadAll();
-      });
     })();
   </script>
 </body>
