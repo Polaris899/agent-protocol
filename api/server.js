@@ -196,6 +196,15 @@ export default function handler(req, res) {
   try {
     switch (path) {
 
+      // ── GET /api/openapi.json ───────────────────────────────────────
+      case '/api/openapi.json': {
+        // Also available at: https://raw.githubusercontent.com/Polaris899/agent-protocol/main/api/openapi.json
+        import { readFileSync } from 'fs';
+        const oapi = JSON.parse(readFileSync(join(process.cwd(), 'api', 'openapi.json'), 'utf-8'));
+        oapi.servers[0].url = 'https://' + req.headers.host;
+        return res.json(oapi);
+      }
+
       // ── GET /api/health ────────────────────────────────────────────
       case '/api':
       case '/api/health':

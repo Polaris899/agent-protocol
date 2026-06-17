@@ -1,0 +1,164 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "AMP Intent Router",
+    "description": "Agent Manifest Protocol — Route any user intent to the best matching AI Skill across 5,051 indexed Skills (OpenClaw + GPTs).\n\n一个GPT问另一个GPT：谁能处理这个意图？\n\nExample queries:\n- \"帮我分析财务报表\"\n- \"今天天气怎么样\"\n- \"generate a music beat\"\n- \"画一幅画\"\n- \"写一份研究报告\"\n\nResponse includes:\n- top_match: the best matching Skill (name + description + score)\n- alternatives: 3 more options if top_match isn't ideal\n- total_matches: how many Skills could handle this intent",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://github.com/Polaris899/agent-protocol"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.agent-trust-protocol.org",
+      "description": "AMP Router Production"
+    }
+  ],
+  "paths": {
+    "/api/route": {
+      "post": {
+        "operationId": "routeIntent",
+        "summary": "Find the best AI Skill for any user intent",
+        "description": "Semantic search across 5,051 indexed Skills. Returns the top matching Skill + 3 alternatives, each with confidence score (0-1). Your GPT can then decide whether to handle the intent itself or delegate to the matched Skill.\n\n最佳意图匹配器：给定用户意图，返回最匹配的AI Skill。",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["intent"],
+                "properties": {
+                  "intent": {
+                    "type": "string",
+                    "description": "User's natural language intent. Can be Chinese or English.\nExamples: '帮我分析财务报表', 'today weather in Tokyo', '生成一份演示文稿', 'analyze this Excel file'",
+                    "example": "帮我分析财务报表"
+                  },
+                  "from_gpt": {
+                    "type": "string",
+                    "description": "Optional identifier for the calling GPT (for analytics/tracking)",
+                    "example": "my-gpt-v1"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful route — top match + alternatives with scores",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "matched": {
+                      "type": "boolean",
+                      "description": "Whether any Skill matched"
+                    },
+                    "intent": {
+                      "type": "string",
+                      "description": "The original intent queried"
+                    },
+                    "top_match": {
+                      "type": "object",
+                      "description": "Best matching Skill manifest (name, description, score, id, tags, capabilities)",
+                      "properties": {
+                        "name": { "type": "string" },
+                        "description": { "type": "string" },
+                        "score": { "type": "number" }
+                      }
+                    },
+                    "alternatives": {
+                      "type": "array",
+                      "description": "3 next-best matching Skills with their manifests",
+                      "items": { "type": "object" }
+                    },
+                    "total_matches": {
+                      "type": "integer",
+                      "description": "Total number of Skills that matched (score > 0.1)"
+                    }
+                  }
+                },
+                "example": {
+                  "matched": true,
+                  "intent": "帮我分析财务报表",
+                  "top_match": {
+                    "name": "财务规划师 v36",
+                    "description": "个人理财、投资组合、退休规划和税务筹划",
+                    "score": 0.44
+                  },
+                  "alternatives": [
+                    { "name": "财报分析专家", "score": 0.21 },
+                    { "name": "会计顾问 v36", "score": 0.18 },
+                    { "name": "商业分析师", "score": 0.16 }
+                  ],
+                  "total_matches": 12
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing intent parameter"
+          }
+        }
+      }
+    },
+    "/api/search": {
+      "get": {
+        "operationId": "searchSkills",
+        "summary": "Semantic search across all Skills",
+        "description": "Search the entire Skill index by keyword. Returns full Skill manifests for each match.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Search query (Chinese or English)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results with full Skill manifests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "query": { "type": "string" },
+                    "total": { "type": "integer" },
+                    "results": { "type": "array" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/stats": {
+      "get": {
+        "operationId": "getStats",
+        "summary": "Registry statistics",
+        "description": "Get total indexed Skills, capabilities, and engine distribution.",
+        "responses": {
+          "200": {
+            "description": "Registry stats",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total_manifests": { "type": "integer" },
+                    "total_capabilities": { "type": "integer" },
+                    "unique_engines": { "type": "array", "items": { "type": "string" } }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

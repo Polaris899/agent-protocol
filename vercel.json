@@ -7,8 +7,13 @@
     }
   },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/server" }
+    { "source": "/api/(.*)", "destination": "/api/server", "regex": "^/api/(?!openapi\.json)(.*)$" }
   ],
+  "overrides": {
+    "api/openapi.json": {
+      "contentType": "application/json"
+    }
+  },
   "headers": [
     {
       "source": "/api/(.*)",
