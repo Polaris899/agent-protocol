@@ -239,7 +239,7 @@ async function runLifecycleHook(targetDir, hook, hookName) {
   const { default: chalk } = await import('chalk');
 
   if (hook.requires_approval) {
-    const answer = await ask(chalk.yellow(`  安装需要执行: ${hook.description || hookName}\n  确认执行？[y/N] `));
+    const answer = await ask(chalk.yellow(`  Install requires executing: ${hook.description || hookName}\n  Confirm? [y/N] `));
     if (answer.toLowerCase() !== 'y') {
       console.log(chalk.gray(`  Skipping ${hookName} hook`));
       return;

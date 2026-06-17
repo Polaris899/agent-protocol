@@ -34,7 +34,7 @@ export async function searchCommand(query, options) {
 
 function loadIndex() {
   if (!existsSync(INDEX_PATH)) {
-    console.error('❌ 索引文件未找到。请重新安装 agent-protocol-cli');
+    console.error('❌ Index file not found. Please reinstall agent-protocol-cli');
     process.exit(1);
   }
   return JSON.parse(readFileSync(INDEX_PATH, 'utf-8'));

@@ -105,7 +105,7 @@ export async function updateCommand(skillName, options) {
           cwd: skill.dir, stdio: 'pipe', encoding: 'utf-8', timeout: 30000,
         });
         if (fallback.status !== 0) {
-          throw new Error(fallback.stderr?.split('\n')[0]?.slice(0, 100) || 'git pull 失败');
+          throw new Error(fallback.stderr?.split('\n')[0]?.slice(0, 100) || 'git pull failed');
         }
       }
 
@@ -309,7 +309,7 @@ async function runHook(dir, hook, hookName) {
   if (!hook) return;
 
   if (hook.requires_approval) {
-    const answer = await ask(chalk.yellow(`  更新钩子: ${hook.description || hookName}\n  确认？[y/N] `));
+    const answer = await ask(chalk.yellow(`  Update hook: ${hook.description || hookName}\n  Confirm? [y/N] `));
     if (answer.toLowerCase() !== 'y') {
       console.log(chalk.gray(`  Skipping ${hookName}`));
       return;
