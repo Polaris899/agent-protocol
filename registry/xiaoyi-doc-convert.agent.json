@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.doc-convert",
-  "name": "文档格式转换",
-  "description": "支持 Word、PDF、Excel、PPT、Markdown、HTML 等多格式互转",
+  "name": "Document Converter",
+  "description": "Convert between Word, PDF, Excel, PPT, Markdown, HTML and other formats",
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team",
@@ -25,7 +25,10 @@
         "把这个PDF转成Word",
         "docx转pdf",
         "md转html",
-        "convert {source} to {target}"
+        "convert {source} to {target}",
+        "convert this file to {format}",
+        "change format of document",
+        "transform {source} to {target}"
       ],
       "input": {
         "type": "object",
@@ -54,5 +57,7 @@
     "verified_by": [
       "openclaw_team"
     ]
-  }
+  },
+  "name_zh": "文档格式转换",
+  "description_zh": "支持 Word、PDF、Excel、PPT、Markdown、HTML 等多格式互转"
 }

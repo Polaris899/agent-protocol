@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.ppt-generator",
-  "name": "PPT 生成器",
-  "description": "自动生成和编辑专业演示文稿，支持多种模板风格，三步流程：采集信息→生成大纲→生成PPT",
+  "name": "PPT Generator",
+  "description": "Generate and edit professional presentations with multiple template styles, three-step workflow: gather info → create outline → generate PPT",
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team",
@@ -25,7 +25,10 @@
         "帮我做个PPT",
         "生成演示文稿",
         "创建幻灯片",
-        "create presentation"
+        "create presentation",
+        "create a presentation about {topic}",
+        "make slides for {subject}",
+        "generate a slide deck"
       ],
       "input": {
         "type": "object",
@@ -42,7 +45,10 @@
       "intents": [
         "修改这个PPT",
         "换模板",
-        "编辑幻灯片"
+        "编辑幻灯片",
+        "modify this presentation",
+        "change the template",
+        "edit slides"
       ],
       "input": {
         "type": "object",
@@ -71,5 +77,7 @@
     "verified_by": [
       "openclaw_team"
     ]
-  }
+  },
+  "name_zh": "PPT 生成器",
+  "description_zh": "自动生成和编辑专业演示文稿，支持多种模板风格，三步流程：采集信息→生成大纲→生成PPT"
 }

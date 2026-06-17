@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.spreadsheet",
-  "name": "电子表格工具",
-  "description": "创建、编辑和分析电子表格，支持公式、图表、透视表、条件格式",
+  "name": "Spreadsheet Tools",
+  "description": "Create, edit, and analyze spreadsheets with formulas, charts, pivot tables, and conditional formatting",
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team",
@@ -25,7 +25,10 @@
         "帮我做个表",
         "创建表格",
         "创建Excel",
-        "create spreadsheet"
+        "create spreadsheet",
+        "create a spreadsheet",
+        "make an Excel file",
+        "build a table"
       ],
       "input": {
         "type": "object",
@@ -43,7 +46,10 @@
         "分析这份数据",
         "做数据透视",
         "汇总数据",
-        "analyze data"
+        "analyze data",
+        "analyze this data",
+        "create a pivot table",
+        "summarize data"
       ],
       "input": {
         "type": "object",
@@ -61,7 +67,10 @@
         "生成图表",
         "画个图",
         "可视化数据",
-        "create chart"
+        "create chart",
+        "create a chart",
+        "visualize this data",
+        "make a graph"
       ],
       "input": {
         "type": "object",
@@ -90,5 +99,7 @@
     "verified_by": [
       "openclaw_team"
     ]
-  }
+  },
+  "name_zh": "电子表格工具",
+  "description_zh": "创建、编辑和分析电子表格，支持公式、图表、透视表、条件格式"
 }

@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.fsa-analyzer",
-  "name": "Financial Statement Analyzer",
-  "description": "Deep financial analysis with DuPont decomposition and fraud detection for balance sheet, income statement, and cash flow",
+  "name": "财报分析专家",
+  "description": "企业财务报表深度分析，支持资产负债表、利润表、现金流量表，含杜邦分解和舞弊检测",
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team",
@@ -143,7 +143,5 @@
   },
   "_repo": "Polaris899/fsa-analyzer",
   "_path": "agent.json",
-  "_url": "https://github.com/Polaris899/fsa-analyzer/blob/main/agent.json",
-  "name_zh": "财报分析专家",
-  "description_zh": "企业财务报表深度分析，支持资产负债表、利润表、现金流量表，含杜邦分解和舞弊检测"
+  "_url": "https://github.com/Polaris899/fsa-analyzer/blob/main/agent.json"
 }

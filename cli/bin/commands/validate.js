@@ -8,11 +8,11 @@ const SCHEMA_PATH = join(__dirname, '..', 'data', 'manifest.schema.json');
 
 export async function validateCommand(path) {
   if (!existsSync(path)) {
-    console.error(chalk.red(`❌ 文件不存在: ${path}`));
+    console.error(chalk.red(`❌ File not found: ${path}`));
     process.exit(1);
   }
 
-  console.log(chalk.blue(`🔍 校验: ${path}`));
+  console.log(chalk.blue(`🔍 Validating: ${path}`));
   console.log();
 
   let manifest;
@@ -21,7 +21,7 @@ export async function validateCommand(path) {
     // Try JSON first, could also support YAML later
     manifest = JSON.parse(content);
   } catch (err) {
-    console.error(chalk.red(`❌ 解析失败: ${err.message}`));
+    console.error(chalk.red(`❌ Parse failed: ${err.message}`));
     process.exit(1);
   }
 
@@ -30,7 +30,7 @@ export async function validateCommand(path) {
   try {
     schema = JSON.parse(readFileSync(SCHEMA_PATH, 'utf-8'));
   } catch {
-    console.log(chalk.yellow('  ⚠ 无法加载 Schema 文件，执行基础校验...'));
+    console.log(chalk.yellow('  ⚠ Schema file unavailable, running basic validation...'));
     basicValidate(manifest);
     return;
   }
@@ -45,11 +45,11 @@ export async function validateCommand(path) {
     const valid = validate(manifest);
 
     if (valid) {
-      console.log(chalk.green('✅ Manifest 验证通过！'));
+      console.log(chalk.green('✅ Manifest validation passed!'));
       console.log();
       printSummary(manifest);
     } else {
-      console.log(chalk.red(`❌ 发现 ${validate.errors.length} 个问题：`));
+      console.log(chalk.red(`❌ Found ${validate.errors.length} issues:`));
       for (const err of validate.errors) {
         const path = err.instancePath || '/';
         console.log(`  ${chalk.red('✗')} ${path} ${err.message}`);
@@ -57,7 +57,7 @@ export async function validateCommand(path) {
       process.exit(1);
     }
   } catch (err) {
-    console.log(chalk.yellow(`  ⚠ 高级校验不可用: ${err.message}`));
+    console.log(chalk.yellow(`  ⚠ Advanced validation unavailable: ${err.message}`));
     basicValidate(manifest);
   }
 }
@@ -65,29 +65,29 @@ export async function validateCommand(path) {
 function basicValidate(manifest) {
   const errors = [];
 
-  if (!manifest.id) errors.push('缺少必需字段: id');
-  if (!manifest.name) errors.push('缺少必需字段: name');
-  if (!manifest.version) errors.push('缺少必需字段: version');
+  if (!manifest.id) errors.push('Missing required field: id');
+  if (!manifest.name) errors.push('Missing required field: name');
+  if (!manifest.version) errors.push('Missing required field: version');
   if (!manifest.capabilities || !Array.isArray(manifest.capabilities) || manifest.capabilities.length === 0) {
-    errors.push('必须至少声明一个 capability');
+    errors.push('Must declare at least one capability');
   }
 
   if (errors.length > 0) {
-    console.log(chalk.red(`❌ 发现 ${errors.length} 个问题：`));
+    console.log(chalk.red(`❌ Found ${errors.length} issues:`));
     for (const err of errors) {
       console.log(`  ${chalk.red('✗')} ${err}`);
     }
     process.exit(1);
   }
 
-  console.log(chalk.green('✅ 基础验证通过！'));
+  console.log(chalk.green('✅ Basic validation passed!'));
   printSummary(manifest);
 }
 
 function printSummary(manifest) {
   console.log(`  ${chalk.bold(manifest.name)} v${manifest.version}`);
   console.log(`  ID: ${chalk.cyan(manifest.id)}`);
-  console.log(`  能力数: ${chalk.green(manifest.capabilities?.length || 0)}`);
+  console.log(`  Capabilities: ${chalk.green(manifest.capabilities?.length || 0)}`);
   
   const caps = manifest.capabilities || [];
   for (const cap of caps) {
@@ -97,6 +97,6 @@ function printSummary(manifest) {
   }
 
   if (manifest.trust?.permissions?.length) {
-    console.log(`  声明的权限: ${chalk.yellow(manifest.trust.permissions.join(', '))}`);
+    console.log(`  Declared permissions: ${chalk.yellow(manifest.trust.permissions.join(', '))}`);
   }
 }

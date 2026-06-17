@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.report-gen",
-  "name": "深度研究报告",
-  "description": "从多源信息生成带引用的专业分析报告，支持学术研究、市场调研、竞品分析",
+  "name": "Deep Research Report",
+  "description": "Generate professional analysis reports with citations from multiple sources, supporting academic research, market research, and competitive analysis",
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team",
@@ -25,7 +25,10 @@
         "调研{topic}",
         "分析{industry}行业",
         "写一份关于{topic}的研究报告",
-        "research {topic}"
+        "research {topic}",
+        "research {topic}",
+        "write a report about {topic}",
+        "analyze {industry} market"
       ],
       "input": {
         "type": "object",
@@ -52,5 +55,7 @@
     "verified_by": [
       "openclaw_team"
     ]
-  }
+  },
+  "name_zh": "深度研究报告",
+  "description_zh": "从多源信息生成带引用的专业分析报告，支持学术研究、市场调研、竞品分析"
 }

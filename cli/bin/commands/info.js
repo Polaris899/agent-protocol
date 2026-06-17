@@ -55,8 +55,8 @@ export async function infoCommand(name, options) {
     } catch {}
   }
 
-  console.log(chalk.yellow(`  未找到名为 "${name}" 的 Skill。`));
-  console.log(chalk.gray('  使用 agent search <query> 搜索，或确认名称是否准确'));
+  console.log(chalk.yellow(`  Skill "${name}" not found.`));
+  console.log(chalk.gray('  Use agent search <query> to search, or check the name'));
 }
 
 function renderManifest(manifest, asJson) {
@@ -69,43 +69,43 @@ function renderManifest(manifest, asJson) {
   console.log(`  ${chalk.gray(manifest.description || '')}`);
   console.log();
   console.log(`  ID:      ${chalk.cyan(manifest.id)}`);
-  console.log(`  版本:    ${chalk.green(manifest.version)}`);
-  if (manifest.author?.name) console.log(`  作者:    ${manifest.author.name}`);
-  if (manifest.license) console.log(`  许可:    ${manifest.license}`);
-  if (manifest.tags?.length) console.log(`  标签:    ${chalk.gray(manifest.tags.join(', '))}`);
+  console.log(`  Version: ${chalk.green(manifest.version)}`);
+  if (manifest.author?.name) console.log(`  Author:  ${manifest.author.name}`);
+  if (manifest.license) console.log(`  License: ${manifest.license}`);
+  if (manifest.tags?.length) console.log(`  Tags:    ${chalk.gray(manifest.tags.join(', '))}`);
   console.log();
 
   // Capabilities
   const caps = manifest.capabilities || [];
-  console.log(chalk.blue(`🎯 能力 (${caps.length})：`));
+  console.log(chalk.blue(`🎯 Capabilities (${caps.length}):`));
   for (const cap of caps) {
     console.log(`  ${chalk.bold(cap.name)} (${cap.id})`);
     console.log(`    ${chalk.gray(cap.description)}`);
     if (cap.intents?.length) {
       const samples = cap.intents.slice(0, 3);
-      console.log(`    ${chalk.gray('意图示例: ' + samples.join(' | '))}`);
+      console.log(`    ${chalk.gray('Intent examples: ' + samples.join(' | '))}`);
     }
-    console.log(`    ${cap.latency ? chalk.gray(`延迟: ${cap.latency}  |  `) : ''}${chalk.gray(`安全: ${cap.security_level || 'low'}  |  费用: ¥${cap.cost_per_call || 0}/次`)}`);
+    console.log(`    ${cap.latency ? chalk.gray(`Latency: ${cap.latency}  |  `) : ''}${chalk.gray(`Security: ${cap.security_level || 'low'}  |  Cost: ¥${cap.cost_per_call || 0}/call`)}`);
     console.log();
   }
 
   // Runtime
   if (manifest.runtime) {
-    console.log(chalk.blue('⚙ 运行时'));
-    console.log(`  引擎:     ${manifest.runtime.engine}`);
-    console.log(`  类型:     ${manifest.runtime.type || 'skill'}`);
-    if (manifest.runtime.config_url) console.log(`  配置:     ${chalk.gray(manifest.runtime.config_url)}`);
+    console.log(chalk.blue('⚙ Runtime'));
+    console.log(`  Engine:   ${manifest.runtime.engine}`);
+    console.log(`  Type:     ${manifest.runtime.type || 'skill'}`);
+    if (manifest.runtime.config_url) console.log(`  Config:   ${chalk.gray(manifest.runtime.config_url)}`);
     console.log();
   }
 
   // Trust
   if (manifest.trust) {
-    console.log(chalk.blue('🔒 安全与信任'));
+    console.log(chalk.blue('🔒 Security & Trust'));
     const perms = manifest.trust.permissions || [];
-    console.log(`  权限:     ${perms.length > 0 ? chalk.yellow(perms.join(', ')) : chalk.gray('无')}`);
-    console.log(`  沙箱:    ${manifest.trust.sandbox_level || 'basic'}`);
+    console.log(`  Permissions: ${perms.length > 0 ? chalk.yellow(perms.join(', ')) : chalk.gray('None')}`);
+    console.log(`  Sandbox:     ${manifest.trust.sandbox_level || 'basic'}`);
     if (manifest.trust.verified_by?.length) {
-      console.log(`  ${chalk.green('✓ 已通过审计: ' + manifest.trust.verified_by.join(', '))}`);
+      console.log(`  ${chalk.green('✓ Audited by: ' + manifest.trust.verified_by.join(', '))}`);
     }
     console.log();
   }

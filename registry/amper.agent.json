@@ -1,14 +1,21 @@
 {
   "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.amper",
-  "name": "AMP 桥梁",
+  "name": "AMP Bridge",
   "description": "Bridges Agent Manifest Protocol with OpenClaw Runtime. Resolves agent.json manifests, searches the protocol registry, and routes intents to installed skills.",
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team",
     "url": "https://github.com/openclaw"
   },
-  "tags": ["amp", "bridge", "runtime", "protocol", "discovery", "routing"],
+  "tags": [
+    "amp",
+    "bridge",
+    "runtime",
+    "protocol",
+    "discovery",
+    "routing"
+  ],
   "license": "MIT",
   "capabilities": [
     {
@@ -44,7 +51,9 @@
             "description": "自然语言搜索关键词"
           }
         },
-        "required": ["query"]
+        "required": [
+          "query"
+        ]
       },
       "latency": "low",
       "security_level": "low",
@@ -83,11 +92,19 @@
     "engine": "openclaw",
     "min_version": "1.0.0",
     "type": "skill",
-    "engines": ["openclaw"]
+    "engines": [
+      "openclaw"
+    ]
   },
   "trust": {
-    "permissions": ["network"],
+    "permissions": [
+      "network"
+    ],
     "sandbox_level": "basic",
-    "verified_by": ["openclaw_team"]
-  }
+    "verified_by": [
+      "openclaw_team"
+    ]
+  },
+  "name_zh": "AMP 桥梁",
+  "description_zh": "将 Agent Manifest Protocol 与 OpenClaw Runtime 连接。解析 agent.json 清单，搜索协议注册中心，将意图路由到已安装的 Skill。"
 }

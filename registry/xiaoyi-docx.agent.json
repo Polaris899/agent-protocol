@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.docx-generator",
-  "name": "Word 文档生成",
-  "description": "创建和编辑Word文档，支持表格、目录、中文排版、格式化报告",
+  "name": "Word Document Generator",
+  "description": "Create and edit Word documents with tables, table of contents, Chinese typography, and formatted reports",
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team",
@@ -25,7 +25,10 @@
         "生成Word文档",
         "帮我写个报告",
         "创建docx",
-        "create word document"
+        "create word document",
+        "create a Word document",
+        "generate a report",
+        "write a document"
       ],
       "input": {
         "type": "object",
@@ -42,7 +45,10 @@
       "intents": [
         "修改这个文档",
         "编辑Word",
-        "edit document"
+        "edit document",
+        "edit this Word document",
+        "modify the document",
+        "update the report"
       ],
       "input": {
         "type": "object",
@@ -71,5 +77,7 @@
     "verified_by": [
       "openclaw_team"
     ]
-  }
+  },
+  "name_zh": "Word 文档生成",
+  "description_zh": "创建和编辑Word文档，支持表格、目录、中文排版、格式化报告"
 }

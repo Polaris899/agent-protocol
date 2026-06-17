@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.huawei-drive",
-  "name": "华为云空间",
-  "description": "华为云空间云盘文件管理，支持文件上传、列表查询、用量查看",
+  "name": "Huawei Cloud Drive",
+  "description": "Huawei Cloud Drive file management: upload, list files, and check storage usage",
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team",
@@ -25,7 +25,10 @@
       "intents": [
         "上传文件到云盘",
         "备份这个文件",
-        "upload to cloud"
+        "upload to cloud",
+        "upload to cloud drive",
+        "backup this file to cloud",
+        "save to cloud storage"
       ],
       "input": {
         "type": "object",
@@ -42,7 +45,10 @@
       "intents": [
         "查看云盘文件",
         "云盘用量",
-        "list cloud files"
+        "list cloud files",
+        "list cloud drive files",
+        "check storage usage",
+        "show my cloud files"
       ],
       "input": {
         "type": "object",
@@ -67,5 +73,7 @@
     ],
     "sandbox_level": "basic",
     "verified_by": []
-  }
+  },
+  "name_zh": "华为云空间",
+  "description_zh": "华为云空间云盘文件管理，支持文件上传、列表查询、用量查看"
 }

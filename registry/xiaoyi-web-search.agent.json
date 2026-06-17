@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.web-search",
-  "name": "联网搜索",
-  "description": "使用华为云AI联网搜索API进行网页内容检索，获取实时网络信息",
+  "name": "Web Search",
+  "description": "Search the internet using Huawei Cloud AI web search API for real-time information",
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team",
@@ -26,7 +26,10 @@
         "搜索{query}",
         "查一下{query}",
         "最新{topic}资讯",
-        "search for {query}"
+        "search for {query}",
+        "search for {query} on the internet",
+        "find information about {topic}",
+        "look up {query}"
       ],
       "input": {
         "type": "object",
@@ -51,5 +54,7 @@
     ],
     "sandbox_level": "basic",
     "verified_by": []
-  }
+  },
+  "name_zh": "联网搜索",
+  "description_zh": "使用华为云AI联网搜索API进行网页内容检索，获取实时网络信息"
 }

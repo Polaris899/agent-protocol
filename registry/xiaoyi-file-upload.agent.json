@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.file-upload",
-  "name": "文件上传",
-  "description": "上传本地文件到对象存储，获取可共享的下载链接",
+  "name": "File Upload",
+  "description": "Upload local files to object storage and get shareable download links",
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team",
@@ -25,7 +25,10 @@
         "上传这个文件",
         "获取下载链接",
         "分享文件",
-        "upload file"
+        "upload file",
+        "upload this file",
+        "share this document",
+        "get a download link"
       ],
       "input": {
         "type": "object",
@@ -51,5 +54,7 @@
     ],
     "sandbox_level": "basic",
     "verified_by": []
-  }
+  },
+  "name_zh": "文件上传",
+  "description_zh": "上传本地文件到对象存储，获取可共享的下载链接"
 }

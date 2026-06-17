@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.image-gen",
-  "name": "AI 图像创作",
-  "description": "基于Seedream5的AI图像生成，支持文生图、图生图、风格迁移、系列组图",
+  "name": "AI Image Generation",
+  "description": "AI image generation based on Seedream5, supporting text-to-image, image-to-image, style transfer, and series creation",
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team",
@@ -24,7 +24,10 @@
       "intents": [
         "画一张{描述}的图",
         "生成一张{描述}的图片",
-        "generate an image of {subject}"
+        "generate an image of {subject}",
+        "generate an image of {subject}",
+        "draw {description}",
+        "create a picture of {scene}"
       ],
       "input": {
         "type": "object",
@@ -41,7 +44,10 @@
       "intents": [
         "把这个改成{风格}风格",
         "基于这张图生成",
-        "风格迁移"
+        "风格迁移",
+        "convert this image to {style} style",
+        "apply {style} to this photo",
+        "transform this picture"
       ],
       "input": {
         "type": "object",
@@ -58,7 +64,10 @@
       "intents": [
         "去掉这个物体",
         "扩展背景",
-        "edit image"
+        "edit image",
+        "edit this image",
+        "remove object from photo",
+        "extend background"
       ],
       "input": {
         "type": "object",
@@ -83,5 +92,7 @@
     ],
     "sandbox_level": "basic",
     "verified_by": []
-  }
+  },
+  "name_zh": "AI 图像创作",
+  "description_zh": "基于Seedream5的AI图像生成，支持文生图、图生图、风格迁移、系列组图"
 }

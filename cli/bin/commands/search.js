@@ -47,21 +47,21 @@ function printResults(results, query, asJson) {
   }
 
   if (results.length === 0) {
-    console.log(`\n  🔍 未找到匹配 "${query}" 的 Skill\n`);
+    console.log(`\n  🔍 No matching Skills found for "${query}"\n`);
     return;
   }
 
-  console.log(`\n  📦 找到 ${results.length} 个匹配的 Skill（查询: "${query}"）\n`);
+  console.log(`\n  📦 Found ${results.length} matching Skills (query: "${query}")\n`);
   console.log('  ' + '─'.repeat(64));
 
   results.forEach((m, i) => {
     const capCount = m.capabilities?.length || 0;
     const repo = m._repo || m.id?.replace(/\./g, '/') || 'unknown';
-    const score = m.score ? (m.score * 100).toFixed(1) + '% 匹配' : '';
+    const score = m.score ? (m.score * 100).toFixed(1) + '% match' : '';
     console.log(`  ${(i + 1).toString().padStart(2)}. ${m.name}  v${m.version || '0.1'}  ${score}`);
-    console.log(`     描述: ${(m.description || '暂无').slice(0, 80)}`);
-    console.log(`     能力: ${capCount} 个 | 引擎: ${m.runtime?.engine || '未指定'}`);
-    console.log(`     安装: agent install ${repo}`);
+    console.log(`     Description: ${(m.description || 'No description').slice(0, 80)}`);
+    console.log(`     Capabilities: ${capCount} | Engine: ${m.runtime?.engine || 'Not specified'}`);
+    console.log(`     Install: agent install ${repo}`);
     console.log('');
   });
 }

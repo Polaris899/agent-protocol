@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.health",
-  "name": "运动健康助手",
-  "description": "查询运动健康数据并提供分析解读，覆盖心率、睡眠、运动、压力、营养等",
+  "name": "Health Assistant",
+  "description": "Query health data and provide analysis covering heart rate, sleep, exercise, stress, and nutrition",
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team",
@@ -26,7 +26,10 @@
         "我的睡眠怎么样",
         "今天心率多少",
         "查看运动数据",
-        "健康概览"
+        "健康概览",
+        "how was my sleep last night",
+        "what's my heart rate",
+        "view my exercise data"
       ],
       "input": {
         "type": "object",
@@ -44,7 +47,10 @@
         "分析我的健康趋势",
         "这周运动量够吗",
         "健康建议",
-        "health analysis"
+        "health analysis",
+        "analyze my health trends",
+        "weekly health summary",
+        "health recommendations"
       ],
       "input": {
         "type": "object",
@@ -69,5 +75,7 @@
     ],
     "sandbox_level": "basic",
     "verified_by": []
-  }
+  },
+  "name_zh": "运动健康助手",
+  "description_zh": "查询运动健康数据并提供分析解读，覆盖心率、睡眠、运动、压力、营养等"
 }

@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.vlog-gen",
-  "name": "一键成片",
-  "description": "多图自动生成vlog短片，智能编排画面、匹配BGM、添加转场特效",
+  "name": "One-Click Video",
+  "description": "Auto-generate vlog shorts from multiple photos with smart scene arrangement, BGM matching, and transition effects",
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team",
@@ -25,7 +25,10 @@
         "把这几张图做成视频",
         "一键成片",
         "生成vlog",
-        "create video from photos"
+        "create video from photos",
+        "create a video from these photos",
+        "make a vlog",
+        "generate a slideshow video"
       ],
       "input": {
         "type": "object",
@@ -51,5 +54,7 @@
     ],
     "sandbox_level": "basic",
     "verified_by": []
-  }
+  },
+  "name_zh": "一键成片",
+  "description_zh": "多图自动生成vlog短片，智能编排画面、匹配BGM、添加转场特效"
 }

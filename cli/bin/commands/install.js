@@ -21,9 +21,9 @@ export async function installCommand(repo, options) {
   // Parse user/repo[/path]
   const parts = repo.split('/');
   if (parts.length < 2) {
-    console.error(chalk.red('❌ 无效格式。使用: agent install user/repo'));
-    console.error(chalk.gray('   可选: agent install user/repo#v1.0.0'));
-    console.error(chalk.gray('         agent install user/repo@main'));
+    console.error(chalk.red('❌ Invalid format. Use: agent install user/repo'));
+    console.error(chalk.gray('   Optional: agent install user/repo#v1.0.0'));
+    console.error(chalk.gray('            agent install user/repo@main'));
     process.exit(1);
   }
 
@@ -31,13 +31,13 @@ export async function installCommand(repo, options) {
   const fullName = `${user}/${repoName}`;
   const targetDir = join(installDir, repoName);
 
-  console.log(chalk.blue(`📦 安装 ${chalk.bold(fullName)}`));
+  console.log(chalk.blue(`📦 Installing ${chalk.bold(fullName)}`));
 
   // ── Step 1: Pre-flight checks ──
   if (existsSync(targetDir)) {
-    const answer = await ask(chalk.yellow(`  目录已存在: ${targetDir}\n  覆盖？[y/N] `));
+    const answer = await ask(chalk.yellow(`  Directory exists: ${targetDir}\n  Overwrite? [y/N] `));
     if (answer.toLowerCase() !== 'y') {
-      console.log(chalk.yellow('  已取消'));
+      console.log(chalk.yellow('  Cancelled'));
       return;
     }
     rmSync(targetDir, { recursive: true, force: true });
@@ -76,7 +76,7 @@ export async function installCommand(repo, options) {
       }
     }
   } catch (err) {
-    console.error(chalk.red(`❌ 克隆失败: ${err.message}`));
+    console.error(chalk.red(`❌ Clone failed: ${err.message}`));
     cleanupFailedInstall(targetDir);
     process.exit(1);
   }
@@ -87,35 +87,35 @@ export async function installCommand(repo, options) {
   let installError = null;
 
   if (!manifestPath) {
-    installError = `未找到 agent.json/agent.yaml 文件`;
+    installError = `agent.json/agent.yaml not found`;
     console.log(chalk.yellow(`  ⚠ ${installError}`));
   } else {
     try {
       manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'));
-      console.log(chalk.green(`  ✓ 找到 Manifest: ${basename(manifestPath)}`));
+      console.log(chalk.green(`  ✓ Found Manifest: ${basename(manifestPath)}`));
 
       // ── Step 4: Validate against schema ──
       if (!noValidate) {
         const valid = await validateManifest(manifestPath, manifest);
         if (!valid) {
-          console.log(chalk.yellow('  ⚠ Manifest 校验有警告（继续安装）'));
+          console.log(chalk.yellow('  ⚠ Manifest validation has warnings (continuing anyway)'));
         } else {
-          console.log(chalk.green('  ✓ Schema 校验通过'));
+          console.log(chalk.green('  ✓ Schema validation passed'));
         }
       }
 
       // ── Step 5: Check dependencies ──
       if (manifest.dependencies?.skills?.length) {
-        console.log(chalk.blue('  🔗 检查依赖...'));
+        console.log(chalk.blue('  🔗 Checking dependencies...'));
         const depsOk = await resolveDependencies(manifest.dependencies.skills, installDir);
         if (!depsOk) {
-          console.log(chalk.yellow('  ⚠ 部分依赖未满足（继续安装）'));
+          console.log(chalk.yellow('  ⚠ Some dependencies not met (continuing anyway)'));
         }
       }
 
       // ── Step 6: Run lifecycle hooks ──
       if (manifest.lifecycle?.on_install) {
-        console.log(chalk.blue('  🎣 执行安装钩子...'));
+        console.log(chalk.blue('  🎣 Running install hook...'));
         await runLifecycleHook(targetDir, manifest.lifecycle.on_install, 'on_install');
       }
 
@@ -125,7 +125,7 @@ export async function installCommand(repo, options) {
 
     } catch (err) {
       installError = err.message;
-      console.log(chalk.yellow(`  ⚠ Manifest 解析失败: ${err.message}`));
+      console.log(chalk.yellow(`  ⚠ Manifest parse failed: ${err.message}`));
     }
   }
 
@@ -137,13 +137,13 @@ export async function installCommand(repo, options) {
         const linkPath = join(skillsDir, repoName);
         if (!existsSync(linkPath)) {
           symlinkSync(targetDir, linkPath, 'dir');
-          console.log(chalk.green(`  ✓ 已注册到 OpenClaw: ${linkPath}`));
+          console.log(chalk.green(`  ✓ Registered in OpenClaw: ${linkPath}`));
         } else {
-          console.log(chalk.gray(`  - OpenClaw 目录中已存在 ${repoName}（跳过）`));
+          console.log(chalk.gray(`  - ${repoName} already exists in OpenClaw directory (skipped)`));
         }
       }
     } catch (err) {
-      console.log(chalk.yellow(`  ⚠ 注册 symlink 失败: ${err.message}`));
+      console.log(chalk.yellow(`  ⚠ Failed to register symlink: ${err.message}`));
     }
   }
 
@@ -153,15 +153,15 @@ export async function installCommand(repo, options) {
   // ── Summary ──
   console.log('');
   if (installError && !manifest) {
-    console.log(chalk.yellow(`⚠ ${fullName} 已下载到: ${targetDir}`));
-    console.log(chalk.gray('  但未找到有效的 agent.json，请手动配置'));
+    console.log(chalk.yellow(`⚠ ${fullName} downloaded to: ${targetDir}`));
+    console.log(chalk.gray('  No valid agent.json found. Please configure manually'));
   } else {
-    console.log(chalk.green(`✅ ${chalk.bold(repoName)} v${manifest?.version || '?'} 安装成功！`));
-    console.log(chalk.gray(`   路径: ${targetDir}`));
-    console.log(chalk.gray(`   命令: agent info ${repoName}`));
-    console.log(chalk.gray(`        agent update`));
+    console.log(chalk.green(`✅ ${chalk.bold(repoName)} v${manifest?.version || '?'} installed successfully!`));
+    console.log(chalk.gray(`   Path: ${targetDir}`));
+    console.log(chalk.gray(`   Commands: agent info ${repoName}`));
+    console.log(chalk.gray(`            agent update`));
     if (manifest?.lifecycle?.health_check) {
-      console.log(chalk.gray(`   健康检查已注册（每 ${manifest.lifecycle.health_check.interval_seconds}s）`));
+      console.log(chalk.gray(`   Health check registered (every ${manifest.lifecycle.health_check.interval_seconds}s)`));
     }
   }
 }
@@ -196,7 +196,7 @@ async function validateManifest(manifestPath, manifest) {
       const validate = ajv.compile(schema);
       const valid = validate(manifest);
       if (!valid) {
-        console.log(chalk.yellow('  校验问题:'));
+        console.log(chalk.yellow('  Validation issues:'));
         validate.errors.slice(0, 3).forEach(e => {
           console.log(chalk.gray(`    ${e.instancePath} ${e.message}`));
         });
@@ -217,16 +217,16 @@ async function resolveDependencies(deps, installDir) {
       .find(([_, s]) => s.id === dep.id);
 
     if (existing) {
-      console.log(chalk.gray(`    ✓ ${dep.id}（已安装 v${existing[1].version})`));
+      console.log(chalk.gray(`    ✓ ${dep.id} (v${existing[1].version} already installed)`));
       continue;
     }
 
     if (dep.optional) {
-      console.log(chalk.gray(`    - ${dep.id}（可选，跳过）`));
+      console.log(chalk.gray(`    - ${dep.id} (optional, skipped)`));
       continue;
     }
 
-    console.log(chalk.yellow(`    ⚠ ${dep.id}（未安装）`));
+    console.log(chalk.yellow(`    ⚠ ${dep.id} (not installed)`));
     allOk = false;
   }
 
@@ -241,7 +241,7 @@ async function runLifecycleHook(targetDir, hook, hookName) {
   if (hook.requires_approval) {
     const answer = await ask(chalk.yellow(`  安装需要执行: ${hook.description || hookName}\n  确认执行？[y/N] `));
     if (answer.toLowerCase() !== 'y') {
-      console.log(chalk.gray(`  跳过 ${hookName} 钩子`));
+      console.log(chalk.gray(`  Skipping ${hookName} hook`));
       return;
     }
   }
@@ -256,14 +256,14 @@ async function runLifecycleHook(targetDir, hook, hookName) {
         encoding: 'utf-8',
       });
       if (result.status !== 0) {
-        console.log(chalk.yellow(`  ⚠ ${hookName} 钩子返回非零: ${result.stderr?.slice(0, 200)}`));
+        console.log(chalk.yellow(`  ⚠ ${hookName} hook returned non-zero: ${result.stderr?.slice(0, 200)}`));
       }
     } else if (hook.url) {
       // Webhook / HTTP hook — note only
-      console.log(chalk.gray(`  ${hookName}: webhook 配置为 ${hook.url}`));
+      console.log(chalk.gray(`  ${hookName}: webhook configured as ${hook.url}`));
     }
   } catch (err) {
-    console.log(chalk.yellow(`  ⚠ ${hookName} 执行失败: ${err.message}`));
+    console.log(chalk.yellow(`  ⚠ ${hookName} hook failed: ${err.message}`));
   }
 }
 

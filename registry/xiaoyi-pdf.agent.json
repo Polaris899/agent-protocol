@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.pdf-toolkit",
-  "name": "PDF 工具箱",
-  "description": "完整PDF处理能力——生成、设计、填表、合并、拆分、加密、加水印、提取内容",
+  "name": "PDF Toolkit",
+  "description": "Complete PDF processing — generate, design, fill forms, merge, split, encrypt, watermark, and extract content",
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team",
@@ -24,7 +24,10 @@
         "生成PDF",
         "创建PDF",
         "make a pdf",
-        "导出PDF"
+        "导出PDF",
+        "generate a PDF report",
+        "create a PDF document",
+        "make a PDF file"
       ],
       "input": {
         "type": "object",
@@ -41,7 +44,10 @@
       "intents": [
         "合并PDF",
         "合并文件",
-        "merge pdfs"
+        "merge pdfs",
+        "combine PDF files",
+        "join PDFs",
+        "merge documents"
       ],
       "input": {
         "type": "object",
@@ -58,7 +64,10 @@
       "intents": [
         "拆分PDF",
         "提取页",
-        "split pdf"
+        "split pdf",
+        "extract pages from PDF",
+        "break PDF into pages",
+        "split document"
       ],
       "input": {
         "type": "object",
@@ -75,7 +84,10 @@
       "intents": [
         "加水印",
         "去除水印",
-        "watermark pdf"
+        "watermark pdf",
+        "add watermark to PDF",
+        "stamp PDF",
+        "remove watermark"
       ],
       "input": {
         "type": "object",
@@ -92,7 +104,10 @@
       "intents": [
         "提取PDF文字",
         "PDF转文字",
-        "extract text from pdf"
+        "extract text from pdf",
+        "extract text from PDF",
+        "read PDF content",
+        "convert PDF to text"
       ],
       "input": {
         "type": "object",
@@ -121,5 +136,7 @@
     "verified_by": [
       "openclaw_team"
     ]
-  }
+  },
+  "name_zh": "PDF 工具箱",
+  "description_zh": "完整PDF处理能力——生成、设计、填表、合并、拆分、加密、加水印、提取内容"
 }

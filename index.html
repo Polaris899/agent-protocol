@@ -1,9 +1,41 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AMP Registry v1.0 — Discover AI Skills</title>
+  <script>
+    // i18n: load default language
+    var __i18n = {};
+    var __i18nLang = 'en';
+    function t(key) {
+      return __i18n[key] || key;
+    }
+    function tFormat(key) {
+      var args = Array.prototype.slice.call(arguments, 1);
+      var s = __i18n[key] || key;
+      for (var i = 0; i < args.length; i++) {
+        s = s.replace('{'+i+'}', args[i]);
+      }
+      return s;
+    }
+    function loadI18n(lang, callback) {
+      var url = 'i18n/' + lang + '.json';
+      var xhr = new XMLHttpRequest();
+      xhr.onload = function() {
+        try {
+          __i18n = JSON.parse(xhr.responseText);
+          callback();
+        } catch(e) { callback(); }
+      };
+      xhr.onerror = function() { callback(); };
+      xhr.open('GET', url, true);
+      xhr.send();
+    }
+    // Auto-detect language
+    var navLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    if (navLang.indexOf('zh') === 0) { __i18nLang = 'zh'; }
+  </script>
   <style>
     :root {
       --bg: #0f1117;
@@ -132,45 +164,62 @@
 <body>
   <header class="container">
     <h1>⚡ AMP Registry v1.0</h1>
-    <p>AI 能力路由注册中心 — 语义搜索，浏览器本地 TF-IDF 向量匹配</p>
+    <p id="headerDesc">AI Skill Routing Registry — semantic search, browser-local TF-IDF vector matching</p>
   </header>
 
   <main class="container">
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="搜索 Skill，如"天气"、"分析财报"、"translate"..." autofocus>
+      <input type="text" id="searchInput" placeholder="Search Skills, e.g. &quot;weather&quot;, &quot;financial analysis&quot;, &quot;translate&quot;..." autofocus>
       <span class="search-icon">⌕</span>
     </div>
 
     <div class="stats-bar" id="statsBar">
-      <span>📦 <span class="num" id="totalSkills">-</span> Skills</span>
-      <span>🎯 <span class="num" id="totalCaps">-</span> 能力</span>
-      <span>🏷 <span class="num" id="totalTags">-</span> 标签</span>
+      <span>📦 <span class="num" id="totalSkills">-</span> <span id="statSkillsLabel">Skills</span></span>
+      <span>🎯 <span class="num" id="totalCaps">-</span> <span id="statCapsLabel">Capabilities</span></span>
+      <span>🏷 <span class="num" id="totalTags">-</span> <span id="statTagsLabel">Tags</span></span>
     </div>
 
     <div class="results" id="results">
-      <div class="empty-state">
+      <div class="empty-state" id="emptyState">
         <div class="icon">🔍</div>
-        <h3>输入关键词开始搜索</h3>
-        <p>支持中文/英文，试试"天气"、"分析财报"、"translate"</p>
+        <h3 id="emptyTitle">Enter a keyword to start searching</h3>
+        <p id="emptyHint">Try "weather", "translate", "music"</p>
       </div>
     </div>
   </main>
 
   <footer class="container">
     <p>
-      <a href="https://github.com/Polaris899/agent-protocol" target="_blank">📖 GitHub</a>
+      <a href="https://github.com/Polaris899/agent-protocol" target="_blank" id="footerGithubLink">📖 GitHub</a>
       &nbsp;·&nbsp;
       <code>agent install user/repo</code>
       &nbsp;·&nbsp;
-      <a href="#" id="browseAllLink">浏览全部 5,000+ Skills</a>
+      <a href="#" id="browseAllLink">Browse all 5,000+ Skills</a>
       &nbsp;·&nbsp;
-      <a href="https://github.com/Polaris899/agent-protocol/discussions/1" target="_blank">💬 招募开发者</a>
+      <a href="https://github.com/Polaris899/agent-protocol/discussions/1" target="_blank" id="recruitLink">💬 Recruit Developers</a>
     </p>
   </footer>
 
   <script src="search-engine.js"></script>
   <script>
     (function() {
+      loadI18n(__i18nLang, function() {
+        initApp();
+      });
+
+      function initApp() {
+      // Apply i18n to static elements
+      document.getElementById('headerDesc').textContent = t('ui.header_desc');
+      document.getElementById('searchInput').placeholder = t('ui.search_placeholder');
+      document.getElementById('statSkillsLabel').textContent = t('ui.stats_skills');
+      document.getElementById('statCapsLabel').textContent = t('ui.stats_caps');
+      document.getElementById('statTagsLabel').textContent = t('ui.stats_tags');
+      document.getElementById('emptyTitle').textContent = t('ui.empty_title');
+      document.getElementById('emptyHint').textContent = t('ui.empty_hint');
+      document.getElementById('browseAllLink').textContent = t('ui.browse_all');
+      document.getElementById('recruitLink').textContent = '💬 ' + t('ui.recruit_devs');
+      document.title = t('ui.title');
+
       var engine = window.AMPSearch;
       var bundle = null;
       var loading = false;
@@ -185,7 +234,7 @@
         }
         loading = true;
         var el = document.getElementById('results');
-        el.innerHTML = '<div class="loading"><div class="spinner"></div><p>加载索引 (5,000+ Skills)...</p></div>';
+        el.innerHTML = '<div class="loading"><div class="spinner"></div><p>'+t('ui.loading_index')+'</p></div>';
 
         var script = document.createElement('script');
         script.src = 'search-data.js';
@@ -222,13 +271,13 @@
       function renderResults(results) {
         var el = document.getElementById('results');
         if (!results || results.length === 0) {
-          el.innerHTML = '<div class="empty-state"><div class="icon">🔍</div><h3>未找到匹配的 Skill</h3><p>试试其他关键词</p></div>';
+          el.innerHTML = '<div class="empty-state"><div class="icon">🔍</div><h3>'+t('ui.no_results')+'</h3><p>'+t('ui.no_results_hint')+'</p></div>';
           return;
         }
         el.innerHTML = results.map(function(m) {
           var badges = [];
-          if (m.trust && m.trust.verified_by && m.trust.verified_by.length) badges.push('<span class="badge audited">✓ 已验证</span>');
-          else badges.push('<span class="badge unaudited">待验证</span>');
+          if (m.trust && m.trust.verified_by && m.trust.verified_by.length) badges.push('<span class="badge audited">'+t('ui.verified')+'</span>');
+          else badges.push('<span class="badge unaudited">'+t('ui.unverified')+'</span>');
           var repo = m._repo || m.id || 'unknown';
           var scorePct = m.score ? (m.score * 100).toFixed(1) + '%' : '';
           var capCount = (m.capabilities || []).length;
@@ -237,11 +286,11 @@
           return '<div class="result-card" data-id="' + m.id + '">' +
             '<div class="top"><div><div class="name">' + (m.name||'') + ' <small>v' + (m.version||'0.1') + '</small></div></div>' +
             '<div>' + badges.join('') + '</div></div>' +
-            '<div class="desc" style="-webkit-line-clamp:2">' + (m.description||'暂无描述') + '</div>' +
+            '<div class="desc" style="-webkit-line-clamp:2">' + (m.description||t('ui.no_description')) + '</div>' +
             '<div class="meta">' +
-            '<span class="cap-count">🎯 ' + capCount + ' 个能力</span>' +
-            (author ? '<span>👤 ' + author + '</span>' : '') +
-            (engine ? '<span>⚙ ' + engine + '</span>' : '') +
+            '<span class="cap-count">🎯 ' + capCount + ' ' + t('ui.stats_caps').toLowerCase() + '</span>' +
+            (author ? '<span>👤 ' + t('ui.author') + ': ' + author + '</span>' : '') +
+            (engine ? '<span>⚙ ' + t('ui.engine') + ': ' + engine + '</span>' : '') +
             (m.tags && m.tags.length ? '<span>🏷 ' + m.tags.slice(0,3).join(', ') + '</span>' : '') +
             (scorePct ? '<span class="score-bar-wrap"><span class="score-bar-track"><span class="score-bar-fill" style="width:' + (m.score * 100) + '%;background:' + scoreColor(m.score) + '"></span></span><span class="score-bar-label" style="color:' + scoreColor(m.score) + '">' + scorePct + '</span></span>' : '') +
             '</div><span class="install-cmd">agent install ' + repo + '</span></div>';
@@ -267,15 +316,16 @@
         el.innerHTML = '<div class="detail-header"><a href="#" id="backBtn">← 返回</a></div>' +
           '<div class="result-card detail-card">' +
           '<div class="top"><div><h2>' + (m.name||'') + '</h2><div class="subtitle">' + (m.id||'') + ' · v' + (m.version||'0.1') + '</div></div></div>' +
-          '<div class="desc-text">' + (m.description||'暂无描述') + '</div>' +
+          '<div class="desc-text">' + (m.description||t('ui.no_description')) + '</div>' +
           '<div class="detail-grid">' +
-          '<div>👤 作者: ' + (author||'未知') + '</div>' +
-          '<div>📄 许可: ' + (m.license||'未声明') + '</div>' +
-          (engine ? '<div>⚙ 引擎: ' + engine + '</div>' : '') +
-          '<div>🔒 沙箱: ' + sandbox + '</div>' +
+          '<div>👤 '+t('ui.author')+': ' + (author||t('ui.unknown')) + '</div>' +
+          '<div>📄 '+t('ui.license')+': ' + (m.license||t('ui.not_declared')) + '</div>' +
+          (engine ? '<div>⚙ '+t('ui.engine')+': ' + engine + '</div>' : '') +
+          '<div>🔒 '+t('ui.sandbox')+': ' + sandbox + '</div>' +
           '</div>' +
           '<div class="install-cmd" style="margin-top:12px">agent install ' + repo + '</div>' +
           '</div>';
+        document.getElementById('backBtn').textContent = t('ui.back');
         document.getElementById('backBtn').addEventListener('click', function(e) {
           e.preventDefault();
           var q = document.getElementById('searchInput').value.trim();

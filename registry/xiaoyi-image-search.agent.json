@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.image-search",
-  "name": "图片搜索",
-  "description": "搜索图片并下载到本地，支持为文档、PPT、报告查找配图素材",
+  "name": "Image Search",
+  "description": "Search images and download locally, supporting illustrations for documents, PPTs, and reports",
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team",
@@ -25,7 +25,10 @@
         "找{query}的图片",
         "搜索{subject}图片",
         "找素材",
-        "search images of {query}"
+        "search images of {query}",
+        "find images of {query}",
+        "search for {subject} pictures",
+        "find stock photos of {topic}"
       ],
       "input": {
         "type": "object",
@@ -50,5 +53,7 @@
     ],
     "sandbox_level": "basic",
     "verified_by": []
-  }
+  },
+  "name_zh": "图片搜索",
+  "description_zh": "搜索图片并下载到本地，支持为文档、PPT、报告查找配图素材"
 }

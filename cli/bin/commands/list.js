@@ -10,8 +10,8 @@ export async function listCommand(options) {
   const asJson = options.json || false;
 
   if (!existsSync(CONFIG_PATH)) {
-    console.log(chalk.yellow('  尚未安装任何 Skill。'));
-    console.log(chalk.gray('  使用 agent search <query> 查找 Skill，然后用 agent install <repo> 安装'));
+    console.log(chalk.yellow('  No Skills installed yet.'));
+    console.log(chalk.gray('  Use agent search <query> to find Skills, then agent install <repo> to install'));
     return;
   }
 
@@ -19,7 +19,7 @@ export async function listCommand(options) {
   try {
     config = JSON.parse(readFileSync(CONFIG_PATH, 'utf-8'));
   } catch {
-    console.log(chalk.red('❌ 配置文件损坏'));
+    console.log(chalk.red('❌ Config file corrupted'));
     process.exit(1);
   }
 
@@ -27,7 +27,7 @@ export async function listCommand(options) {
   const names = Object.keys(installed);
 
   if (names.length === 0) {
-    console.log(chalk.yellow('  尚未安装任何 Skill。'));
+    console.log(chalk.yellow('  No Skills installed yet.'));
     return;
   }
 
@@ -36,7 +36,7 @@ export async function listCommand(options) {
     return;
   }
 
-  console.log(chalk.blue(`📋 已安装的 Skill (${names.length})：`));
+  console.log(chalk.blue(`📋 Installed Skills (${names.length}):`));
   console.log();
 
   for (const [i, name] of names.entries()) {
@@ -50,13 +50,13 @@ export async function listCommand(options) {
         const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'));
         displayName = manifest.name || name;
         const caps = manifest.capabilities || [];
-        desc = `${caps.length} 个能力`;
+        desc = `${caps.length} capabilities`;
       } catch {}
     }
 
-    const date = new Date(skill.installed_at).toLocaleDateString('zh-CN');
+    const date = new Date(skill.installed_at).toLocaleDateString('en-US');
     console.log(`  ${chalk.cyan(String(i + 1).padStart(2, ' '))}. ${chalk.bold(displayName)}`);
-    console.log(`     ${chalk.gray(`仓库: ${skill.repo}  |  安装: ${date}  |  ${desc}`)}`);
+    console.log(`     ${chalk.gray(`Repo: ${skill.repo}  |  Installed: ${date}  |  ${desc}`)}`);
     console.log();
   }
 }

@@ -25,19 +25,19 @@ export async function updateCommand(skillName, options) {
     : names;
 
   if (names.length === 0) {
-    console.log(chalk.yellow('  尚未安装任何 Skill。'));
-    console.log(chalk.gray('  使用: agent install user/repo'));
+    console.log(chalk.yellow('  No Skills installed yet.'));
+    console.log(chalk.gray('  Use: agent install user/repo'));
     return;
   }
 
   if (skillName && !installed[skillName]) {
-    console.error(chalk.red(`❌ 未找到已安装的 Skill: ${skillName}`));
-    console.log(chalk.gray('  已安装的: ' + names.join(', ')));
+    console.error(chalk.red(`❌ Installed Skill not found: ${skillName}`));
+    console.log(chalk.gray('  Installed: ' + names.join(', ')));
     process.exit(1);
   }
 
   if (targets.length === 0) {
-    console.log(chalk.yellow('  没有需要更新的 Skill。'));
+    console.log(chalk.yellow('  Nothing to update.'));
     return;
   }
 
@@ -55,8 +55,8 @@ export async function updateCommand(skillName, options) {
 
   // ── Update mode ──
   console.log(chalk.blue(all
-    ? `🔄 更新所有已安装的 Skill (${targets.length} 个)...`
-    : `🔄 更新 ${chalk.bold(skillName)}...`));
+    ? `🔄 Updating all installed Skills (${targets.length})...`
+    : `🔄 Updating ${chalk.bold(skillName)}...`));
   console.log('');
 
   let successCount = 0;
@@ -67,12 +67,12 @@ export async function updateCommand(skillName, options) {
     const skill = installed[name];
 
     if (!existsSync(skill.dir)) {
-      console.log(chalk.yellow(`  ⚠ ${chalk.bold(name)}: 目录不存在，跳过`));
-      const answer = await ask(chalk.yellow(`    是否从配置中移除？[y/N] `));
+      console.log(chalk.yellow(`  ⚠ ${chalk.bold(name)}: directory does not exist, skipping`));
+      const answer = await ask(chalk.yellow(`    Remove from config? [y/N] `));
       if (answer.toLowerCase() === 'y') {
         delete installed[name];
         writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2));
-        console.log(chalk.gray(`    ✓ ${name} 已从注册表中移除`));
+        console.log(chalk.gray(`    ✓ ${name} removed from registry`));
       }
       skippedCount++;
       continue;
@@ -81,7 +81,7 @@ export async function updateCommand(skillName, options) {
     // Check if update is available
     const updateAvailable = await checkRemoteUpdate(name, skill);
     if (!updateAvailable && !force) {
-      console.log(chalk.gray(`  - ${chalk.bold(name)}: 已是最新版本 (v${skill.version})`));
+      console.log(chalk.gray(`  - ${chalk.bold(name)}: already up to date (v${skill.version})`));
       skippedCount++;
       continue;
     }
@@ -124,12 +124,12 @@ export async function updateCommand(skillName, options) {
       // Run on_update lifecycle hook if manifest has one
       const manifest = tryLoadManifest(skill.dir);
       if (manifest?.lifecycle?.on_update) {
-        console.log(chalk.blue(`    🎣 执行更新钩子...`));
+        console.log(chalk.blue(`    🎣 Running update hook...`));
         await runHook(skill.dir, manifest.lifecycle.on_update, 'on_update');
       }
 
       writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2));
-      console.log(chalk.green(`  ✓ ${chalk.bold(name)}: ${newManifestVersion ? `v${skill.version} → v${newManifestVersion}` : '已更新'}`));
+      console.log(chalk.green(`  ✓ ${chalk.bold(name)}: ${newManifestVersion ? `v${skill.version} → v${newManifestVersion}` : 'updated'}`));
       successCount++;
 
     } catch (err) {
@@ -149,15 +149,15 @@ export async function updateCommand(skillName, options) {
 
   const total = successCount + failCount + skippedCount;
   console.log(all
-    ? chalk.green(`✅ 更新完成: ${successCount} 成功, ${failCount} 失败, ${skippedCount} 跳过`)
+    ? chalk.green(`✅ Update complete: ${successCount} succeeded, ${failCount} failed, ${skippedCount} skipped`)
     : (failCount === 0
-      ? chalk.green(`✅ ${skillName} 已更新`)
-      : chalk.red(`❌ ${skillName} 更新失败`)));
+      ? chalk.green(`✅ ${skillName} has been updated`)
+      : chalk.red(`❌ ${skillName} update failed`)));
 }
 
 // ─── Check-only mode ───
 async function checkUpdates(targets, installed) {
-  console.log(chalk.blue('🔍 检查更新...'));
+  console.log(chalk.blue('🔍 Checking for updates...'));
   console.log('');
 
   let hasUpdates = false;
@@ -165,7 +165,7 @@ async function checkUpdates(targets, installed) {
   for (const name of targets) {
     const skill = installed[name];
     if (!existsSync(skill.dir)) {
-      console.log(chalk.yellow(`  ⚠ ${name}: 目录不存在`));
+      console.log(chalk.yellow(`  ⚠ ${name}: directory does not exist`));
       continue;
     }
 
@@ -176,15 +176,15 @@ async function checkUpdates(targets, installed) {
       console.log(chalk.green(`  📦 ${chalk.bold(name)}: v${localVersion} → v${remoteVersion}`));
       hasUpdates = true;
     } else {
-      console.log(chalk.gray(`  ✓ ${chalk.bold(name)}: v${localVersion}（最新）`));
+      console.log(chalk.gray(`  ✓ ${chalk.bold(name)}: v${localVersion} (up to date)`));
     }
   }
 
   console.log('');
   if (!hasUpdates) {
-    console.log(chalk.green('✅ 所有 Skill 已是最新版本'));
+    console.log(chalk.green('✅ All Skills are up to date'));
   } else {
-    console.log(chalk.green('  使用 agent update --all 更新全部'));
+    console.log(chalk.green('  Use agent update --all to update all'));
   }
 }
 
@@ -220,31 +220,31 @@ async function getRemoteVersion(name, skill) {
 // ─── Rollback ───
 async function rollbackSkill(name, options, installed) {
   if (!name) {
-    console.error(chalk.red('❌ 请指定要回滚的 Skill: agent update <name> --rollback'));
+    console.error(chalk.red('❌ Specify the Skill to rollback: agent update <name> --rollback'));
     process.exit(1);
   }
 
   const skill = installed[name];
   if (!skill) {
-    console.error(chalk.red(`❌ 未找到已安装的 Skill: ${name}`));
+    console.error(chalk.red(`❌ Installed Skill not found: ${name}`));
     process.exit(1);
   }
 
   if (!existsSync(skill.dir)) {
-    console.error(chalk.red(`❌ 目录不存在: ${skill.dir}`));
+    console.error(chalk.red(`❌ Directory does not exist: ${skill.dir}`));
     process.exit(1);
   }
 
   // List recent git refs
-  console.log(chalk.blue(`🕒 查看 ${name} 的版本历史...`));
+  console.log(chalk.blue(`🕒 Viewing ${name} version history...`));
   const logResult = spawnSync('git', ['log', '--oneline', '-10'], {
     cwd: skill.dir, stdio: 'pipe', encoding: 'utf-8', timeout: 10000,
   });
-  console.log(chalk.gray(logResult.stdout || '无历史记录'));
+  console.log(chalk.gray(logResult.stdout || 'No history'));
 
   const targetRef = options.ref || options.to;
   if (!targetRef) {
-    console.log(chalk.yellow('  使用 --to <commit> 指定要回滚到的版本'));
+    console.log(chalk.yellow('  Use --to <commit> to specify rollback target'));
     process.exit(1);
   }
 
@@ -254,12 +254,12 @@ async function rollbackSkill(name, options, installed) {
   });
 
   if (result.status === 0) {
-    console.log(chalk.green(`✅ ${name} 已回滚到 ${targetRef}`));
+    console.log(chalk.green(`✅ ${name} rolled back to ${targetRef}`));
     installed[name].rollback_ref = targetRef;
     installed[name].updated_at = new Date().toISOString();
     writeFileSync(CONFIG_PATH, JSON.stringify({ installed }, null, 2));
   } else {
-    console.error(chalk.red(`❌ 回滚失败: ${result.stderr?.slice(0, 200)}`));
+    console.error(chalk.red(`❌ Rollback failed: ${result.stderr?.slice(0, 200)}`));
   }
 }
 
@@ -311,7 +311,7 @@ async function runHook(dir, hook, hookName) {
   if (hook.requires_approval) {
     const answer = await ask(chalk.yellow(`  更新钩子: ${hook.description || hookName}\n  确认？[y/N] `));
     if (answer.toLowerCase() !== 'y') {
-      console.log(chalk.gray(`  跳过 ${hookName}`));
+      console.log(chalk.gray(`  Skipping ${hookName}`));
       return;
     }
   }

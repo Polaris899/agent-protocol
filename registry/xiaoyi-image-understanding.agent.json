@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.image-understanding",
-  "name": "图像理解",
-  "description": "使用AI进行图像内容识别和描述，支持多图对比、OCR文字识别、图表分析",
+  "name": "Image Understanding",
+  "description": "AI-powered image recognition and description, supporting multi-image comparison, OCR, and chart analysis",
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team",
@@ -25,7 +25,10 @@
         "这张图是什么",
         "描述这张图片",
         "图片内容",
-        "describe this image"
+        "describe this image",
+        "what is in this image",
+        "describe this picture",
+        "analyze this photo"
       ],
       "input": {
         "type": "object",
@@ -43,7 +46,10 @@
         "识别这张图的文字",
         "提取文字",
         "图片转文字",
-        "OCR"
+        "OCR",
+        "extract text from image",
+        "read text in this image",
+        "OCR this picture"
       ],
       "input": {
         "type": "object",
@@ -60,7 +66,10 @@
       "intents": [
         "对比这些图片",
         "图片对比",
-        "比较这两张图"
+        "比较这两张图",
+        "compare these images",
+        "find differences between images",
+        "analyze multiple images"
       ],
       "input": {
         "type": "object",
@@ -85,5 +94,7 @@
     ],
     "sandbox_level": "basic",
     "verified_by": []
-  }
+  },
+  "name_zh": "图像理解",
+  "description_zh": "使用AI进行图像内容识别和描述，支持多图对比、OCR文字识别、图表分析"
 }

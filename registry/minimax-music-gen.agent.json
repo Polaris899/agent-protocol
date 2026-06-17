@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.music-gen",
-  "name": "音乐创作",
-  "description": "基于MiniMax Music2.6的音乐生成，支持作曲、编曲、写歌词多风格创作",
+  "name": "Music Creator",
+  "description": "AI music generation based on MiniMax Music2.6, supporting composition, arrangement, and lyrics writing across genres",
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team"
@@ -25,7 +25,10 @@
         "生成一首{风格}的歌",
         "帮我作曲",
         "来一段{风格}的音乐",
-        "create music"
+        "create music",
+        "create music in {genre} style",
+        "compose a song about {topic}",
+        "make some background music"
       ],
       "input": {
         "type": "object",
@@ -42,7 +45,10 @@
       "intents": [
         "写歌词",
         "帮我填词",
-        "write lyrics about {topic}"
+        "write lyrics about {topic}",
+        "write lyrics about {topic}",
+        "compose song lyrics",
+        "create lyrics for my song"
       ],
       "input": {
         "type": "object",
@@ -69,5 +75,7 @@
     "verified_by": [
       "openclaw_team"
     ]
-  }
+  },
+  "name_zh": "音乐创作",
+  "description_zh": "基于MiniMax Music2.6的音乐生成，支持作曲、编曲、写歌词多风格创作"
 }

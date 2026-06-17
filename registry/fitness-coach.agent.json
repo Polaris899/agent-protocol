@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-protocol.dev/v1.0/manifest.schema.json",
   "id": "com.openclaw.fitness-coach",
-  "name": "科学健身教练",
-  "description": "制定个性化健身计划、动作指导、渐进式负荷调整和营养建议",
+  "name": "Fitness Coach",
+  "description": "Create personalized fitness plans, guide exercises with proper form, progressive overload adjustments, and nutrition advice",
   "version": "1.0.0",
   "author": {
     "name": "OpenClaw Team",
@@ -25,7 +25,10 @@
         "制定健身计划",
         "增肌计划",
         "减脂方案",
-        "create workout plan"
+        "create workout plan",
+        "create a workout plan",
+        "build muscle routine",
+        "weight loss program"
       ],
       "input": {
         "type": "object",
@@ -42,7 +45,10 @@
       "intents": [
         "这个动作怎么做",
         "正确姿势",
-        "exercise form guide"
+        "exercise form guide",
+        "how to do this exercise",
+        "proper form for {exercise}",
+        "exercise technique guide"
       ],
       "input": {
         "type": "object",
@@ -60,7 +66,10 @@
         "健身怎么吃",
         "增肌饮食",
         "减脂餐",
-        "workout nutrition"
+        "workout nutrition",
+        "what should I eat for muscle gain",
+        "meal plan for cutting",
+        "post-workout nutrition"
       ],
       "input": {
         "type": "object",
@@ -85,5 +94,7 @@
     "verified_by": [
       "openclaw_team"
     ]
-  }
+  },
+  "name_zh": "科学健身教练",
+  "description_zh": "制定个性化健身计划、动作指导、渐进式负荷调整和营养建议"
 }
