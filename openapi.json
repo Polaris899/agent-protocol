@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "AMP Intent Router",
-    "description": "Agent Manifest Protocol — Route any user intent to the best matching AI Skill across 5,051 indexed Skills (OpenClaw + GPTs).\n\n一个GPT问另一个GPT：谁能处理这个意图？\n\nExample queries:\n- \"帮我分析财务报表\"\n- \"今天天气怎么样\"\n- \"generate a music beat\"\n- \"画一幅画\"\n- \"写一份研究报告\"\n\nResponse includes:\n- top_match: the best matching Skill (name + description + score)\n- alternatives: 3 more options if top_match isn't ideal\n- total_matches: how many Skills could handle this intent",
+    "description": "Agent Manifest Protocol — Route any user intent to the best matching AI Skill across 13,078 indexed Skills (OpenClaw + GPTs).\n\n一个GPT问另一个GPT：谁能处理这个意图？\n\nExample queries:\n- \"帮我分析财务报表\"\n- \"今天天气怎么样\"\n- \"generate a music beat\"\n- \"画一幅画\"\n- \"写一份研究报告\"\n\nResponse includes:\n- top_match: the best matching Skill (name + description + score)\n- alternatives: 3 more options if top_match isn't ideal\n- total_matches: how many Skills could handle this intent",
     "version": "1.0.0",
     "contact": {
       "url": "https://github.com/Polaris899/agent-protocol"
@@ -19,7 +19,7 @@
       "post": {
         "operationId": "routeIntent",
         "summary": "Find the best AI Skill for any user intent",
-        "description": "Semantic search across 5,051 indexed Skills. Returns the top matching Skill + 3 alternatives, each with confidence score (0-1). Your GPT can then decide whether to handle the intent itself or delegate to the matched Skill.\n\n最佳意图匹配器：给定用户意图，返回最匹配的AI Skill。",
+        "description": "Semantic search across 13,078 indexed Skills. Returns the top matching Skill + 3 alternatives, each with confidence score (0-1). Your GPT can then decide whether to handle the intent itself or delegate to the matched Skill.\n\n最佳意图匹配器：给定用户意图，返回最匹配的AI Skill。",
         "requestBody": {
           "required": true,
           "content": {

@@ -10,7 +10,7 @@ Server URL:  https://api.agent-trust-protocol.org
 Import:  https://api.agent-trust-protocol.org/api/openapi.json
 ```
 
-**Done.** Your GPT can now discover 5,051 Skills and find the one that can handle your user's intent.
+**Done.** Your GPT can now discover 13,078 Skills and find the one that can handle your user's intent.
 
 ---
 
@@ -50,7 +50,7 @@ Add the following logic to your GPT Builder Instructions:
 
 ```
 ## External Capability (AMP Intent Router)
-You are connected to an external skill routing network (AMP) with discovery access to 5,051 registered Skills.
+You are connected to an external skill routing network (AMP) with discovery access to 13,078 registered Skills.
 
 Routing Rules:
 1. After receiving a user intent, if it falls within your core capability, handle it directly
